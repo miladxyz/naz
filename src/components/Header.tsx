@@ -7,14 +7,14 @@ import { useAuth } from '@/context/AuthContext'
 import { Scale, LayoutDashboard, Settings, HelpCircle, LogOut, Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { href: '/',        label: 'خانه' },
-  { href: '/about',   label: 'درباره ما' },
-  { href: '/blog',    label: 'مقالات' },
-  { href: '/cases',   label: 'تجربیات' },
-  { href: '/qa',      label: 'پرسش و پاسخ' },
-  { href: '/faq',     label: 'سوالات متداول' },
-  { href: '/problems',     label: 'چالش ها' },
-  { href: '/contact', label: 'تماس با ما' },
+  { href: '/',            label: 'خانه' },
+  { href: '/about',       label: 'درباره ما' },
+  { href: '/blog',        label: 'مقالات' },
+  { href: '/cases',       label: 'تجربیات' },
+  { href: '/qa',          label: 'پرسش و پاسخ' },
+  { href: '/faq',         label: 'سوالات متداول' },
+  { href: '/challenges',    label: 'چالش ها' },
+  { href: '/contact',     label: 'تماس با ما' },
 ]
 
 const roleLabels: Record<string, string> = {
@@ -49,9 +49,8 @@ export function Header() {
   }, [])
 
   const isHome = pathname === '/'
-  // const onDark = !scrolled && isHome
-  const onDark = !scrolled 
-  
+  const onDark = !scrolled && isHome
+
   async function handleLogout() { await logout(); router.push('/') }
 
   return (

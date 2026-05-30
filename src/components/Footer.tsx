@@ -2,12 +2,13 @@ import Link from 'next/link'
 import { Scale, MapPin, Phone, Mail, Clock } from 'lucide-react'
 
 const quickLinks = [
-  { href: '/about',   label: 'درباره ما' },
-  { href: '/blog',    label: 'مقالات حقوقی' },
-  { href: '/cases',   label: 'تجربیات' },
-  { href: '/qa',      label: 'پرسش و پاسخ' },
-  { href: '/faq',     label: 'سوالات متداول' },
-  { href: '/contact', label: 'تماس با ما' },
+  { href: '/about',       label: 'درباره ما' },
+  { href: '/blog',        label: 'مقالات حقوقی' },
+  { href: '/cases',       label: 'تجربیات' },
+  { href: '/qa',          label: 'پرسش و پاسخ' },
+  { href: '/faq',         label: 'سوالات متداول' },
+  { href: '/challenges',    label: 'چالش ها' },
+  { href: '/contact',     label: 'تماس با ما' },
 ]
 
 const practiceAreas = [
@@ -30,7 +31,7 @@ export function Footer() {
       {/* Teal top line */}
       <div className="h-px" style={{ background: 'linear-gradient(90deg, transparent, #4cb4c9, transparent)' }} />
 
-      <div style={{ borderBottom: '1px solid rgba(22,45,82,0.6)' }}>
+      <div style={{ borderBottom: '1px solid rgba(32, 214, 255, 0.6)' }}>
         <div className="container-site py-14 grid grid-cols-1 md:grid-cols-4 gap-12">
 
           {/* Brand */}

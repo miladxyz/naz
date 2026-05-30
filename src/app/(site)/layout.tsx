@@ -20,7 +20,11 @@ export const metadata: Metadata = {
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className="bg-navy text-ink antialiased" style={{ fontFamily: 'Vazirmatn, sans-serif' }}>
+      <body className="text-ivory antialiased" style={{ fontFamily: 'Vazirmatn, sans-serif', background: '#0d1f3c' }}>
+        {/* backgroud grid */}
+        <div className='fixed inset-0 opacity-5'>
+          <div className='h-full w-full bg-grid-pattern'></div>
+        </div>
         <AuthProvider>
           <Header />
           <main className="min-h-screen">{children}</main>

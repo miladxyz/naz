@@ -37,7 +37,8 @@ const config: Config = {
       backgroundImage: {
         'hero-gradient': 'linear-gradient(135deg, #070f1e 0%, #0d1f3c 60%, #162d52 100%)',
         'teal-gradient': 'linear-gradient(90deg, #4cb4c9, #a8dde8, #4cb4c9)',
-        'gold-gradient': 'linear-gradient(90deg, #4cb4c9, #a8dde8, #4cb4c9)', // alias
+        'gold-gradient': 'linear-gradient(90deg, #4cb4c9, #a8dde8, #4cb4c9)',
+        'grid-pattern': 'repeating-linear-gradient(0deg,rgba(255,255,255,1) 0,rgba(255,255,255,1) 1px,transparent 1px,transparent 80px),repeating-linear-gradient(90deg,rgba(255,255,255,1) 0,rgba(255,255,255,1) 1px,transparent 1px,transparent 80px)' // alias
       },
       animation: {
         'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.4,0,0.2,1) both',
