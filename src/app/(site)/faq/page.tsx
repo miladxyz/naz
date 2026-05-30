@@ -1,0 +1,133 @@
+'use client'
+
+import { useState } from 'react'
+import type { Metadata } from 'next'
+
+const faqs = [
+  {
+    category: 'عمومی',
+    items: [
+      {
+        q: 'چطور می‌توانم وقت مشاوره بگیرم؟',
+        a: 'برای دریافت وقت مشاوره می‌توانید از طریق فرم تماس در سایت، ایمیل یا تماس تلفنی با دفتر ما ارتباط برقرار کنید. تیم ما ظرف ۲۴ ساعت پاسخگو خواهد بود.',
+      },
+      {
+        q: 'هزینه اولین جلسه مشاوره چقدر است؟',
+        a: 'اولین جلسه مشاوره برای بررسی اولیه پرونده شما به صورت رایگان برگزار می‌شود. پس از بررسی، هزینه‌های دقیق با توجه به نوع و پیچیدگی پرونده تعیین خواهد شد.',
+      },
+      {
+        q: 'آیا امکان مشاوره آنلاین وجود دارد؟',
+        a: 'بله، ما امکان مشاوره آنلاین از طریق ویدیوکال را برای موکلینی که امکان حضور در دفتر را ندارند فراهم کرده‌ایم.',
+      },
+    ],
+  },
+  {
+    category: 'حقوق خانواده',
+    items: [
+      {
+        q: 'مراحل طلاق توافقی چیست؟',
+        a: 'طلاق توافقی زمانی است که زوجین بر جدایی توافق دارند. مراحل شامل: ثبت دادخواست، ارجاع به مشاور خانواده، صدور گواهی عدم سازش، و ثبت طلاق در دفاتر رسمی است. این فرآیند معمولاً ۳ تا ۶ ماه طول می‌کشد.',
+      },
+      {
+        q: 'حق حضانت فرزندان به چه کسی تعلق می‌گیرد؟',
+        a: 'بر اساس قانون ایران، حضانت پسر تا ۲ سالگی و دختر تا ۷ سالگی با مادر است. پس از آن با پدر خواهد بود، مگر اینکه دادگاه مصلحت فرزند را در واگذاری به مادر تشخیص دهد.',
+      },
+    ],
+  },
+  {
+    category: 'حقوق تجاری',
+    items: [
+      {
+        q: 'چه نوع قراردادهایی باید توسط وکیل تنظیم شوند؟',
+        a: 'قراردادهای مشارکت، سرمایه‌گذاری، واگذاری امتیاز، قراردادهای بین‌المللی، قراردادهای ملکی با ارزش بالا و هر قراردادی که ریسک مالی قابل توجهی دارد، باید با نظارت وکیل تنظیم شوند.',
+      },
+      {
+        q: 'در صورت نقض قرارداد چه اقداماتی می‌توان انجام داد؟',
+        a: 'در صورت نقض قرارداد می‌توانید اقدامات زیر را انجام دهید: اطلاع‌رسانی رسمی به طرف مقابل، مذاکره و داوری، و در صورت عدم توافق، طرح دعوا در دادگاه صالح برای مطالبه خسارات.',
+      },
+    ],
+  },
+  {
+    category: 'پرسش و پاسخ آنلاین',
+    items: [
+      {
+        q: 'آیا پاسخ‌های این بخش رسمی و قابل استناد هستند؟',
+        a: 'پاسخ‌های ارائه شده در بخش پرسش و پاسخ جنبه اطلاع‌رسانی و راهنمایی اولیه دارند و جایگزین مشاوره حقوقی رسمی نمی‌شوند. برای استناد رسمی، مشاوره خصوصی توصیه می‌شود.',
+      },
+      {
+        q: 'چقدر طول می‌کشد تا سوالم پاسخ داده شود؟',
+        a: 'وکیل ما تلاش می‌کنند سوالات را ظرف ۴۸ ساعت کاری پاسخ دهند. در مواردی که سوال نیاز به بررسی بیشتر داشته باشد، این زمان ممکن است بیشتر شود.',
+      },
+    ],
+  },
+]
+
+export default function FAQPage() {
+  return (
+    <div className="pt-24">
+              <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(0deg,rgba(255,255,255,1) 0,rgba(255,255,255,1) 1px,transparent 1px,transparent 80px),repeating-linear-gradient(90deg,rgba(255,255,255,1) 0,rgba(255,255,255,1) 1px,transparent 1px,transparent 80px)' }} />
+
+      {/* Header */}
+      <section className="section-py bg-navy relative overflow-hidden noise-overlay">
+                <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(0deg,rgba(255,255,255,1) 0,rgba(255,255,255,1) 1px,transparent 1px,transparent 80px),repeating-linear-gradient(90deg,rgba(255,255,255,1) 0,rgba(255,255,255,1) 1px,transparent 1px,transparent 80px)' }} />
+
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-teal to-transparent opacity-60" />
+        <div className="container-site">
+          <p className="text-teal text-xs tracking-widest uppercase mb-4">راهنما</p>
+          <h1 className="text-4xl md:text-6xl font-bold text-ivory mb-4">سوالات متداول</h1>
+          <p className="text-silver text-lg max-w-xl leading-relaxed">
+            پاسخ سوالات رایج درباره خدمات حقوقی و فرآیندهای قانونی.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <div className="container-site section-py">
+        {faqs.map((group) => (
+          <div key={group.category} className="mb-12">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="gold-line mb-0 inline-block" />
+              <h2 className="text-xl font-bold text-[#c9a84c]">{group.category}</h2>
+            </div>
+            <div className="space-y-3">
+              {group.items.map((faq, i) => (
+                <FAQItem key={i} q={faq.q} a={faq.a} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* CTA */}
+      <section className="bg-bone border-t border-bone section-py">
+        <div className="container-site text-center">
+          <h2 className="text-2xl font-bold text-ink mb-3">سوال شما اینجا نیست؟</h2>
+          <p className="text-silver mb-6">از وکیل متخصص ما مستقیماً بپرسید</p>
+          <a href="/qa" className="btn-primary">ارسال سوال</a>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+function FAQItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className={`border transition-colors duration-200 ${open ? 'border-ink' : 'border-bone'} bg-white`}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full text-right flex items-center justify-between gap-4 px-6 py-4 group"
+      >
+        <span className="font-medium text-ink text-sm">{q}</span>
+        <span className={`text-silver transition-transform duration-200 flex-shrink-0 ${open ? 'rotate-180' : ''}`}>
+          ▾
+        </span>
+      </button>
+      {open && (
+        <div className="px-6 pb-5 animate-fade-in">
+          <p className="text-sm text-silver leading-relaxed border-t border-bone pt-4">{a}</p>
+        </div>
+      )}
+    </div>
+  )
+}
