@@ -376,17 +376,17 @@ export default async function HomePage() {
               <div>
                 <span className="gold-line" />
                 <h2 className="section-heading text-ivory">اینستاگرام</h2>
-                <a href="https://instagram.com/nazari.law" target="_blank" rel="noopener noreferrer"
+                <a href="https://instagram.com/alireza.nazari.law" target="_blank" rel="noopener noreferrer"
                   className="text-sm hover-underline" style={{ color: '#4cb4c9' }}>@nazari.law</a>
               </div>
-              <a href="https://instagram.com/nazari.law" target="_blank" rel="noopener noreferrer"
+              <a href="https://instagram.com/alireza.nazari.law" target="_blank" rel="noopener noreferrer"
                 className="hidden md:flex items-center gap-1 text-sm hover-underline" style={{ color: '#4cb4c9' }}>
                 دنبال کنید <ArrowLeft size={14} />
               </a>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
               {instagram.map((p: any) => (
-                <a key={p.id} href={p.instagramUrl || 'https://instagram.com/nazari.law'}
+                <a key={p.id} href={p.instagramUrl || 'https://instagram.com/alireza.nazari.law'}
                   target="_blank" rel="noopener noreferrer"
                   className="relative aspect-square block group overflow-hidden">
                   {p.image?.url

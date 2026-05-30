@@ -19,8 +19,8 @@ const practiceAreas = [
 
 const contactItems = [
   { icon: MapPin,     value: 'شیراز، خیابان معالی‌آباد، مجتمع تجاری آوا، طبقه ۷، واحد ۷۱', href: null },
-  { icon: Phone,      value: '09120310805', href: 'tel:+989120310805' },
-  { icon: Phone,      value: '09120310806', href: 'tel:+989120310806' },
+  { icon: Phone,      value: '۰۹۱۲۰۳۱۰۸۰۶', href: 'tel:+989120310806' },
+  { icon: Phone,      value: '۰۹۱۲۰۳۱۰۸۰۵', href: 'tel:+989120310805' },
   { icon: Mail,       value: 'info@alirezanazari.com', href: 'mailto:info@alirezanazari.com' },
   { icon: Clock,      value: 'شنبه تا پنجشنبه — ۸ صبح تا ۸ عصر', href: null },
 ]
@@ -50,11 +50,11 @@ export function Footer() {
             <p className="text-sm leading-relaxed" style={{ color: 'rgba(246,248,250,0.45)' }}>
               بیش از یک دهه تجربه در دفاع از حقوق موکلین با تخصص، درایت و تعهد حرفه‌ای.
             </p>
-            <a href="https://instagram.com/nazari.law" target="_blank" rel="noopener noreferrer"
+            <a href="https://instagram.com/alireza.nazari.law" target="_blank" rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-2 text-sm transition-colors"
               style={{ color: 'rgba(246,248,250,0.4)' }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              @nazari.law
+              @alireza.nazari.law
             </a>
           </div>
 

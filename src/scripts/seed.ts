@@ -70,9 +70,9 @@ async function seed() {
   const { totalDocs: ig } = await payload.find({ collection: 'instagram-posts', limit: 1 })
   if (ig === 0) {
     for (const post of [
-      { caption: 'حق شما را می‌شناسیم. از آن دفاع می‌کنیم. ⚖️', instagramUrl: 'https://instagram.com/nazari.law', postedAt: new Date().toISOString(), likes: 124 },
-      { caption: 'طلاق توافقی می‌تواند در چند ماه نهایی شود. برای مشاوره تماس بگیرید.', instagramUrl: 'https://instagram.com/nazari.law', postedAt: new Date(Date.now() - 172800000).toISOString(), likes: 89 },
-      { caption: 'تیم متخصص ما همیشه در کنار شماست. 📞', instagramUrl: 'https://instagram.com/nazari.law', postedAt: new Date(Date.now() - 345600000).toISOString(), likes: 201 },
+      { caption: 'حق شما را می‌شناسیم. از آن دفاع می‌کنیم. ⚖️', instagramUrl: 'https://instagram.com/alireza.nazari.law', postedAt: new Date().toISOString(), likes: 124 },
+      { caption: 'طلاق توافقی می‌تواند در چند ماه نهایی شود. برای مشاوره تماس بگیرید.', instagramUrl: 'https://instagram.com/alireza.nazari.law', postedAt: new Date(Date.now() - 172800000).toISOString(), likes: 89 },
+      { caption: 'تیم متخصص ما همیشه در کنار شماست. 📞', instagramUrl: 'https://instagram.com/alireza.nazari.law', postedAt: new Date(Date.now() - 345600000).toISOString(), likes: 201 },
     ] as any[]) await payload.create({ collection: 'instagram-posts', data: post })
     console.log('Created 3 sample Instagram posts')
   }

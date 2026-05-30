@@ -6,10 +6,10 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 const contactMethods = [
-  { Icon: Phone,  label: 'تلفن اول',   value: '09120310805',          href: 'tel:+989120310805',                dir: 'ltr' as const },
-  { Icon: Phone,  label: 'تلفن دوم',   value: '09120310806',          href: 'tel:+989120310806',                dir: 'ltr' as const },
+  { Icon: Phone,  label: 'تلفن اول',   value: '۰۹۱۲۰۳۱۰۸۰۵',          href: 'tel:+989120310806',                dir: 'ltr' as const },
+  { Icon: Phone,  label: 'تلفن دوم',   value: '۰۹۱۲۰۳۱۰۸۰۶',          href: 'tel:+989120310805',                dir: 'ltr' as const },
   { Icon: Mail,   label: 'ایمیل',      value: 'info@alirezanazari.com', href: 'mailto:info@alirezanazari.com',  dir: 'ltr' as const },
-  { Icon: null,   label: 'اینستاگرام', value: '@nazari.law',           href: 'https://instagram.com/nazari.law', dir: 'ltr' as const },
+  { Icon: null,   label: 'اینستاگرام', value: '@alireza.nazari.law',           href: 'https://instagram.com/alireza.nazari.law', dir: 'ltr' as const },
 ]
 
 const practiceAreas = [
@@ -53,14 +53,14 @@ export default function ContactPage() {
       </section>
 
       {/* Quick contact cards */}
-      <section className="bg-bone border-b border-bone">
+      <section className="bg-navy border-b border-bone">
         <div className="container-site py-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {contactMethods.map((m) => (
               <a key={m.label} href={m.href}
                 target={m.href.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                className="card bg-white text-center group hover:border-teal/30 hover:shadow-teal-glow transition-all duration-300">
+                className="border-none card bg-white/20 text-center group hover:border-teal/30 hover:shadow-teal-glow transition-all duration-300 shadow-sm ring-black/5 isolate aspect-video rounded-xl">
                 <div className="w-10 h-10 flex items-center justify-center mx-auto mb-3" style={{ background: 'rgba(76,180,201,0.08)', border: '1px solid rgba(76,180,201,0.2)' }}>
                   {m.Icon ? <m.Icon size={18} style={{ color: '#4cb4c9' }} /> : (
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4cb4c9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -68,8 +68,8 @@ export default function ContactPage() {
                     </svg>
                   )}
                 </div>
-                <p className="text-xs text-silver mb-1">{m.label}</p>
-                <p className="text-sm font-medium text-ink group-hover:text-navy transition-colors" dir={m.dir}>{m.value}</p>
+                <p className="text-xs text-white mb-1">{m.label}</p>
+                <p className="text-sm font-medium text-[#c9a84c] group-hover:text-[#efdc5b] transition-colors" dir={m.dir}>{m.value}</p>
               </a>
             ))}
           </div>
@@ -110,7 +110,7 @@ export default function ContactPage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="text-xs font-medium text-graphite block mb-1.5">شماره تماس</label>
-                    <input type="tel" dir="ltr" className="input" placeholder="09120310805"
+                    <input type="tel" dir="ltr" className="input" placeholder="۰۹۱۲۰۳۱۰۸۰۵"
                       value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} />
                   </div>
                   <div>
@@ -157,8 +157,8 @@ export default function ContactPage() {
               <div className="space-y-5">
                 {[
                   { Icon: MapPin, label: 'آدرس',      value: 'شیراز، خیابان معالی آباد، حد فاصل پزشکان و دوستان، مجتمع تجاری آوا، طبقه ۷، واحد ۷۱', href: null },
-                  { Icon: Phone,  label: 'تلفن اول',  value: '09120310805', href: 'tel:+989120310805' },
-                  { Icon: Phone,  label: 'تلفن دوم',  value: '09120310806', href: 'tel:+989120310806' },
+                  { Icon: Phone,  label: 'تلفن اول',  value: '۰۹۱۲۰۳۱۰۸۰۵', href: 'tel:+989120310806' },
+                  { Icon: Phone,  label: 'تلفن دوم',  value: '۰۹۱۲۰۳۱۰۸۰۶', href: 'tel:+989120310805' },
                   { Icon: Mail,   label: 'ایمیل',      value: 'info@alirezanazari.com', href: 'mailto:info@alirezanazari.com' },
                   { Icon: Clock,   label: 'ساعات کاری', value: 'شنبه تا پنجشنبه — ۸ صبح تا ۸ عصر', href: null },
                 ].map((item) => (

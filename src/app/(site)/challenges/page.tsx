@@ -91,13 +91,11 @@ const ChallengeCard = ({ data }: { data: typeof challenges[0] }) => {
       </div>
 
       <h3 className="text-lg font-bold mb-2">{data.title}</h3>
-      {/* <p className="text-xs text-gray-400 uppercase tracking-widest mb-3">{data.descEn}</p> */}
 
       {/* Bullet Points */}
       <ul className="text-sm text-silver space-y-1.5 mt-auto w-full">
         {data.points.map((point, idx) => (
           <li key={idx} className="flex items-start justify-center gap-1">
-            <span className="text-silver mt-1 text-[8px]">●</span>
             <span>{point}</span>
           </li>
         ))}
