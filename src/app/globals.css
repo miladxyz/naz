@@ -46,7 +46,7 @@
 
   body {
     font-family: var(--font-vazirmatn);
-    background-color: var(--ivory);
+    background-color: var(--navy);
     color: var(--ink);
     line-height: 1.75;
   }
@@ -118,7 +118,7 @@
   }
   .hover-underline:hover::after { width: 100%; right: auto; left: 0; }
 
-  .section-py { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  .section-py { padding-top: 1rem; padding-bottom: 1rem; }
 
   .container-site {
     max-width: 1200px;
