@@ -63,12 +63,12 @@ export default async function QAPage({
             {/* Category filter — all English URL params */}
             <div className="flex flex-wrap gap-2 mb-8">
               <a href="/qa"
-                className={`tag cursor-pointer transition-all ${!activeCategory ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-navy'}`}>
+                className={`z-10 tag cursor-pointer transition-all ${!activeCategory ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-navy'}`}>
                 همه
               </a>
               {Object.entries(categoryLabels).map(([value, label]) => (
                 <a key={value} href={`/qa?category=${value}`}
-                  className={`tag cursor-pointer transition-all ${activeCategory === value ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-navy'}`}>
+                  className={`tag cursor-pointer z-10 transition-all ${activeCategory === value ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-silver'}`}>
                   {label}
                 </a>
               ))}

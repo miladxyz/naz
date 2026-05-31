@@ -172,7 +172,7 @@
   .section-subheading { @apply text-silver text-base mb-8; }
 
   /* Tags */
-  .tag      { @apply inline-block text-xs px-3 py-1 bg-bone text-graphite border border-bone; }
+  .tag      { @apply inline-block text-xs px-3 py-1 bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg rounded-lg; }
   .tag-navy { @apply inline-block text-xs px-3 py-1 bg-navy text-ivory border border-navy; }
   .tag-gold { @apply inline-block text-xs px-3 py-1 text-white border font-medium;
     background-color: rgba(76,180,201,0.15);

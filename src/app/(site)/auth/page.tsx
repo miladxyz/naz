@@ -101,7 +101,7 @@ export default function AuthPage() {
           <div className="flex bg-bone mb-6">
             {(['login','register'] as const).map(t => (
               <button key={t} onClick={() => { setTab(t); setError('') }}
-                className={`flex-1 py-2.5 text-sm font-medium transition-all duration-200 ${
+                className={`z-10 flex-1 py-2.5 text-sm font-medium transition-all duration-200 ${
                   tab === t ? 'bg-navy text-ivory shadow-md' : 'text-silver hover:text-ink'
                 }`}>
                 {t === 'login' ? 'ورود' : 'ثبت‌نام'}

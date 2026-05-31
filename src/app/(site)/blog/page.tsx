@@ -47,10 +47,10 @@ export default async function BlogPage({
       <div className="container-site section-py">
         {/* Category Filter - all English slugs */}
         <div className="flex flex-wrap gap-2 mb-10">
-          <Link href="/blog" className={`tag cursor-pointer transition-all ${!activeCategory ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-navy'}`}>همه</Link>
+          <Link href="/blog" className={`tag cursor-pointer transition-all ${!activeCategory ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-silver'}`}>همه</Link>
           {Object.entries(categoryLabels).map(([v, l]) => (
             <Link key={v} href={`/blog?category=${v}`}
-              className={`tag cursor-pointer transition-all ${activeCategory === v ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-navy'}`}>
+              className={`tag cursor-pointer transition-all ${activeCategory === v ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-silver'}`}>
               {l}
             </Link>
           ))}
