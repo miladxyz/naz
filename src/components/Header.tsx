@@ -49,7 +49,7 @@ export function Header() {
   }, [])
 
   const isHome = pathname === '/'
-  const onDark = !scrolled && isHome
+  const onDark = true
 
   async function handleLogout() { await logout(); router.push('/') }
 
@@ -63,11 +63,11 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 flex items-center justify-center transition-colors"
-              style={{ background: onDark ? 'rgba(76,180,201,0.15)' : 'rgba(76,180,201,0.1)', border: '1px solid rgba(76,180,201,0.3)' }}>
+              style={{ background: 'rgba(76,180,201,0.15)' }}>
               <Scale size={16} style={{ color: '#4cb4c9' }} />
             </div>
             <div>
-              <span className={`text-base md:text-lg font-bold leading-tight block transition-colors ${onDark ? 'text-ivory' : 'text-navy'}`}>
+              <span className={`text-base md:text-lg font-bold leading-tight block transition-colors ${scrolled ? 'text-navy' : 'text-ivory'}`}>
                 علیرضا نظری
               </span>
               <span className="text-2xs tracking-widest uppercase block" style={{ color: '#4cb4c9', fontSize: '9px' }}>
@@ -82,8 +82,8 @@ export function Header() {
               <Link key={link.href} href={link.href}
                 className={`text-sm font-medium hover-underline transition-colors duration-200 ${
                   pathname === link.href
-                    ? onDark ? 'text-teal' : 'text-navy'
-                    : onDark ? 'text-ivory/65 hover:text-ivory' : 'text-graphite hover:text-navy'
+                    ? scrolled ? 'text-teal' : 'text-teal'
+                    : scrolled ? 'text-navy hover:text-silver' : 'text-silver hover:text-bone'
                 }`}>
                 {link.label}
               </Link>
