@@ -41,22 +41,22 @@ export default async function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="section-py bg-ivory">
+      <section className="section-py bg-navy">
         <div className="container-site">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <span className="gold-line" />
               <h2 className="section-heading">رسالت ما</h2>
-              <p className="text-silver leading-relaxed mb-6">
+              <p className="text-bone leading-relaxed mb-6">
 علیرضا نظری، وکیل پایه یک دادگستری و مؤسس این تیم حقوقی، با بیش از ۱۳ سال سابقه حرفه‌ای، از رتبه‌ ۵۶ کانون وکلای استان فارس و کهگیلویه و بویراحمد بوده و تحصیلات خود را در رشته حقوق خصوصی دنبال کرده است. ایشان همچنین سابقه تدریس در حوزه حقوق را در کارنامه خود داشته و تجربه موفق در پیگیری هزاران پرونده حقوقی و کیفری را داراست.
 رویکرد حرفه‌ای علیرضا نظری بر تحلیل دقیق، صداقت در مشاوره، طراحی راهبرد حقوقی مؤثر و پیگیری مسئولانه پرونده‌ها استوار است. باور این مجموعه بر آن است که هر پرونده، شرایط و پیچیدگی‌های خاص خود را دارد و باید با بررسی دقیق و استراتژی متناسب مدیریت شود.
               </p>
-              <p className="text-silver leading-relaxed mb-8">
+              <p className="text-bone leading-relaxed mb-8">
 این دفتر حقوقی با بهره‌گیری از یک تیم منسجم و مسئولیت‌پذیر تلاش می‌کند خدماتی شفاف، دقیق و قابل اعتماد به موکیلن ارائه دهد
 در دنیای امروز، متأسفانه نگاه برخی از مردم به حرفه وکالت با نوعی بی‌اعتمادی همراه شده است. گاهی چنین تصور می‌شود که وکیل پس از دریافت حق‌الوکاله، دیگر انگیزه یا دغدغه‌ای برای پیگیری جدی پرونده ندارد.            
               </p>
-              <p className="text-silver leading-relaxed mb-8">
-                ما در تیم حقوقی علیرضا نظری، وکیل پایه یک دادگستری بر آن هستیم که تصویری متفاوت، حرفه‌ای و مبتنی بر اصالت از مفهوم وکالت ارائه دهیم؛ تصویری که در آن<strong className='text-[#008000] text-bold'> مشاوره به صورت رایگان و حق الوکاله پس از اتمام پرونده اخذ میگردد</strong>، وکیل نه صرفاً یک نماینده حقوقی، بلکه همراهی مسئول، دقیق و متعهد در تمام مراحل مسیر پرونده است.
+              <p className="text-bone leading-relaxed mb-8">
+                ما در تیم حقوقی علیرضا نظری، وکیل پایه یک دادگستری بر آن هستیم که تصویری متفاوت، حرفه‌ای و مبتنی بر اصالت از مفهوم وکالت ارائه دهیم؛ تصویری که در آن<strong className='text-[#c9a84c] text-bold'> مشاوره به صورت رایگان و حق الوکاله پس از اتمام پرونده اخذ میگردد</strong>، وکیل نه صرفاً یک نماینده حقوقی، بلکه همراهی مسئول، دقیق و متعهد در تمام مراحل مسیر پرونده است.
 بر همین اساس، رویکرد کاری این مجموعه بر سه اصل بنیادین استوار شده است: اعتماد، شفافیت و همراهی واقعی با موکل.
 در این دفتر، تعهد به موکل در حد شعار باقی نمی‌ماند؛ بلکه در دقت در جزئیات، بررسی موشکافانه پرونده‌ها، طراحی استراتژی حقوقی منسجم و حضور حرفه‌ای در تمامی مراحل رسیدگی معنا پیدا می‌کند  
 
@@ -64,20 +64,19 @@ export default async function AboutPage() {
               </p>
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  { value: '۱۲+', label: 'سال تجربه' },
+                  { value: '۱۳+', label: 'سال تجربه' },
                   { value: '۲۵۰۰+', label: 'پرونده موفق' },
                   // { value: '۲', label: 'متخصص' },
                   { value: '۹+', label: 'حوزه تخصصی' },
                 ].map((s) => (
                   <div key={s.label} className="border-r-2 border-teal pr-4">
-                    <div className="text-3xl font-bold text-ink">{s.value}</div>
+                    <div className="text-3xl font-bold text-white">{s.value}</div>
                     <div className="text-sm text-silver">{s.label}</div>
                   </div>
                 ))}
               </div>
             </div>
             <div className="relative">
-              {/* <div className="aspect-square bg-bone border border-bone flex items-center justify-center text-8xl"></div> */}
                <Image src={gpPhoto} alt={"team"}  />
 
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-teal opacity-20" />
@@ -88,16 +87,9 @@ export default async function AboutPage() {
 
       {/* Team by role */}
       {Object.entries(grouped).map(([role, members]) => (
-        <section key={role} className={`section-py border-t border-bone ${role === 'founder' ? 'bg-graphite' : 'bg-ivory'}`}>
+        <section key={role} className={`section-py bg-navy`}>
           <div className="container-site">
-            <span className="gold-line" />
-            <h2 className={`section-heading mb-8 ${role === 'founder' ? 'text-ivory' : 'text-ink'}`}>
-              {roleLabels[role]}
-            </h2>
-            <div className={`grid gap-8 ${
-              members.length === 1 ? 'md:grid-cols-1 max-w-2xl' :
-              members.length === 2 ? 'md:grid-cols-2 max-w-3xl' : 'md:grid-cols-2 lg:grid-cols-3'
-            }`}>
+            <div className={`grid gap-8 md:grid-cols-1 max-w-2xl`}>
               {members.map((member: any) => (
                 <TeamMemberCard key={member.id} member={member} dark={role === 'founder'} />
               ))}
@@ -136,10 +128,10 @@ export default async function AboutPage() {
       )}
 
       {/* Values */}
-      <section className="section-py bg-bone border-t border-bone">
+      <section className="section-py bg-navy border-t border-bone">
         <div className="container-site">
           <span className="gold-line" />
-          <h2 className="section-heading mb-8">ارزش‌های ما</h2>
+          <h2 className="section-heading mb-8 text-[#c9a84c]">ارزش‌های ما</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {[
               { icon: Handshake, title: 'امانت‌داری', desc: 'حفظ اسرار و رعایت کامل حریم خصوصی موکلین' },
@@ -147,9 +139,9 @@ export default async function AboutPage() {
               { icon: Rocket, title: 'کارایی',      desc: 'پیگیری سریع و موثر پرونده‌ها' },
               { icon: HandHeart, title: 'همدلی',      desc: 'درک شرایط موکل و حمایت صادقانه' },
             ].map((v) => (
-              <div key={v.title} className="card bg-ivory">
-                <span className="text-3xl mb-4 block"><v.icon /></span>
-                <h3 className="font-bold text-ink mb-2">{v.title}</h3>
+              <div key={v.title} className="card bg-graphite rounded-xl">
+                <span className="text-3xl mb-4 block text-teal"><v.icon /></span>
+                <h3 className="font-bold text-bone mb-2">{v.title}</h3>
                 <p className="text-sm text-silver leading-relaxed">{v.desc}</p>
               </div>
             ))}
@@ -161,8 +153,8 @@ export default async function AboutPage() {
 }
 
 function TeamMemberCard({ member, dark }: { member: any; dark?: boolean }) {
-  const cardBg = dark ? 'bg-ink border-graphite hover:border-teal' : 'bg-white border-bone hover:border-ink'
-  const textColor = dark ? 'text-ivory' : 'text-ink'
+  const cardBg = dark ? 'bg-ink border-graphite hover:border-teal' : 'bg-navy border-silver hover:border-ink'
+  const textColor = dark ? 'text-ivory' : 'text-bone'
   const subColor  = dark ? 'text-silver' : 'text-silver'
 
   return (
