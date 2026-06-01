@@ -61,7 +61,7 @@ export default async function BlogPage({
             {posts.map((post: any, i: number) => (
               <Link key={post.id}
                 href={`/blog/${post.slug || post.id}`}
-                className={`card group bg-white ${i === 0 ? 'md:col-span-2' : ''}`}
+                className={`card group tag ${i === 0 ? 'md:col-span-2' : ''}`}
               >
                 {post.coverImage?.url && (
                   <div className="relative overflow-hidden mb-4 -mx-6 -mt-6 aspect-video">
@@ -73,7 +73,7 @@ export default async function BlogPage({
                   {post.category && <span className="tag">{categoryLabels[post.category]}</span>}
                   {post.readingTime && <span className="text-xs text-silver">{post.readingTime} دقیقه</span>}
                 </div>
-                <h2 className={`font-bold text-ink group-hover:text-navy mb-2 transition-colors ${i === 0 ? 'text-xl' : 'text-base'}`}>
+                <h2 className={`font-bold text-bone group-hover:text-white mb-2 transition-colors ${i === 0 ? 'text-xl' : 'text-base'}`}>
                   {post.title}
                 </h2>
                 {post.excerpt && <p className="text-sm text-silver line-clamp-2 leading-relaxed">{post.excerpt}</p>}
