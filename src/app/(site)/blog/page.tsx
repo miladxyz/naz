@@ -74,7 +74,7 @@ export default async function BlogPage({
                   {post.category && <span className="tag">{categoryLabels[post.category]}</span>}
                   {post.readingTime && <span className="text-xs text-silver">{post.readingTime} دقیقه</span>}
                 </div>
-                <h2 className={`font-bold text-bone group-hover:text-silver mb-2 transition-colors ${i === 0 ? 'text-xl' : 'text-base'}`}>
+                <h2 className={`font-bold text-white group-hover:text-bone mb-2 transition-colors ${i === 0 ? 'text-xl' : 'text-base'}`}>
                   {post.title}
                 </h2>
                 {post.excerpt && <p className="text-sm text-silver line-clamp-2 leading-relaxed">{post.excerpt}</p>}
