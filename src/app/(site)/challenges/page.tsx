@@ -116,7 +116,7 @@ export default function ProblemsPage() {
 
         <div className="container-site relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-ivory mb-4 leading-tight">
-            چالش‌های من<br />
+            ذره‌ای از چالش‌های من<br />
             <span className="text-transparent bg-clip-text"
               style={{ backgroundImage: 'linear-gradient(90deg, #4cb4c9, #a8dde8)' }}>
               به عنوان یک وکیل
