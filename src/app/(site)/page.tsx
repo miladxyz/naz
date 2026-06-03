@@ -322,7 +322,7 @@ export default async function HomePage() {
                     </span>
                     {e.category && <span className="tag">{categoryLabels[e.category]}</span>}
                   </div>
-                  <h3 className="font-bold text-white mb-2 group-hover:text-navy transition-colors">{e.title}</h3>
+                  <h3 className="font-bold text-white mb-2 group-hover:text-bone transition-colors">{e.title}</h3>
                   <p className="text-sm text-silver leading-relaxed line-clamp-3">{e.summary}</p>
                   {e.year && <p className="text-xs text-silver mt-4 pt-4 border-t border-teal">{e.year}</p>}
                 </div>
@@ -355,7 +355,7 @@ export default async function HomePage() {
                     </div>
                   )}
                   {p.category && <span className="tag mb-3 inline-block">{categoryLabels[p.category]}</span>}
-                  <h3 className="font-bold text-white mb-2 group-hover:text-navy transition-colors leading-snug">{p.title}</h3>
+                  <h3 className="font-bold text-white mb-2 group-hover:text-bone transition-colors leading-snug">{p.title}</h3>
                   {p.excerpt && <p className="text-sm text-silver line-clamp-2">{p.excerpt}</p>}
                   <div className="mt-4 pt-4 border-t border-teal flex items-center justify-between text-xs text-silver">
                     {p.publishedAt && <span>{new Date(p.publishedAt).toLocaleDateString('fa-IR')}</span>}

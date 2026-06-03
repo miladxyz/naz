@@ -115,7 +115,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             <div dangerouslySetInnerHTML={{ __html: body.html }} className="prose-rtl text-white leading-8 whitespace-pre-line text-base"/>
             {(post as any).author && (
               <div className="mt-8 pt-8 border-t border-bone">
-                <div className="card bg-bone flex items-start gap-4">
+                <div className="card bg-navy flex items-start gap-4">
                   <span className="w-12 h-12 bg-navy text-ivory text-lg font-bold flex items-center justify-center flex-shrink-0">
                     {(post as any).author.name?.charAt(0)}
                   </span>
