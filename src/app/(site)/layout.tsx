@@ -22,7 +22,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <html lang="fa" dir="rtl">
       <body className="text-ivory antialiased" style={{ fontFamily: 'Vazirmatn, sans-serif', background: '#0d1f3c' }}>
         {/* backgroud grid */}
-        <div className='fixed inset-0 opacity-5 z-[-1]'>
+        <div className='fixed inset-0 opacity-5 pointer-events-none'>
           <div className='h-full w-full bg-grid-pattern'></div>
         </div>
         <AuthProvider>
