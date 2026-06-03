@@ -3,8 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import gpPhoto from '@/app/h.jpg'
-
 
 const categoryLabels: Record<string, string> = {
   criminal:    'کیفری',
@@ -114,15 +112,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 <Image src={(post as any).coverImage.url} alt={(post as any).title} fill className="object-cover" />
               </div>
             )}
-            <Image
-                    src={gpPhoto}
-                    alt="تیم حقوقی علیرضا نظری"
-                    // fill
-                    // className="object-cover object-top"
-                    priority
-                  />
             <div className="prose-rtl text-white leading-8 whitespace-pre-line text-base">{body.html}</div>
-
             {(post as any).author && (
               <div className="mt-8 pt-8 border-t border-bone">
                 <div className="card bg-bone flex items-start gap-4">
