@@ -263,3 +263,118 @@
 .footer-link:hover {
   color: #4cb4c9;
 }
+
+/* ─── Tiptap Rich Editor ─────────────────────────────────── */
+.ProseMirror {
+  direction: rtl;
+  text-align: right;
+  min-height: 280px;
+  outline: none;
+  caret-color: #4cb4c9;
+}
+
+.ProseMirror p { margin: 0.5rem 0; line-height: 1.8; }
+
+.ProseMirror h1 { font-size: 1.75rem; font-weight: 700; margin: 1.2rem 0 0.6rem; color: #f6f8fa; }
+.ProseMirror h2 { font-size: 1.35rem; font-weight: 700; margin: 1rem 0 0.5rem;   color: #f6f8fa; }
+.ProseMirror h3 { font-size: 1.1rem;  font-weight: 600; margin: 0.8rem 0 0.4rem; color: #f6f8fa; }
+
+.ProseMirror strong { font-weight: 700; color: #f6f8fa; }
+.ProseMirror em     { font-style: italic; }
+.ProseMirror u      { text-decoration: underline; }
+.ProseMirror s      { text-decoration: line-through; opacity: 0.7; }
+
+.ProseMirror code {
+  font-family: monospace;
+  font-size: 0.85em;
+  padding: 0.1em 0.4em;
+  background: rgba(76,180,201,0.12);
+  border: 1px solid rgba(76,180,201,0.2);
+  color: #4cb4c9;
+}
+
+.ProseMirror pre {
+  background: rgba(7,15,30,0.8);
+  border: 1px solid rgba(22,45,82,0.8);
+  padding: 1rem;
+  margin: 0.8rem 0;
+  overflow-x: auto;
+}
+
+.ProseMirror ul { list-style: disc;    padding-right: 1.5rem; margin: 0.5rem 0; }
+.ProseMirror ol { list-style: decimal; padding-right: 1.5rem; margin: 0.5rem 0; }
+.ProseMirror li { margin: 0.25rem 0; }
+
+.ProseMirror blockquote {
+  border-right: 3px solid #4cb4c9;
+  padding-right: 1rem;
+  margin: 0.8rem 0;
+  color: rgba(246,248,250,0.6);
+  font-style: italic;
+}
+
+.ProseMirror hr {
+  border: none;
+  border-top: 1px solid rgba(22,45,82,0.8);
+  margin: 1.5rem 0;
+}
+
+.ProseMirror a {
+  color: #4cb4c9;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  display: block;
+}
+.ProseMirror img.ProseMirror-selectednode {
+  outline: 2px solid #4cb4c9;
+}
+
+/* Placeholder */
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: rgba(246,248,250,0.25);
+  pointer-events: none;
+  float: right;
+  height: 0;
+}
+
+/* ─── Blog post rich HTML content ───────────────────────── */
+.rich-content { direction: rtl; }
+.rich-content p  { margin: 0.75rem 0; line-height: 1.9; color: rgba(246,248,250,0.8); }
+.rich-content h1 { font-size: 1.75rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: #f6f8fa; }
+.rich-content h2 { font-size: 1.35rem; font-weight: 700; margin: 1.25rem 0 0.6rem;  color: #f6f8fa; }
+.rich-content h3 { font-size: 1.1rem;  font-weight: 600; margin: 1rem 0 0.5rem;    color: #f6f8fa; }
+.rich-content strong { font-weight: 700; color: #f6f8fa; }
+.rich-content em     { font-style: italic; }
+.rich-content u      { text-decoration: underline; }
+.rich-content s      { text-decoration: line-through; opacity: 0.6; }
+.rich-content a      { color: #4cb4c9; text-decoration: underline; }
+.rich-content a:hover{ color: #a8dde8; }
+.rich-content code {
+  font-size: 0.85em; padding: 0.1em 0.4em;
+  background: rgba(76,180,201,0.12); border: 1px solid rgba(76,180,201,0.2);
+  color: #4cb4c9;
+}
+.rich-content pre {
+  background: rgba(7,15,30,0.8); border: 1px solid rgba(22,45,82,0.8);
+  padding: 1rem; margin: 1rem 0; overflow-x: auto;
+}
+.rich-content ul { list-style: disc;    padding-right: 1.5rem; margin: 0.75rem 0; }
+.rich-content ol { list-style: decimal; padding-right: 1.5rem; margin: 0.75rem 0; }
+.rich-content li { margin: 0.3rem 0; line-height: 1.8; color: rgba(246,248,250,0.8); }
+.rich-content blockquote {
+  border-right: 3px solid #4cb4c9; padding-right: 1rem;
+  margin: 1rem 0; color: rgba(246,248,250,0.55); font-style: italic;
+}
+.rich-content hr { border: none; border-top: 1px solid rgba(22,45,82,0.6); margin: 1.5rem 0; }
+.rich-content img { max-width: 100%; height: auto; margin: 1rem 0; display: block; }
+.rich-content [style*="text-align: center"] { text-align: center; }
+.rich-content [style*="text-align: left"]   { text-align: left; }
+.rich-content [style*="text-align: right"]  { text-align: right; }
+.rich-content [style*="text-align: justify"]{ text-align: justify; }

@@ -6,6 +6,8 @@ import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
 import Link from 'next/link'
+import { RichEditor } from '@/components/RichEditor'
+import { CoverImageUpload } from '@/components/CoverImageUpload'
 
 const categoryLabels: Record<string, string> = {
   criminal:    'کیفری',
@@ -357,49 +359,139 @@ function StaffDashboard({ user }: { user: any }) {
 
         {/* New post */}
         {tab === 'new-post' && (
-          <div className="max-w-2xl">
-            <h2 className="font-bold text-ink text-lg mb-6">نوشتن مقاله جدید</h2>
+          <div className="max-w-3xl w-full">
+            <h2 className="font-bold text-ivory text-lg mb-6">نوشتن مقاله جدید</h2>
             {postSuccess ? (
-              <div className="card bg-emerald-50 border-emerald-200 text-center py-12 animate-scale-in">
-                <p className="text-4xl mb-3"></p>
-                <p className="font-bold text-emerald-700">مقاله با موفقیت ثبت شد!</p>
+              <div className="text-center py-16 animate-scale-in"
+                style={{ border: '1px solid rgba(34,197,94,0.3)', background: 'rgba(34,197,94,0.05)' }}>
+                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4"
+                  style={{ background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.3)' }}>
+                  <span className="text-3xl">✅</span>
+                </div>
+                <p className="font-bold text-emerald-400 text-lg mb-2">مقاله با موفقیت ثبت شد!</p>
+                <p className="text-sm text-silver">در حال انتقال به لیست مقالات...</p>
               </div>
             ) : (
               <div className="space-y-5">
+                {/* Title */}
                 <div>
-                  <label className="text-xs text-silver block mb-1.5">عنوان *</label>
-                  <input className="input" placeholder="عنوان مقاله" value={newPost.title} onChange={e => setNewPost(p => ({...p, title:e.target.value}))} />
+                  <label className="text-xs text-ivory/50 block mb-1.5">عنوان مقاله *</label>
+                  <input
+                    className="w-full px-4 py-3 text-base font-semibold text-ivory focus:outline-none"
+                    style={{ background: 'rgba(22,45,82,0.5)', border: '1px solid rgba(36,61,106,0.8)' }}
+                    placeholder="عنوان مقاله را بنویسید"
+                    value={newPost.title}
+                    onChange={e => setNewPost(p => ({...p, title: e.target.value}))}
+                  />
                 </div>
+
+                {/* Meta row */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs text-ivory/50 block mb-1.5">دسته‌بندی</label>
+                    <select
+                      className="w-full px-3 py-2.5 text-sm text-ivory appearance-none cursor-pointer focus:outline-none"
+                      style={{ background: 'rgba(22,45,82,0.5)', border: '1px solid rgba(36,61,106,0.8)' }}
+                      value={newPost.category}
+                      onChange={e => setNewPost(p => ({...p, category: e.target.value}))}>
+                      <option value="">انتخاب کنید</option>
+                      {Object.entries(categoryLabels).map(([v,l]) => <option key={v} value={v}>{l}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-xs text-ivory/50 block mb-1.5">زمان مطالعه (دقیقه)</label>
+                    <input type="number" min="1" max="60"
+                      className="w-full px-3 py-2.5 text-sm text-ivory focus:outline-none"
+                      style={{ background: 'rgba(22,45,82,0.5)', border: '1px solid rgba(36,61,106,0.8)' }}
+                      placeholder="۵"
+                      value={(newPost as any).readingTime || ''}
+                      onChange={e => setNewPost(p => ({...p, readingTime: e.target.value} as any))}
+                    />
+                  </div>
+                </div>
+
+                {/* Cover image upload */}
                 <div>
-                  <label className="text-xs text-silver block mb-1.5">دسته‌بندی</label>
-                  <select className="select" value={newPost.category} onChange={e => setNewPost(p => ({...p, category:e.target.value}))}>
-                    <option value="">انتخاب کنید</option>
-                    {Object.entries(categoryLabels).map(([v,l]) => <option key={v} value={v}>{l}</option>)}
-                  </select>
+                  <label className="text-xs text-ivory/50 block mb-1.5">تصویر شاخص</label>
+                  <CoverImageUpload
+                    value={(newPost as any).coverImageBase64}
+                    onChange={(v: string) => setNewPost(p => ({...p, coverImageBase64: v} as any))}
+                  />
                 </div>
+
+                {/* Excerpt */}
                 <div>
-                  <label className="text-xs text-silver block mb-1.5">خلاصه</label>
-                  <textarea rows={2} className="textarea" placeholder="یک جمله خلاصه..." value={newPost.excerpt} onChange={e => setNewPost(p => ({...p, excerpt:e.target.value}))} />
+                  <label className="text-xs text-ivory/50 block mb-1.5">خلاصه مقاله</label>
+                  <textarea rows={2}
+                    className="w-full px-3 py-2.5 text-sm text-ivory focus:outline-none resize-none"
+                    style={{ background: 'rgba(22,45,82,0.5)', border: '1px solid rgba(36,61,106,0.8)' }}
+                    placeholder="یک یا دو جمله خلاصه..."
+                    value={newPost.excerpt}
+                    onChange={e => setNewPost(p => ({...p, excerpt: e.target.value}))}
+                  />
                 </div>
+
+                {/* Rich text editor */}
                 <div>
-                  <label className="text-xs text-silver block mb-1.5">متن کامل *</label>
-                  <textarea rows={12} className="textarea" placeholder="متن مقاله را اینجا بنویسید..." value={newPost.content} onChange={e => setNewPost(p => ({...p, content:e.target.value}))} />
+                  <label className="text-xs text-ivory/50 block mb-1.5">محتوای مقاله *</label>
+                  <RichEditor
+                    value={newPost.content}
+                    onChange={v => setNewPost(p => ({...p, content: v}))}
+                    placeholder="محتوای مقاله را اینجا بنویسید..."
+                  />
                 </div>
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" checked={newPost.publishNow} onChange={e => setNewPost(p => ({...p, publishNow:e.target.checked}))} className="w-4 h-4 accent-navy" />
-                  <span className="text-sm text-ink">همین الان منتشر شود</span>
-                </label>
+
+                {/* Tags */}
+                <div>
+                  <label className="text-xs text-ivory/50 block mb-1.5">برچسب‌ها (با کاما جدا کنید)</label>
+                  <input
+                    className="w-full px-3 py-2.5 text-sm text-ivory focus:outline-none"
+                    style={{ background: 'rgba(22,45,82,0.5)', border: '1px solid rgba(36,61,106,0.8)' }}
+                    placeholder="مثال: طلاق، حضانت، مهریه"
+                    value={(newPost as any).tags || ''}
+                    onChange={e => setNewPost(p => ({...p, tags: e.target.value} as any))}
+                  />
+                </div>
+
+                {/* Publish toggle */}
+                <div className="flex items-center justify-between p-4"
+                  style={{ background: 'rgba(22,45,82,0.3)', border: '1px solid rgba(36,61,106,0.6)' }}>
+                  <div>
+                    <p className="text-sm font-medium text-ivory">وضعیت انتشار</p>
+                    <p className="text-xs mt-0.5" style={{ color: 'rgba(246,248,250,0.4)' }}>
+                      {newPost.publishNow ? 'بلافاصله منتشر می‌شود' : 'به عنوان پیش‌نویس ذخیره می‌شود'}
+                    </p>
+                  </div>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" className="sr-only peer"
+                      checked={newPost.publishNow}
+                      onChange={e => setNewPost(p => ({...p, publishNow: e.target.checked}))} />
+                    <div className="w-12 h-6 rounded-full transition-colors"
+                      style={{ background: newPost.publishNow ? '#4cb4c9' : 'rgba(36,61,106,0.8)' }} />
+                    <div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full transition-transform"
+                      style={{ transform: newPost.publishNow ? 'translateX(-24px)' : 'none' }} />
+                  </label>
+                </div>
+
                 <div className="flex gap-3">
-                  <button onClick={submitPost} disabled={postSaving||!newPost.title||!newPost.content} className="btn-primary disabled:opacity-50">
-                    {postSaving ? 'در حال ذخیره...' : newPost.publishNow ? 'انتشار' : 'ذخیره پیش‌نویس'}
+                  <button onClick={submitPost}
+                    disabled={postSaving || !newPost.title || !newPost.content}
+                    className="flex-1 py-3 text-sm font-semibold transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                    style={{ background: '#4cb4c9', color: '#070f1e' }}>
+                    {postSaving
+                      ? <><span className="w-4 h-4 border-2 border-navy/30 border-t-navy rounded-full animate-spin" />در حال ذخیره...</>
+                      : newPost.publishNow ? 'انتشار مقاله' : 'ذخیره پیش‌نویس'}
                   </button>
-                  <button onClick={() => setTab('posts')} className="btn-ghost">انصراف</button>
+                  <button onClick={() => setTab('posts')}
+                    className="px-6 py-3 text-sm font-medium transition-colors"
+                    style={{ border: '1px solid rgba(22,45,82,0.8)', color: 'rgba(246,248,250,0.6)' }}>
+                    انصراف
+                  </button>
                 </div>
               </div>
             )}
           </div>
-        )}
-      </div>
+        )}   </div>
     </div>
   )
 }

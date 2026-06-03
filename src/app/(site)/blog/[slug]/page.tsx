@@ -31,13 +31,21 @@ async function getPost(slug: string) {
   } catch { return null }
 }
 
-function extractText(content: any): string {
-  if (!content) return ''
-  if (typeof content === 'string') return content
+function extractContent(content: any): { html: string; isHtml: boolean } {
+  if (!content) return { html: '', isHtml: false }
   try {
-    return (content?.root?.children || [])
-      .map((n: any) => (n.children || []).map((c: any) => c.text || '').join('')).join('\n\n')
-  } catch { return '' }
+    // Get the first text node
+    const firstChild = content?.root?.children?.[0]?.children?.[0]?.text || ''
+    // If it starts with an HTML tag, it's rich HTML from Tiptap
+    if (firstChild.trimStart().startsWith('<')) {
+      return { html: firstChild, isHtml: true }
+    }
+    // Plain text — join all text nodes with newlines
+    const plain = (content?.root?.children || [])
+      .map((n: any) => (n.children || []).map((c: any) => c.text || '').join(''))
+      .join('\n\n')
+    return { html: plain, isHtml: false }
+  } catch { return { html: '', isHtml: false } }
 }
 
 // Next 16 requires params to be a Promise
@@ -63,7 +71,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     sort: '-publishedAt',
   })
 
-  const bodyText = extractText((post as any).content)
+  const body = extractContent((post as any).content)
 
   return (
     <div className="pt-20 bg-navy">
@@ -113,7 +121,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                     // className="object-cover object-top"
                     priority
                   />
-            <div className="prose-rtl text-white leading-8 whitespace-pre-line text-base">{bodyText}</div>
+            <div className="prose-rtl text-white leading-8 whitespace-pre-line text-base">{body.html}</div>
 
             {(post as any).author && (
               <div className="mt-8 pt-8 border-t border-bone">

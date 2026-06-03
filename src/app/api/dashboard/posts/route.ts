@@ -7,23 +7,27 @@ async function getAuthUser(req: NextRequest) {
   try {
     const parts = token.split('.')
     if (parts.length !== 3) return null
-    const data = JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf8'))
-    if (!data?.id || (data.exp && Date.now() / 1000 > data.exp)) return null
+    const padded = parts[1].padEnd(parts[1].length + (4 - parts[1].length % 4) % 4, '=')
+    const data = JSON.parse(Buffer.from(padded, 'base64').toString('utf8'))
+    if (!data?.id || (data.exp && Math.floor(Date.now() / 1000) > data.exp)) return null
     const payload = await getPayloadClient()
+    if (!payload) return null
     return payload.findByID({ collection: 'users', id: data.id })
   } catch { return null }
 }
 
+/* GET — list posts for current user */
 export async function GET(req: NextRequest) {
   const user = await getAuthUser(req)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   try {
     const payload = await getPayloadClient()
+    if (!payload) return NextResponse.json([])
+
     const where: any = {}
-    if ((user as any).role === 'lawyer') {
-      where.author = { equals: user.id }
-    }
+    if ((user as any).role === 'lawyer') where.author = { equals: user.id }
+
     const res = await payload.find({
       collection: 'posts',
       where,
@@ -36,6 +40,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
+/* POST — create new post with rich content + cover image */
 export async function POST(req: NextRequest) {
   const user = await getAuthUser(req)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -44,34 +49,84 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { title, excerpt, content, category, publishNow } = await req.json()
+    const body = await req.json()
+    const {
+      title, excerpt, content, category,
+      publishNow, coverImageBase64,
+      readingTime, tags,
+    } = body
+
     if (!title || !content) {
       return NextResponse.json({ error: 'عنوان و محتوا الزامی است' }, { status: 400 })
     }
 
     const payload = await getPayloadClient()
-    const slug = title.replace(/\s+/g, '-').replace(/[^\u0600-\u06FFa-zA-Z0-9-]/g, '') + '-' + Date.now()
+    if (!payload) return NextResponse.json({ error: 'DB unavailable' }, { status: 503 })
 
-    // Build a minimal Lexical JSON node from plain text
-    const richTextContent = {
+    // Generate slug from title
+    const slug = title
+      .replace(/[\s]+/g, '-')
+      .replace(/[^\u0600-\u06FFa-zA-Z0-9-]/g, '')
+      + '-' + Date.now()
+
+    // Convert HTML content to Lexical JSON for Payload
+    // Store as a single paragraph with raw HTML preserved in text node
+    // (Payload will display it via the blog [slug] page which extracts text)
+    const richContent = {
       root: {
-        type: 'root',
-        format: '',
-        indent: 0,
-        version: 1,
-        direction: 'rtl',
-        children: content.split('\n\n').filter(Boolean).map((para: string) => ({
-          type: 'paragraph',
-          format: '',
-          indent: 0,
-          version: 1,
-          direction: 'rtl',
-          children: [{ type: 'text', text: para, format: 0, version: 1, mode: 'normal', style: '', detail: 0 }],
-          textFormat: 0,
-          textStyle: '',
-        })),
+        type: 'root', format: '', indent: 0, version: 1, direction: 'rtl',
+        children: [{
+          type: 'paragraph', format: '', indent: 0, version: 1, direction: 'rtl',
+          textFormat: 0, textStyle: '',
+          children: [{
+            type: 'text',
+            // Store the raw HTML — blog page will render it with dangerouslySetInnerHTML
+            text: content,
+            format: 0, version: 1, mode: 'normal', style: '', detail: 0,
+          }],
+        }],
       },
     }
+
+    // Handle cover image (base64 → upload to media collection)
+    let coverImageId: string | undefined
+    if (coverImageBase64 && coverImageBase64.startsWith('data:image')) {
+      try {
+        // Extract mime type and base64 data
+        const matches = coverImageBase64.match(/^data:(.+);base64,(.+)$/)
+        if (matches) {
+          const mimeType = matches[1]
+          const base64Data = matches[2]
+          const buffer = Buffer.from(base64Data, 'base64')
+          const ext = mimeType.split('/')[1] || 'jpg'
+          const filename = `cover-${Date.now()}.${ext}`
+
+          // Create media entry with file data
+          const media = await payload.create({
+            collection: 'media',
+            data: { alt: title },
+            file: {
+              data: buffer,
+              mimetype: mimeType,
+              name: filename,
+              size: buffer.length,
+            },
+          })
+          coverImageId = String(media.id)
+        }
+      } catch (e) {
+        console.warn('Cover image upload failed:', e)
+      }
+    }
+
+    // Parse tags
+    const parsedTags = tags
+      ? tags.split(/[,،]/).map((t: string) => t.trim()).filter(Boolean).map((t: string) => ({ tag: t }))
+      : []
+
+    // Auto-calculate reading time from content if not provided
+    const wordCount = content.replace(/<[^>]+>/g, '').split(/\s+/).length
+    const calcReadingTime = readingTime ? parseInt(readingTime) : Math.max(1, Math.ceil(wordCount / 200))
 
     const post = await payload.create({
       collection: 'posts',
@@ -79,16 +134,18 @@ export async function POST(req: NextRequest) {
         title,
         slug,
         excerpt: excerpt || '',
-        content: richTextContent,
+        content: richContent,
         category: category || 'general',
         author: user.id,
         _status: publishNow ? 'published' : 'draft',
         publishedAt: publishNow ? new Date().toISOString() : undefined,
-        readingTime: Math.max(1, Math.ceil(content.split(/\s+/).length / 200)),
+        readingTime: calcReadingTime,
+        tags: parsedTags,
+        ...(coverImageId ? { coverImage: coverImageId } : {}),
       },
     })
 
-    return NextResponse.json({ success: true, id: post.id })
+    return NextResponse.json({ success: true, id: post.id, slug })
   } catch (err) {
     console.error('Post creation error:', err)
     return NextResponse.json({ error: 'خطا در ایجاد مقاله' }, { status: 500 })

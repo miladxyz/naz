@@ -36,6 +36,7 @@ export default async function BlogPage({
   return (
     <div className="pt-24">
       <section className="section-py bg-navy relative overflow-hidden noise-overlay">
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(0deg,rgba(255,255,255,1) 0,rgba(255,255,255,1) 1px,transparent 1px,transparent 80px),repeating-linear-gradient(90deg,rgba(255,255,255,1) 0,rgba(255,255,255,1) 1px,transparent 1px,transparent 80px)' }} />
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-teal to-transparent opacity-60" />
         <div className="container-site">
           <p className="text-teal text-xs tracking-widest uppercase mb-4">دانش حقوقی</p>
@@ -47,10 +48,10 @@ export default async function BlogPage({
       <div className="container-site section-py">
         {/* Category Filter - all English slugs */}
         <div className="flex flex-wrap gap-2 mb-10">
-          <Link href="/blog" className={`tag cursor-pointer transition-all ${!activeCategory ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-silver'}`}>همه</Link>
+          <Link href="/blog" className={`tag cursor-pointer transition-all ${!activeCategory ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-navy'}`}>همه</Link>
           {Object.entries(categoryLabels).map(([v, l]) => (
             <Link key={v} href={`/blog?category=${v}`}
-              className={`tag cursor-pointer transition-all ${activeCategory === v ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-silver'}`}>
+              className={`tag cursor-pointer transition-all ${activeCategory === v ? 'bg-navy text-ivory border-navy' : 'hover:border-navy hover:text-navy'}`}>
               {l}
             </Link>
           ))}
@@ -61,7 +62,7 @@ export default async function BlogPage({
             {posts.map((post: any, i: number) => (
               <Link key={post.id}
                 href={`/blog/${post.slug || post.id}`}
-                className={`card group tag ${i === 0 ? 'md:col-span-2' : ''}`}
+                className={`card group bg-white ${i === 0 ? 'md:col-span-2' : ''}`}
               >
                 {post.coverImage?.url && (
                   <div className="relative overflow-hidden mb-4 -mx-6 -mt-6 aspect-video">
@@ -73,7 +74,7 @@ export default async function BlogPage({
                   {post.category && <span className="tag">{categoryLabels[post.category]}</span>}
                   {post.readingTime && <span className="text-xs text-silver">{post.readingTime} دقیقه</span>}
                 </div>
-                <h2 className={`font-bold text-bone group-hover:text-white mb-2 transition-colors ${i === 0 ? 'text-xl' : 'text-base'}`}>
+                <h2 className={`font-bold text-ink group-hover:text-navy mb-2 transition-colors ${i === 0 ? 'text-xl' : 'text-base'}`}>
                   {post.title}
                 </h2>
                 {post.excerpt && <p className="text-sm text-silver line-clamp-2 leading-relaxed">{post.excerpt}</p>}
