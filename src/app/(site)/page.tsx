@@ -8,6 +8,7 @@ import {
   CheckCircle2, Award, Clock, HelpCircle
 } from 'lucide-react'
 import gpPhoto from '@/app/group.jpg'
+import VideoSubtitlesMarquee from './test/page'
 
 async function getData() {
   const [team, instagram, experiences, posts] = await Promise.all([
@@ -62,7 +63,6 @@ export default async function HomePage() {
           style={{ background: 'radial-gradient(circle, rgba(76,180,201,0.12) 0%, transparent 70%)' }} />
         <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl pointer-events-none"
           style={{ background: 'radial-gradient(circle, rgba(76,180,201,0.08) 0%, transparent 70%)' }} />
-
         {/* Teal left accent line */}
         <div className="absolute right-0 top-0 bottom-0 w-0.5 opacity-60"
           style={{ background: 'linear-gradient(180deg, transparent, #4cb4c9, transparent)' }} />
@@ -168,7 +168,6 @@ export default async function HomePage() {
                   {/* Dark gradient overlay at bottom */}
                   <div className="absolute inset-0"
                     style={{ background: 'linear-gradient(to top, rgba(7,15,30,0.7) 0%, transparent 50%)' }} />
-
                   {/* Floating badge */}
                   <div className="absolute bottom-6 right-6 left-6">
                     <div className="flex items-center gap-3 px-4 py-3"
@@ -206,6 +205,9 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
+        <div className='fixed z-500 pt-[650px]'>
+          <VideoSubtitlesMarquee  />
+        </div>     
       </section>
       {/* ── Why Us ──────────────────────────────────────── */}
       <section className="bg-[#0d1f3c]">
