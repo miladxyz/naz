@@ -237,7 +237,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── Practice Areas ──────────────────────────────── */}
-      <section className="section-py bg-[#0d1f3c]">
+      <section className="section-py bg-[#0d1f3c] z-10">
         <div className="container-site">
           <div className="text-center mb-12">
             <span className="gold-line mx-auto" />
@@ -255,7 +255,7 @@ export default async function HomePage() {
                     <Icon size={18} style={{ color: '#4cb4c9' }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-white mb-1 group-hover:text-navy transition-colors">{a.label}</h3>
+                    <h3 className="font-bold text-white mb-1 group-hover:text-bone transition-colors">{a.label}</h3>
                     <p className="text-xs text-silver leading-relaxed line-clamp-2">{a.desc}</p>
                   </div>
                   <ChevronLeft size={16} className="text-bone group-hover:text-teal mt-1 flex-shrink-0 transition-colors" />
