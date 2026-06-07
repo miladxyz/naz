@@ -205,9 +205,9 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
-        <div className='fixed z-500 pt-[650px]'>
+        {/* <div className='fixed z-500 pt-[650px]'>
           <VideoSubtitlesMarquee  />
-        </div>     
+        </div>      */}
       </section>
       {/* ── Why Us ──────────────────────────────────────── */}
       <section className="bg-[#0d1f3c]">
