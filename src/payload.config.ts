@@ -39,5 +39,6 @@ export default buildConfig({
 
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || 'mongodb://localhost:27017/alireza-nazari-law',
+    transactionOptions: false,
   }),
 })
