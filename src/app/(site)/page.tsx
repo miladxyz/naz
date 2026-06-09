@@ -91,11 +91,11 @@ export default async function HomePage() {
               </div>
 
               <h1 className="text-4xl md:text-6xl font-bold text-ivory leading-tight mb-4 animate-fade-in-up delay-100">
-                همراه مطمئن شما
+                از مشاوره اولیه
                 <br />
                 <span className="text-transparent bg-clip-text"
                   style={{ backgroundImage: 'linear-gradient(90deg, #4cb4c9, #a8dde8, #4cb4c9)' }}>
-                  در مسیر عدالت
+                 تا احقاق حق
                 </span>
               </h1>
 
