@@ -65,9 +65,9 @@ export default async function AboutPage() {
               <div className="grid grid-cols-2 gap-6">
                 {[
                   { value: '۱۳+', label: 'سال تجربه' },
-                  { value: '۲۵۰۰+', label: 'پرونده موفق' },
+                  { value: '۳۵۰۰+', label: 'پرونده موفق' },
                   // { value: '۲', label: 'متخصص' },
-                  { value: '۹+', label: 'حوزه تخصصی' },
+                  { value: '۱۰+', label: 'حوزه تخصصی' },
                 ].map((s) => (
                   <div key={s.label} className="border-r-2 border-teal pr-4">
                     <div className="text-3xl font-bold text-white">{s.value}</div>

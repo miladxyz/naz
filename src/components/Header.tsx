@@ -14,7 +14,7 @@ const navLinks = [
   { href: '/qa',          label: 'پرسش و پاسخ' },
   { href: '/faq',         label: 'سوالات متداول' },
   { href: '/challenges',    label: 'چالش ها' },
-  { href: '/help',    label: 'همراه با موکل' },
+  { href: '/help',    label: 'خدمات ما' },
   { href: '/contact',     label: 'تماس با ما' },
 ]
 

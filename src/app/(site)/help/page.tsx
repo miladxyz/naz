@@ -13,16 +13,17 @@ interface PathNode {
 
 const nodes: PathNode[] = [
   { id: 'free', title: '', shortLabel: 'مشاوره رایگان', xPosition: 88 },
-  { id: 'compelete', title: '', shortLabel: 'اعلام وکالت', xPosition: 50 },
-  { id: 'help', title: '', shortLabel: 'همراه با موکل', xPosition: 12 },
+  { id: 'help', title: '', shortLabel: 'همراه با موکل', xPosition: 50 },
+  { id: 'compelete', title: '', shortLabel:'اعلام وکالت' , xPosition: 12 },
 ];
 
 const adviceMap: Record<Exclude<LegalPath, null>, string> = {
   free: 'شما  میتوانید صرفا با دریافت مشاوره حرفه ای رایگان کمک بگیرید',
+    help:
+    'شما میتوانید بدون اعلام وکالت در مسیر حقوقی خود همراهی داشته باشید',
   compelete:
     ' شما  با اعلام وکالت از از اول تا انتهای مسیر در حل پرونده حقوقی وکیل متخصص همراه دارید',
-  help:
-    'شما میتوانید بدون اعلام وکالت در مسیر حقوقی خود همراهی داشته باشید',
+
 };
 
 export default function HelpPage() {
@@ -157,6 +158,20 @@ export default function HelpPage() {
                   <div className="text-xs text-gray-500 mt-1">رایگان</div>
                   <div className="text-xs text-amber-700 mt-2">مناسب برای:  دریافت مشاوره</div>
                 </div>
+                
+                <div
+                  onClick={() => handleSelect('help')}
+                  className={`cursor-pointer rounded-xl p-4 transition-all border ${
+                    selectedPath === 'help'
+                      ? 'border-l-8 border-l-teal bg-bone shadow-md'
+                      : 'border-gray-200 bg-white hover:shadow-md'
+                  }`}
+                >
+                  <div className="text-2xl">⚖️</div>
+                  <div className="font-bold text-navy">همراه با موکل</div>
+                  <div className="text-xs text-gray-500 mt-1">همراه شما در مسیر حقوقی</div>
+                  <div className="text-xs text-amber-700 mt-2">مناسب برای: افرادی که نیاز به همراهی دارند</div>
+                </div>
                 <div
                   onClick={() => handleSelect('compelete')}
                   className={`cursor-pointer rounded-xl p-4 transition-all border ${
@@ -169,19 +184,6 @@ export default function HelpPage() {
                   <div className="font-bold text-navy">اعلام وکالت</div>
                   <div className="text-xs text-gray-500 mt-1">حق‌الوکاله پس از اتمام پرونده</div>
                   <div className="text-xs text-amber-700 mt-2">مناسب برای: وکالت کامل</div>
-                </div>
-                <div
-                  onClick={() => handleSelect('help')}
-                  className={`cursor-pointer rounded-xl p-4 transition-all border ${
-                    selectedPath === 'help'
-                      ? 'border-l-8 border-l-teal bg-bone shadow-md'
-                      : 'border-gray-200 bg-white hover:shadow-md'
-                  }`}
-                >
-                  <div className="text-2xl">⚖️</div>
-                  <div className="font-bold text-navy">همراه با موکل</div>
-                  <div className="text-xs text-gray-500 mt-1">همراه شما در مسیر حقوقی</div>
-                  <div className="text-xs text-amber-700 mt-2">حق‌الوکاله پس از اتمام پرونده</div>
                 </div>
               </div>
             </div>
