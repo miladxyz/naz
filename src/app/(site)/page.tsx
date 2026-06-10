@@ -22,9 +22,9 @@ async function getData() {
 
 const stats = [
   { value: '۱۳+',  label: 'سال تجربه',     icon: Clock },
-  { value: '۲۵۰۰+',label: 'پرونده در سراسر کشور',   icon: Briefcase },
-  { value: '۹',    label: 'حوزه تخصصی',    icon: Scale },
-  { value: '۹۸٪',  label: 'رضایت موکلین',  icon: Star },
+  { value: '۳۵۰۰+',label: 'پرونده در سراسر کشور',   icon: Briefcase },
+  { value: '۱۰+',    label: 'حوزه تخصصی',    icon: Scale },
+  { value: '۸۰٪+',  label: 'موفقیت پرونده',  icon: Star },
 ]
 
 const practiceAreas = [
@@ -91,11 +91,11 @@ export default async function HomePage() {
               </div>
 
               <h1 className="text-4xl md:text-6xl font-bold text-ivory leading-tight mb-4 animate-fade-in-up delay-100">
-                از مشاوره اولیه
+                از دغدغه حقوقی
                 <br />
                 <span className="text-transparent bg-clip-text"
                   style={{ backgroundImage: 'linear-gradient(90deg, #4cb4c9, #a8dde8, #4cb4c9)' }}>
-                 تا احقاق حق
+                 تا آخرین گام قانونی
                 </span>
               </h1>
 
@@ -114,12 +114,6 @@ export default async function HomePage() {
               </p>
 
               <div className="flex flex-wrap gap-3 mb-14 animate-fade-in-up delay-300">
-                <Link href="/qa"
-                  className="inline-flex items-center gap-2 text-base px-7 py-3.5 font-semibold transition-all duration-300 hover:brightness-110 active:scale-95"
-                  style={{ background: '#c9a84c', color: '#070f1e', boxShadow: '0 4px 20px rgba(201,168,76,0.4)' }}>
-                  <Scale size={17} />
-                  پرسش از وکیل
-                </Link>
                 <Link href="/about"
                   className="inline-flex items-center gap-2 border border-ivory/25 text-ivory px-7 py-3.5 text-base font-medium hover:bg-ivory/10 transition-all duration-300">
                   آشنایی با تیم
@@ -130,6 +124,12 @@ export default async function HomePage() {
                   style={{ borderColor: 'rgba(76,180,201,0.4)', color: '#4cb4c9' }}>
                   <Phone size={16} />
                   مشاوره رایگان
+                </Link>
+                  <Link href="/qa"
+                    className="inline-flex items-center gap-2 text-base px-7 py-3.5 font-semibold transition-all duration-300 hover:brightness-110 active:scale-95"
+                    style={{ background: '#c9a84c', color: '#070f1e', boxShadow: '0 4px 20px rgba(201,168,76,0.4)' }}>
+                    <Scale size={17} />
+                  پرسش از وکیل
                 </Link>
               </div>
 
@@ -188,18 +188,18 @@ export default async function HomePage() {
                 <div className="hidden sm:block absolute -top-4 -right-6 px-4 py-3 animate-float"
                   style={{ background: '#4cb4c9', boxShadow: '0 8px 24px rgba(76,180,201,0.4)' }}>
                   <div className="text-white text-center">
-                    <div className="text-2xl font-bold">۹۸٪</div>
-                    <div className="text-xs opacity-80">رضایت موکلین</div>
+                    <div className="text-2xl font-bold">وکالت</div>
+                    <div className="text-xs opacity-80"> سراسر کشور</div>
                   </div>
                 </div>
 
                 {/* Floating dark stat card — bottom left, hidden on mobile */}
                 <div className="hidden sm:block absolute -bottom-4 -left-6 px-4 py-3 animate-float"
                   style={{ animationDelay:'2s', background: 'rgba(13,31,60,0.95)', border: '1px solid rgba(76,180,201,0.3)', boxShadow: '0 8px 24px rgba(13,31,60,0.5)' }}>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-ivory">۲۵۰۰+</div>
+                  {/* <div className="text-center">
+                    <div className="text-2xl font-bold text-ivory">۳۵۰۰+</div>
                     <div className="text-xs" style={{ color: '#4cb4c9' }}>پرونده موفق</div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
