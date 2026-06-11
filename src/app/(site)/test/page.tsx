@@ -7,24 +7,12 @@ type Service = {
 };
 
 const services: Service[] = [
-  { id: 1, title: 'تغیر نام', subtitle: '' },
-  { id: 2, title: 'وکیل چک', subtitle: '' },
-  { id: 3, title: 'وکیل خانواده', subtitle: '' },
-  { id: 4, title: 'تغیر نام', subtitle: '' },
-  { id: 5, title: 'وکیل چک', subtitle: '' },
-  { id: 6, title: 'وکیل خانواده', subtitle: '' },
-  { id: 7, title: 'تغیر نام', subtitle: '' },
-  { id: 8, title: 'وکیل چک', subtitle: '' },
-  { id: 9, title: 'وکیل خانواده', subtitle: '' },
-  { id: 10, title: 'تغیر نام', subtitle: '' },
-  { id: 11, title: 'وکیل چک', subtitle: '' },
-  { id: 12, title: 'وکیل خانواده', subtitle: '' },
-  { id: 13, title: 'تغیر نام', subtitle: '' },
-  { id: 14, title: 'وکیل چک', subtitle: '' },
-  { id: 15, title: 'وکیل خانواده', subtitle: '' },
-  { id: 16, title: 'تغیر نام', subtitle: '' },
-  { id: 17, title: 'وکیل چک', subtitle: '' },
-  { id: 18, title: 'وکیل خانواده', subtitle: '' },
+  { id: 1, title: ' وکیل دعاوی خانواده و امور حسبی', subtitle: '' },
+  { id: 2, title: 'وکیل اسناد تجاری', subtitle: '' },
+  { id: 3, title: 'وکیل تغییر نام', subtitle: '' },
+  { id: 4, title: 'وکیل مواد مخدر', subtitle: '' },
+  { id: 5, title: 'وکیل امور جنایی', subtitle: '' },
+  { id: 6, title: ' وکیل امور ملکی، ثبتی، شهرداری', subtitle: '' },
 ];
 
 // Duplicate the array to create seamless infinite loop
