@@ -142,7 +142,8 @@
            transition-all duration-300 hover:bg-navy hover:text-ivory active:scale-95;
   }
   .btn-gold {
-    @apply bg-[#9e8b47] border-2 border-[#c9b36b] text-white font-bold py-2 px-8 rounded-full shadow-inner backdrop-blur-sm transition hover:bg-[#b09b52] hover:border-[#dfcc88] hover:shadow-gold;
+    @apply inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold
+           transition-all duration-300 hover:brightness-110 active:scale-95;
     background-color: var(--teal);
     color: var(--white);
     box-shadow: 0 4px 20px var(--teal-glow);
