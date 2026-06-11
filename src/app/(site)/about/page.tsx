@@ -134,10 +134,10 @@ export default async function AboutPage() {
           <h2 className="section-heading mb-8 text-[#c9a84c]">ارزش‌های ما</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { icon: Handshake, title: 'امانت‌داری', desc: 'حفظ اسرار و رعایت کامل حریم خصوصی موکلین' },
-              { icon: Brain, title: 'تخصص',       desc: 'عمق دانش حقوقی در حوزه‌های تخصصی' },
-              { icon: Rocket, title: 'کارایی',      desc: 'پیگیری سریع و موثر پرونده‌ها' },
-              { icon: HandHeart, title: 'همدلی',      desc: 'درک شرایط موکل و حمایت صادقانه' },
+              { icon: Handshake, title: 'تعهد به محرمانگی', desc: 'ما فراتر از امانت‌داری، امنیت اطلاعات شما را خط قرمز خود می‌دانیم.' },
+              { icon: Brain, title: 'تسلط راهبردی',       desc: 'تخصص برای ما یک کلمه نیست؛ ما با دانش عمیق و به‌روز، مسیرهای قانونی را برای شما هموار می‌کنیم.' },
+              { icon: Rocket, title: 'نتیجه‌گرایی هوشمندانه',      desc: 'ما به دنبال سریع‌ترین راه نیستیم، بلکه «هوشمندانه‌ترین» مسیر را برای موفقیت پرونده‌هایتان انتخاب می‌کنیم.' },
+              { icon: HandHeart, title: 'پشتیبانی بی‌وقفه',      desc: 'در کنار شما هستیم، نه فقط به عنوان وکیل، بلکه به عنوان حامی و مشاوری که در هر گام، دغدغه‌های شما را درک می‌کند.' },
             ].map((v) => (
               <div key={v.title} className="card bg-graphite rounded-xl">
                 <span className="text-3xl mb-4 block text-teal"><v.icon /></span>
