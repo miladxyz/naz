@@ -126,7 +126,7 @@ export default async function HomePage() {
                   مشاوره رایگان
                 </Link>
                 <Link href="/qa"
-                  className="bg-gradient-to-b from-[#b09b52] to-[#8a7840] border-2 border-[#d4be6e] text-base font-semibold py-3.5 px-7 rounded-full shadow-inner backdrop-blur-sm transition-all duration-300 hover:border-[#dfcc88] hover:brightness-110 hover:shadow-gold active:scale-95 inline-flex items-center gap-2"
+                  className="bg-gradient-to-b from-[#b09b52] to-[#8a7840] border-2 border-[#d4be6e] text-base font-semibold py-3.5 px-7 shadow-inner backdrop-blur-sm transition-all duration-300 hover:border-[#dfcc88] hover:brightness-110 hover:shadow-gold active:scale-95 inline-flex items-center gap-2"
                   >
                   <Scale size={17} />
                    پرسش از وکیل
