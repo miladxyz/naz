@@ -33,6 +33,7 @@ const config: Config = {
         'gold-glow': '0 4px 24px rgba(76,180,201,0.35)',  // alias
         'card':      '0 2px 15px rgba(13,31,60,0.08)',
         'card-hover':'0 8px 40px rgba(13,31,60,0.15)',
+        'gold': '0 6px 14px -4px rgba(163, 143, 76, 0.4), inset 0 1px 0 rgba(255,255,240,0.2)',
       },
       backgroundImage: {
         'hero-gradient': 'linear-gradient(135deg, #070f1e 0%, #0d1f3c 60%, #162d52 100%)',
