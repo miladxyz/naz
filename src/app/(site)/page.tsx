@@ -126,8 +126,7 @@ export default async function HomePage() {
                   مشاوره رایگان
                 </Link>
                   <Link href="/qa"
-                    className="inline-flex items-center gap-2 text-base px-7 py-3.5 font-semibold transition-all duration-300 hover:brightness-110 active:scale-95"
-                    style={{ background: '#c9a84c', color: '#070f1e', boxShadow: '0 4px 20px rgba(201,168,76,0.4)' }}>
+                    className="btn-gold inline-flex items-center gap-2 text-base px-7 py-3.5 font-semibold transition-all duration-300 hover:brightness-110 active:scale-95">
                     <Scale size={17} />
                   پرسش از وکیل
                 </Link>
