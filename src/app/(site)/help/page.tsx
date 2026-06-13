@@ -207,7 +207,7 @@ export default function HelpPage() {
           <div className="mt-10 text-center z-10">
             <button
               onClick={handleProceed}
-              className="bg-[#0a1c2f] hover:bg-amber-700 text-white font-semibold py-3 px-8 rounded-full transition-all shadow-md text-base z-10"
+              className="bg-navy hover:bg-[#c9a84c] text-white font-semibold py-3 px-8 rounded-full transition-all shadow-md text-base z-10"
             >
               این مسیر را انتخاب میکنید؟ →
             </button>
