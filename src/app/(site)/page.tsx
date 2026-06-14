@@ -7,7 +7,7 @@ import {
   Wallet, Shield, ChevronLeft, MapPin, Phone, Mail,
   CheckCircle2, Award, Clock, HelpCircle
 } from 'lucide-react'
-import gpPhoto from '@/app/group.jpg'
+import gpPhoto from '@/app/alireza-nazari.jpg'
 import VideoSubtitlesMarquee from './test/page'
 
 async function getData() {
@@ -160,10 +160,11 @@ export default async function HomePage() {
                   style={{ border: '1px solid rgba(76,180,201,0.25)' }}>
                   <Image
                     src={gpPhoto}
-                    alt="تیم حقوقی علیرضا نظری"
+                    alt="علیرضا نظری"
                     fill
                     className="object-cover object-top"
                     priority
+                    placeholder="blur"
                   />
                   {/* Dark gradient overlay at bottom */}
                   <div className="absolute inset-0"

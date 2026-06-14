@@ -6,7 +6,7 @@ import {
   BookOpen, UserCheck, Users, Clock, DollarSign,
   Scale, Trophy, HeartPulse, Briefcase, CalendarDays, ArrowLeft
 } from 'lucide-react'
-import gpPhoto from '@/app/group.jpg'
+import gpPhoto from '@/app/alireza-nazari.jpg'
 const challenges = [
   {
     id: 1,
@@ -147,7 +147,7 @@ export default function ProblemsPage() {
             style={{ border: '1px solid rgba(76,180,201,0.2)', background: 'rgba(13,31,60,0.6)' }}>
             <div className="relative w-full h-full min-h-[380px] overflow-hidden"
               style={{ borderRadius: '2px' }}>
-              <Image src={gpPhoto} alt="تیم حقوقی علیرضا نظری" fill
+              <Image src={gpPhoto} alt="تیم حقوقی علیرضا نظری" fill priority placeholder="blur"
                 className="object-cover object-top rounded-[50%]" />
               <div className="absolute inset-0"
                 style={{ background: 'linear-gradient(to top, rgba(7,15,30,0.8) 0%, transparent 50%)' }} />

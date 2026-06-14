@@ -6,8 +6,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 const contactMethods = [
-  { Icon: Phone,  label: 'تلفن اول',   value: '۰۹۱۲۰۳۱۰۸۰۵',          href: 'tel:+989120310806',                dir: 'ltr' as const },
-  { Icon: Phone,  label: 'تلفن دوم',   value: '۰۹۱۲۰۳۱۰۸۰۶',          href: 'tel:+989120310805',                dir: 'ltr' as const },
+  { Icon: Phone,  label: 'تلفن اول',   value: '۰۹۱۲۰۳۱۰۸۰۶',          href: 'tel:+989120310806',                dir: 'ltr' as const },
+  { Icon: Phone,  label: 'تلفن دوم',   value: '۰۹۱۲۰۳۱۰۸۰۵',          href: 'tel:+989120310805',                dir: 'ltr' as const },
   { Icon: Mail,   label: 'ایمیل',      value: 'info@alirezanazari.com', href: 'mailto:info@alirezanazari.com',  dir: 'ltr' as const },
   { Icon: null,   label: 'اینستاگرام', value: '@alireza.nazari.law',           href: 'https://instagram.com/alireza.nazari.law', dir: 'ltr' as const },
 ]
@@ -47,7 +47,7 @@ export default function ContactPage() {
           <p className="text-teal text-xs tracking-widest uppercase mb-4">ارتباط با ما</p>
           <h1 className="text-4xl md:text-6xl font-bold text-ivory mb-4">تماس با ما</h1>
           <p className="text-ivory/60 text-lg max-w-xl leading-relaxed">
-            برای مشاوره حقوقی، ارسال سوال یا هرگونه همکاری با تیم حقوقی علیرضا نظری در تماس باشید.
+            برای مشاوره حقوقی، ارسال سوال یا هرگونه همکاری با دفتر وکالت علیرضا نظری در تماس باشید.
           </p>
         </div>
       </section>
@@ -157,8 +157,8 @@ export default function ContactPage() {
               <div className="space-y-5">
                 {[
                   { Icon: MapPin, label: 'آدرس',      value: 'شیراز، خیابان معالی آباد، حد فاصل پزشکان و دوستان، مجتمع تجاری آوا، طبقه ۷، واحد ۷۱', href: null },
-                  { Icon: Phone,  label: 'تلفن اول',  value: '۰۹۱۲۰۳۱۰۸۰۵', href: 'tel:+989120310806' },
-                  { Icon: Phone,  label: 'تلفن دوم',  value: '۰۹۱۲۰۳۱۰۸۰۶', href: 'tel:+989120310805' },
+                  { Icon: Phone,  label: 'تلفن اول',  value: '۰۹۱۲۰۳۱۰۸۰۶', href: 'tel:+989120310806' },
+                  { Icon: Phone,  label: 'تلفن دوم',  value: '۰۹۱۲۰۳۱۰۸۰۵', href: 'tel:+989120310805' },
                   { Icon: Mail,   label: 'ایمیل',      value: 'info@alirezanazari.com', href: 'mailto:info@alirezanazari.com' },
                   { Icon: Clock,   label: 'ساعات کاری', value: 'شنبه تا پنجشنبه — ۸ صبح تا ۸ عصر', href: null },
                 ].map((item) => (
@@ -177,7 +177,7 @@ export default function ContactPage() {
               </div>
 
               {/* Map */}
-              <a href="https://maps.google.com/?q=شیراز+معالی+آباد+مجتمع+آوا"
+              <a href="https://maps.app.goo.gl/dURr88QNgonYCGHN9"
                 target="_blank" rel="noopener noreferrer"
                 className="mt-6 block relative w-full h-52 bg-bone border border-bone hover:border-navy/30 hover:shadow-navy-glow transition-all duration-300 overflow-hidden group">
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-silver group-hover:text-navy transition-colors z-10">

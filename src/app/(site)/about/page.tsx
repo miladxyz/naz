@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { safeFind } from '@/lib/payload'
 import type { Metadata } from 'next'
-import gpPhoto from "@/app/group.jpg"
+import gpPhoto from "@/app/alireza-nazari.jpg"
 import { Brain, HandHeart, Handshake, Rocket, Scale } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -73,8 +73,7 @@ export default async function AboutPage() {
               </div>
             </div>
             <div className="relative">
-               <Image src={gpPhoto} alt={"team"}  />
-
+               <Image src={gpPhoto} alt={"تیم حقوقی علیرضا نظری"} fill priority placeholder="blur" />
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-teal opacity-20" />
             </div>
           </div>
