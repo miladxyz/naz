@@ -76,7 +76,7 @@ export default async function HomePage() {
                 <div className="inline-flex items-center gap-2 border px-4 py-2"
                   style={{ background: 'rgba(76,180,201,0.1)', borderColor: 'rgba(76,180,201,0.25)' }}>
                   <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#4cb4c9' }} />
-                  <span className="text-xs font-medium tracking-widest uppercase" style={{ color: '#4cb4c9' }}>
+                  <span className="text-xs font-medium tracking-widest uppercase bg-gradient-to-r from-[#c6f5ff] to-[#4cb4c9] bg-clip-text text-transparent" >
                     علیرضا نظری — وکیل پایه یک دادگستری
                   </span>
                 </div>
@@ -84,7 +84,7 @@ export default async function HomePage() {
                 <div className="inline-flex items-center gap-2 border px-3 py-2"
                   style={{ background: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)' }}>
                   <Award size={13} style={{ color: '#c9a84c' }} />
-                  <span className="text-xs font-semibold" style={{ color: '#c9a84c' }}>
+                  <span className="text-xs font-semibold bg-gradient-to-r from-[#ffce1b] to-[#c9a84c] bg-clip-text text-transparent">
                     رتبه ۵۶ کانون وکلای فارس و کهگیلویه و بویراحمد
                   </span>
                 </div>
@@ -103,7 +103,7 @@ export default async function HomePage() {
               <Link href="/blog/divorce-guide"
                 className="inline-flex items-center gap-3 mb-6 px-4 py-3 border transition-all duration-300 hover:border-teal/50 animate-fade-in-up delay-150 group"
                 style={{ borderColor: 'rgba(201,168,76,0.3)', background: 'rgba(201,168,76,0.07)' }}>
-                <span className="text-sm font-semibold" style={{ color: '#c9a84c' }}>
+                <span className="text-sm font-semibold bg-gradient-to-r from-[#ffce1b] to-[#c9a84c] bg-clip-text text-transparent" >
                   چرا حق‌الوکاله پس از اتمام پرونده؟
                 </span>
                 <ArrowLeft size={15} style={{ color: '#c9a84c' }} className="group-hover:-translate-x-1 transition-transform" />
@@ -126,7 +126,7 @@ export default async function HomePage() {
                   مشاوره رایگان
                 </Link>
                 <Link href="/qa"
-                  className="bg-gradient-to-b from-[#b09b52] to-[#8a7840] border-2 border-[#d4be6e] text-base font-semibold py-3.5 px-7 shadow-inner backdrop-blur-sm transition-all duration-300 hover:border-[#dfcc88] hover:brightness-110 hover:shadow-gold active:scale-95 inline-flex items-center gap-2"
+                  className="bg-gradient-to-b from-[#b09b52] to-[#8a7840] text-base font-semibold py-3.5 px-7 shadow-inner backdrop-blur-sm transition-all duration-300 hover:border-[#dfcc88] hover:brightness-110 hover:shadow-gold active:scale-95 inline-flex items-center gap-2"
                   >
                   <Scale size={17} />
                    پرسش از وکیل
@@ -380,7 +380,7 @@ export default async function HomePage() {
                 <span className="gold-line" />
                 <h2 className="section-heading text-ivory">اینستاگرام</h2>
                 <a href="https://instagram.com/alireza.nazari.law" target="_blank" rel="noopener noreferrer"
-                  className="text-sm hover-underline" style={{ color: '#4cb4c9' }}>@nazari.law</a>
+                  className="text-sm hover-underline" style={{ color: '#4cb4c9' }}>@alireza.nazari.law</a>
               </div>
               <a href="https://instagram.com/alireza.nazari.law" target="_blank" rel="noopener noreferrer"
                 className="hidden md:flex items-center gap-1 text-sm hover-underline" style={{ color: '#4cb4c9' }}>

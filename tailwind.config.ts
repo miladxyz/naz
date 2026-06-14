@@ -16,7 +16,7 @@ const config: Config = {
         teal:        '#4cb4c9',
         'teal-light':'#a8dde8',
         'teal-dark': '#2a8fa3',
-        gold:        '#4cb4c9',   // alias for backward compat
+        gold:        '#c9a84c',   // alias for backward compat
         'gold-light':'#a8dde8',   // alias
         ivory:       '#f6f8fa',
         bone:        '#e4e8ed',

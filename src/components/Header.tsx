@@ -134,8 +134,7 @@ export function Header() {
                 </div>
               ) : (
                 <Link href="/auth"
-                  className="hidden md:inline-flex items-center px-5 py-2 text-sm font-semibold transition-all duration-200 hover:brightness-110 active:scale-95"
-                  style={{ background: '#c9a84c', color: '#070f1e', boxShadow: '0 2px 12px rgba(201,168,76,0.35)' }}>
+                  className="bg-gradient-to-b from-[#b09b52] to-[#8a7840] hidden md:inline-flex items-center px-5 py-2 text-sm font-semibold transition-all duration-200 hover:brightness-110 active:scale-95">
                   ورود / ثبت‌نام
                 </Link>
               )
