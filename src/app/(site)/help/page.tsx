@@ -193,7 +193,7 @@ export default function HelpPage() {
               <div className="flex items-start gap-3">
                 <div className="text-3xl">👩‍⚖️</div>
                 <div className="flex-1">
-                  <div className="font-bold text-[#c9a84c] text-lg">عسل، دستیار حقوقی شما</div>
+                  <div className="font-bold text-gold text-lg">عسل، دستیار حقوقی شما</div>
                   <div className="text-bone text-sm leading-relaxed mt-2">
                     {selectedPath ? (
                       <span>{adviceMap[selectedPath]}</span>
@@ -207,7 +207,7 @@ export default function HelpPage() {
           <div className="mt-10 text-center z-10">
             <button
               onClick={handleProceed}
-              className="bg-navy hover:bg-[#c9a84c] text-white font-semibold py-3 px-8 rounded-full transition-all shadow-md text-base z-10"
+              className="bg-navy hover:bg-gold text-white font-semibold py-3 px-8 rounded-full transition-all shadow-md text-base z-10"
             >
               این مسیر را انتخاب میکنید؟ →
             </button>

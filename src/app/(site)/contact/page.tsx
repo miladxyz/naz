@@ -69,7 +69,7 @@ export default function ContactPage() {
                   )}
                 </div>
                 <p className="text-xs text-white mb-1">{m.label}</p>
-                <p className="text-sm font-medium text-[#c9a84c] group-hover:text-[#efdc5b] transition-colors" dir={m.dir}>{m.value}</p>
+                <p className="text-sm font-medium text-gold group-hover:text-[#efdc5b] transition-colors" dir={m.dir}>{m.value}</p>
               </a>
             ))}
           </div>

@@ -77,7 +77,7 @@ export default function FAQPage() {
           <div key={group.category} className="mb-12">
             <div className="flex items-center gap-4 mb-6">
               <span className="gold-line mb-0 inline-block" />
-              <h2 className="text-xl font-bold text-[#c9a84c]">{group.category}</h2>
+              <h2 className="text-xl font-bold text-gold">{group.category}</h2>
             </div>
             <div className="space-y-3">
               {group.items.map((faq, i) => (

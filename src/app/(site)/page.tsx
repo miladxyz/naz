@@ -84,7 +84,7 @@ export default async function HomePage() {
                 <div className="inline-flex items-center gap-2 border px-3 py-2"
                   style={{ background: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)' }}>
                   <Award size={13} style={{ color: '#c9a84c' }} />
-                  <span className="text-xs font-semibold bg-gradient-to-r from-[#ffce1b] to-[#c9a84c] bg-clip-text text-transparent">
+                  <span className="text-xs font-semibold bg-gradient-to-r from-[#ffce1b] to-gold bg-clip-text text-transparent">
                     رتبه ۵۶ کانون وکلای فارس و کهگیلویه و بویراحمد
                   </span>
                 </div>
@@ -242,7 +242,7 @@ export default async function HomePage() {
         <div className="container-site">
           <div className="text-center mb-12">
             <span className="gold-line mx-auto" />
-            <h2 className="section-heading text-[#c9a84c]">حوزه‌های تخصصی</h2>
+            <h2 className="section-heading text-gold">حوزه‌های تخصصی</h2>
             <p className="section-subheading text-white">خدمات حقوقی جامع در نه حوزه تخصصی</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
