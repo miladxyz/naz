@@ -206,7 +206,7 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
-        <div className='fixed z-500 pt-[650px]'>
+        <div className='fixed bottom-0 z-50'>
           <VideoSubtitlesMarquee  />
         </div>
       </section>
