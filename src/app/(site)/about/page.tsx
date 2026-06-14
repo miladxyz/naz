@@ -73,7 +73,8 @@ export default async function AboutPage() {
               </div>
             </div>
             <div className="relative">
-               <Image src={gpPhoto} alt={"تیم حقوقی علیرضا نظری"} fill priority placeholder="blur" />
+               <Image src={gpPhoto} alt={"تیم حقوقی علیرضا نظری"} placeholder="blur" />
+
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-teal opacity-20" />
             </div>
           </div>
