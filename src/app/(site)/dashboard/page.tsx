@@ -18,7 +18,9 @@ const categoryLabels: Record<string, string> = {
   labor:       'حقوق کار',
   family:      'حقوق خانواده',
   banking:     'حقوق بانکی',
-  insurance:   'حقوق بیمه'}
+  insurance:   'حقوق بیمه',
+  others: 'سایر',
+}
 
 export default function DashboardPage() {
   const { user, isStaff, loading } = useAuth()
