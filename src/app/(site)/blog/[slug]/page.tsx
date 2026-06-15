@@ -15,19 +15,33 @@ const categoryLabels: Record<string, string> = {
   banking:     'حقوق بانکی',
   insurance:   'حقوق بیمه',
 }
-
 async function getPost(slug: string) {
   try {
-    const payload = await getPayloadClient()
-    if (!payload) return null
+
+    const decodedSlug = decodeURIComponent(slug);
+    
+    const payload = await getPayloadClient();
+    if (!payload) return null;
+    
     const res = await payload.find({
       collection: 'posts',
-      where: { or: [{ slug: { equals: slug } }, { id: { equals: slug } }], _status: { equals: 'published' } },
+      where: {
+        or: [
+          { slug: { equals: decodedSlug } },   // use decoded slug
+          { id: { equals: decodedSlug } }      // optional: if you ever use ID as slug
+        ],
+        _status: { equals: 'published' }
+      },
       limit: 1,
-    })
-    return res.docs[0] || null
-  } catch { return null }
+    });
+    return res.docs[0] || null;
+  } catch (error) {
+    // If decoding fails (malformed URI), fall back to the raw slug
+    console.error('Error decoding slug:', error);
+    return null;
+  }
 }
+
 
 function extractContent(content: any): { html: string; isHtml: boolean } {
   if (!content) return { html: '', isHtml: false }
