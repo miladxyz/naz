@@ -99,7 +99,7 @@ export default async function HomePage() {
               </h1>
 
               {/* Clickable highlight card — links to the free consultation blog post */}
-              <Link href="/blog/divorce-guide"
+              <Link href={`/blog/${encodeURIComponent('چرا-تا-پایان-پرونده-حق-الوکاله-نمیگیریم؟-1781544868538')}`}
                 className="inline-flex items-center gap-3 mb-6 px-4 py-3 border transition-all duration-300 hover:border-teal/50 animate-fade-in-up delay-150 group"
                 style={{ borderColor: 'rgba(201,168,76,0.3)', background: 'rgba(201,168,76,0.07)' }}>
                 <span className="text-sm font-semibold bg-gradient-to-r from-[#ffce1b] to-[#c9a84c] bg-clip-text text-transparent" >
