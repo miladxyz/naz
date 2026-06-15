@@ -81,10 +81,9 @@ export default async function HomePage() {
                   </span>
                 </div>
                 {/* Bar association rank badge */}
-                <div className="inline-flex items-center gap-2 border px-3 py-2"
-                  style={{ background: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)' }}>
-                  <Award size={13} style={{ color: '#c9a84c' }} />
-                  <span className="text-xs font-semibold bg-gradient-to-r from-[#ffce1b] to-gold bg-clip-text text-transparent">
+                <div className="inline-flex items-center gap-2 px-3 py-2 bg-gradient-to-b from-[#b09b52] to-[#8a7840]">
+                  <Award size={13} style={{ color: '#ffffff' }} />
+                  <span className="text-xs font-semibold bg-gradient-to-r from-white to-bone bg-clip-text text-transparent">
                     رتبه ۵۶ کانون وکلای فارس و کهگیلویه و بویراحمد
                   </span>
                 </div>
