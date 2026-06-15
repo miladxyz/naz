@@ -152,7 +152,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               </div>
               {related.length > 0 && (
                 <div>
-                  <h3 className="font-bold text-ink mb-4 text-sm">مقالات مرتبط</h3>
+                  <h3 className="font-bold text-bone mb-4 text-sm">مقالات مرتبط</h3>
                   <div className="space-y-3">
                     {related.map((r: any) => (
                       <Link key={r.id} href={`/blog/${r.slug || r.id}`} className="block card bg-white hover:border-navy p-4 group">
