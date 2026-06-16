@@ -342,7 +342,7 @@ function StaffDashboard({ user }: { user: any }) {
                           <span className={p._status==='published'?'badge-answered':'badge-pending'}>
                             {p._status==='published'?'منتشر شده':'پیش‌نویس'}
                           </span>
-                          {p.category && <span className="tag text-xs">{categoryLabels[p.category]}</span>}
+                          {p.category && <span className="tag text-xs text-black">{categoryLabels[p.category]}</span>}
                         </div>
                         <h3 className="font-medium text-ink truncate">{p.title}</h3>
                       </div>

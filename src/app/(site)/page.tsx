@@ -30,11 +30,11 @@ const stats = [
 const practiceAreas = [
   { icon: Gavel,        label: 'کیفری',               desc: 'قتل، مواد مخدر، ضرب و جرح، سرقت، کلاه‌برداری ...',     href: '/qa?category=criminal' },
   { icon: Landmark,     label: 'حقوقی',               desc: 'مطالبه وجه، الزام به انجام تعهد، اختلافات قراردادی ...', href: '/qa?category=civil' },
+  { icon: HeartHandshake,label:'حقوق خانواده',         desc: 'طلاق، حضانت، ارث، نفقه و مهریه ...',                    href: '/qa?category=family' },
   { icon: HandCoins,    label: 'داوری و حل اختلاف',   desc: 'میانجی‌گری، سازش و صلح خارج از دادگاه ...',             href: '/qa?category=arbitration' },
   { icon: ScrollText,   label: 'امور حسبی',           desc: 'اجازه فروش مال محجور، نصب و عزل قیم ...',               href: '/qa?category=probate' },
   { icon: HeartHandshake,label:'دعاوی ارث و ترکه',    desc: 'انحصار وراثت، تحریر و تقسیم ترکه، مطالبه سهم الارث...',        href: '/qa?category=inheritance' },
   { icon: Users,        label: 'حقوق کار',            desc: 'اخراج غیرقانونی، مطالبه مزایا، اختلافات کارگری ...',    href: '/qa?category=labor' },
-  { icon: HeartHandshake,label:'حقوق خانواده',         desc: 'طلاق، حضانت، ارث، نفقه و مهریه ...',                    href: '/qa?category=family' },
   { icon: Wallet,       label: 'حقوق بانکی',          desc: 'اختلافات تسهیلات، دعاوی وام، رفع توقیف اموال ...',      href: '/qa?category=banking' },
   { icon: Shield,       label: 'حقوق بیمه',           desc: 'مطالبه خسارت، اختلافات بیمه‌گذار و بیمه‌گر ...',        href: '/qa?category=insurance' },
 ]
