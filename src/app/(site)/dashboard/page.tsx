@@ -119,7 +119,7 @@ function ClientDashboard({ user }: { user: any }) {
                       <span className={q.status === 'answered' ? 'badge-answered' : q.status === 'rejected' ? 'badge-rejected' : 'badge-pending'}>
                         {q.status === 'answered' ? 'پاسخ داده شده' : q.status === 'rejected' ? 'رد شده' : 'در انتظار پاسخ'}
                       </span>
-                      {q.category && <span className="tag text-xs">{categoryLabels[q.category]}</span>}
+                      {q.category && <span className="tag text-xs text-ink">{categoryLabels[q.category]}</span>}
                     </div>
                     <h3 className="font-semibold text-ink text-sm">{q.title}</h3>
                     <p className="text-xs text-silver mt-1">{new Date(q.createdAt).toLocaleDateString('fa-IR')}</p>
