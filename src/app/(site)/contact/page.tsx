@@ -167,7 +167,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-xs text-silver mb-0.5">{item.label}</p>
                       {item.href ? (
-                        <a href={item.href} className="text-sm text-ivory hover:text-navy transition-colors font-medium" dir="ltr">{item.value}</a>
+                        <a href={item.href} className="text-sm text-ivory hover:text-silver transition-colors font-medium" dir="ltr">{item.value}</a>
                       ) : (
                         <p className="text-sm text-ivory leading-relaxed">{item.value}</p>
                       )}
