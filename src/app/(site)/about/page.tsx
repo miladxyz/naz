@@ -13,7 +13,11 @@ const roleLabels: Record<string, string> = {
   lawyer:            'وکیل',
   it_manager:        'مدیر فناوری اطلاعات',
   financial_manager: 'مدیر مالی',
-  legal_assistant:   'دستیار حقوقی'}
+  legal_assistant:   'دستیار حقوقی',
+  internal_manager: 'مسئول امور داخلی',
+  technical_officer: 'مسئول فنی',
+  content_creator: 'کارشناس تولید محتوا'
+}
 
 const roleOrder = ['founder', 'lawyer', 'financial_manager', 'it_manager', 'legal_assistant']
 
