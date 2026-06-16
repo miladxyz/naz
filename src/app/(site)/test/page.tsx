@@ -45,7 +45,7 @@ export const VideoSubtitlesMarquee = () => {
       <style jsx>{`
         .marquee-track {
           display: flex;
-          animation: marquee 99s linear infinite;
+          animation: marquee 100s linear infinite;
           width: max-content;
         }
         .marquee-track:hover {
