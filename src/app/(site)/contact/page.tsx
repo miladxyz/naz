@@ -97,24 +97,24 @@ export default function ContactPage() {
               <div className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-medium text-graphite block mb-1.5">نام کامل *</label>
+                    <label className="text-xs font-medium text-silver block mb-1.5">نام کامل *</label>
                     <input className="input" placeholder="نام و نام خانوادگی"
                       value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-graphite block mb-1.5">ایمیل *</label>
+                    <label className="text-xs font-medium text-silver block mb-1.5">ایمیل *</label>
                     <input type="email" dir="ltr" className="input" placeholder="email@example.com"
                       value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} />
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-medium text-graphite block mb-1.5">شماره تماس</label>
+                    <label className="text-xs font-medium text-silver block mb-1.5">شماره تماس</label>
                     <input type="tel" dir="ltr" className="input" placeholder="۰۹۱۲۰۳۱۰۸۰۵"
                       value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-graphite block mb-1.5">موضوع</label>
+                    <label className="text-xs font-medium text-silver block mb-1.5">موضوع</label>
                     <select className="select" value={form.subject}
                       onChange={e => setForm(p => ({ ...p, subject: e.target.value }))}>
                       <option value="">انتخاب کنید</option>
@@ -126,7 +126,7 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-graphite block mb-1.5">پیام *</label>
+                  <label className="text-xs font-medium text-silver block mb-1.5">پیام *</label>
                   <textarea rows={6} className="textarea" placeholder="پیام خود را اینجا بنویسید..."
                     value={form.message} onChange={e => setForm(p => ({ ...p, message: e.target.value }))} />
                 </div>
