@@ -41,7 +41,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-ivory flex items-center justify-center">
+    <div className="min-h-screen bg-navy flex items-center justify-center">
       <div className="w-8 h-8 border-2 border-navy border-t-transparent rounded-full animate-spin" />
     </div>
   )
@@ -71,7 +71,7 @@ function ClientDashboard({ user }: { user: any }) {
   const answered = questions.filter(q => q.status === 'answered')
 
   return (
-    <div className="min-h-screen bg-ivory pt-20">
+    <div className="min-h-screen bg-navy pt-20">
       {/* Header */}
       <div className="bg-navy">
         <div className="container-site py-8 flex items-center justify-between">
@@ -215,7 +215,7 @@ function StaffDashboard({ user }: { user: any }) {
   const answered = questions.filter(q => q.status === 'answered')
 
   return (
-    <div className="min-h-screen bg-ivory pt-20">
+    <div className="min-h-screen bg-navy pt-20">
       <div className="bg-navy">
         <div className="container-site py-8 flex items-center justify-between">
           <div>
@@ -250,7 +250,7 @@ function StaffDashboard({ user }: { user: any }) {
             { id:'new-post',  label:'+ مقاله جدید' },
           ] as const).map(t => (
             <button key={t.id} onClick={() => setTab(t.id)}
-              className={`px-5 py-3 text-sm font-medium border-b-2 -mb-px transition-colors ${tab===t.id?'border-navy text-navy':'border-transparent text-silver hover:text-ink'}`}>
+              className={`px-5 py-3 text-sm font-medium border-b-2 -mb-px transition-colors ${tab===t.id?'border-bone text-bone':'border-transparent text-silver hover:text-ink'}`}>
               {t.label}
             </button>
           ))}
@@ -263,7 +263,7 @@ function StaffDashboard({ user }: { user: any }) {
               <>
                 {pending.length > 0 && (
                   <div className="mb-8">
-                    <h2 className="font-bold text-ink mb-4 flex items-center gap-2">
+                    <h2 className="font-bold text-silver mb-4 flex items-center gap-2">
                       <span className="w-2 h-2 bg-amber-500 rounded-full" />در انتظار پاسخ ({pending.length})
                     </h2>
                     <div className="space-y-4">
@@ -272,7 +272,7 @@ function StaffDashboard({ user }: { user: any }) {
                           <div className="flex items-start justify-between gap-4 mb-3">
                             <div>
                               <div className="flex items-center gap-2 mb-2">
-                                <span className="tag">{categoryLabels[q.category]||q.category}</span>
+                                <span className="tag text-ink">{categoryLabels[q.category]||q.category}</span>
                               </div>
                               <h3 className="font-bold text-ink">{q.title}</h3>
                               <p className="text-sm text-silver mt-1">{q.body}</p>
@@ -303,14 +303,14 @@ function StaffDashboard({ user }: { user: any }) {
                 )}
                 {answered.length > 0 && (
                   <div>
-                    <h2 className="font-bold text-ink mb-4 flex items-center gap-2">
+                    <h2 className="font-bold text-silver mb-4 flex items-center gap-2">
                       <span className="w-2 h-2 bg-emerald-500 rounded-full" />پاسخ داده شده ({answered.length})
                     </h2>
                     <div className="space-y-3">
                       {answered.map(q => (
                         <div key={q.id} className="card bg-white opacity-70 flex items-center justify-between">
                           <div>
-                            <span className="tag text-xs mb-1 inline-block">{categoryLabels[q.category]}</span>
+                            <span className="tag text-xs mb-1 inline-block text-ink">{categoryLabels[q.category]}</span>
                             <h3 className="font-medium text-ink text-sm">{q.title}</h3>
                           </div>
                           <span className="badge-answered">پاسخ داده شده</span>
@@ -342,7 +342,7 @@ function StaffDashboard({ user }: { user: any }) {
                           <span className={p._status==='published'?'badge-answered':'badge-pending'}>
                             {p._status==='published'?'منتشر شده':'پیش‌نویس'}
                           </span>
-                          {p.category && <span className="tag text-xs text-black">{categoryLabels[p.category]}</span>}
+                          {p.category && <span className="tag text-xs">{categoryLabels[p.category]}</span>}
                         </div>
                         <h3 className="font-medium text-ink truncate">{p.title}</h3>
                       </div>

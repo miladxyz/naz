@@ -104,8 +104,8 @@ export function Header() {
                       style={{ background: '#4cb4c9' }}>
                       {user.name.charAt(0)}
                     </span>
-                    <span className="max-w-[90px] truncate hidden lg:block">{user.name}</span>
-                    <span className={`text-xs transition-transform ${userMenuOpen ? 'rotate-180' : ''} ${onDark ? 'text-ivory/40' : 'text-silver'}`}>▾</span>
+                    <span className="max-w-[90px] truncate hidden lg:block text-gold">{user.name}</span>
+                    <span className={`text-xs transition-transform ${userMenuOpen ? 'rotate-180' : ''} ${onDark ? 'text-gold' : 'text-gold'}`}>▾</span>
                   </button>
 
                   {userMenuOpen && (
