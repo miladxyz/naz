@@ -1,8 +1,8 @@
-import { safeFind, getPayloadClient } from '@/lib/payload'
+import { getPayloadClient, safeFind } from '@/lib/payload'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import type { Metadata } from 'next'
 
 const categoryLabels: Record<string, string> = {
   criminal:    'کیفری',
@@ -14,6 +14,7 @@ const categoryLabels: Record<string, string> = {
   family:      'حقوق خانواده',
   banking:     'حقوق بانکی',
   insurance:   'حقوق بیمه',
+  others: 'سایر'
 }
 async function getPost(slug: string) {
   try {
