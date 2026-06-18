@@ -234,7 +234,7 @@ export default function AuthPage() {
                 <div className="space-y-5">
                   {/* 6-box OTP input */}
                   <div>
-                    <label className="text-xs font-medium text-graphite block mb-3 text-center">کد تأیید</label>
+                    <label className="text-xs font-medium text-ink block mb-3 text-center">کد تأیید</label>
                     <div className="flex gap-2 justify-center" dir="ltr">
                       {otpCode.map((digit, idx) => (
                         <input
