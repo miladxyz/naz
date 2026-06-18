@@ -15,7 +15,7 @@ const roleLabels: Record<string, string> = {
   financial_manager: 'مدیر مالی',
   legal_assistant:   'دستیار حقوقی',
   internal_manager: 'مسئول امور داخلی',
-  technical_officer: 'مسئول فنی',
+  technical_officer: 'مدیر فنی',
   content_creator: 'کارشناس تولید محتوا'
 }
 
