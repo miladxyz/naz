@@ -25,7 +25,7 @@ export async function sendOtpSmsir(phone: string, code: string): Promise<void> {
     mobile:     normalised,
     templateId: Number(templateId),
     parameters: [
-      { name: 'Code', value: code },
+      { name: 'OTP', value: code },
     ],
   }
 
