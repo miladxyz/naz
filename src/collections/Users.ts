@@ -22,6 +22,16 @@ export const Users: CollectionConfig = {
       required: true,
     },
     {
+      name: 'phone',
+      label: 'شماره موبایل',
+      type: 'text',
+      index: true,
+      unique: true,
+      admin: {
+        description: 'مثال: 09121234567',
+      },
+    },
+    {
       name: 'role',
       label: 'نقش',
       type: 'select',

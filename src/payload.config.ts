@@ -12,6 +12,7 @@ import { Questions }     from './collections/Questions.ts'
 import { TeamMembers }   from './collections/TeamMembers.ts'
 import { InstagramPosts } from './collections/InstagramPosts.ts'
 import { Experiences }   from './collections/Experiences.ts'
+import { OtpCodes }      from './collections/OtpCodes.ts'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname  = path.dirname(filename)
@@ -20,7 +21,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     importMap: {
-      baseDir: path.resolve(dirname, '..'),
+      baseDir: path.resolve(dirname),
     },
     meta: {
       titleSuffix: '— پنل مدیریت نظری',
@@ -29,7 +30,7 @@ export default buildConfig({
 
   editor: lexicalEditor(),
 
-  collections: [Users, Media, Posts, Questions, TeamMembers, InstagramPosts, Experiences],
+  collections: [Users, Media, Posts, Questions, TeamMembers, InstagramPosts, Experiences, OtpCodes],
 
   secret: process.env.PAYLOAD_SECRET || 'super-secret-change-in-production',
 

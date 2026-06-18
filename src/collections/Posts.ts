@@ -1,5 +1,4 @@
 import { CollectionConfig } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -41,8 +40,6 @@ export const Posts: CollectionConfig = {
       name: 'content',
       label: 'محتوا',
       type: 'richText',
-      // Explicitly pass the editor so the import map can resolve it
-      editor: lexicalEditor({}),
     },
     { name: 'coverImage', label: 'تصویر شاخص',  type: 'upload',   relationTo: 'media' },
     {
