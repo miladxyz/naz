@@ -25,7 +25,7 @@ export const TeamMembers: CollectionConfig = {
         { label: 'مدیر مالی',              value: 'financial_manager' },
         { label: 'دستیار حقوقی',           value: 'legal_assistant' },
         {label: 'مسئول امور داخلی', value: 'internal_manager'},
-        {label: 'مسئول فنی', value: 'technical_officer'},
+        {label: 'مدیر فنی', value: 'technical_officer'},
         {label: 'کارشناس تولید محتوا', value: 'content_creator'}
       ],
     },
