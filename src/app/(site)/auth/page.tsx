@@ -244,7 +244,7 @@ export default function AuthPage() {
                           value={digit}
                           onChange={e => handleOtpChange(idx, e.target.value)}
                           onKeyDown={e => handleOtpKey(idx, e)}
-                          className="w-11 h-12 text-center text-lg font-bold border border-silver/40 bg-white focus:border-teal focus:ring-1 focus:ring-teal outline-none rounded transition-all"
+                          className="w-11 h-12 text-center text-lg text-ink font-bold border border-silver/40 bg-white focus:border-teal focus:ring-1 focus:ring-teal outline-none rounded transition-all"
                         />
                       ))}
                     </div>
