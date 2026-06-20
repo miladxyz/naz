@@ -11,7 +11,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  turbopack: {}
+  turbopack: {},
 }
 
 // devBundleServerPackages: false is required for Next.js 16.2+ compatibility

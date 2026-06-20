@@ -7,7 +7,7 @@ import { useAuth } from '@/context/AuthContext'
 import Link from 'next/link'
 
 type AuthMode = 'phone' | 'email'
-type PhoneStep = 'enter-phone' | 'enter-code'
+type PhoneStep = 'enter-phone' | 'enter-code' | 'complete-profile'
 
 export default function AuthPage() {
   const [mode, setMode]     = useState<AuthMode>('phone')
@@ -50,9 +50,10 @@ export default function AuthPage() {
   // ── Phone / OTP ────────────────────────────────────────────────────
   const [phoneStep, setPhoneStep]   = useState<PhoneStep>('enter-phone')
   const [phone, setPhone]           = useState('')
-  const [userName, setUserName]     = useState('')
   const [otpCode, setOtpCode]       = useState(['', '', '', '', '', ''])
   const [countdown, setCountdown]   = useState(0)
+  const [firstName, setFirstName]   = useState('')
+  const [lastName, setLastName]     = useState('')
   const otpRefs = useRef<(HTMLInputElement | null)[]>([])
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -88,10 +89,33 @@ export default function AuthPage() {
     const code = otpCode.join('')
     if (code.length < 6) { setError('کد ۶ رقمی را کامل وارد کنید'); return }
     setLoading(true)
-    const r = await verifyOtp(phone, code, userName || undefined)
+    const r = await verifyOtp(phone, code)
     setLoading(false)
-    if (r.success) router.push('/dashboard')
-    else setError(r.error || 'کد اشتباه است')
+    if (r.success) {
+      if (r.isNewUser) setPhoneStep('complete-profile')
+      else router.push('/dashboard')
+    } else {
+      setError(r.error || 'کد اشتباه است')
+    }
+  }
+
+  async function handleCompleteProfile() {
+    setError('')
+    if (!firstName.trim() || !lastName.trim()) { setError('نام و نام خانوادگی را وارد کنید'); return }
+    setLoading(true)
+    try {
+      const res = await fetch('/api/auth/update-profile', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ firstName: firstName.trim(), lastName: lastName.trim() }),
+      })
+      const data = await res.json()
+      if (res.ok) router.push('/dashboard')
+      else setError(data.error || 'خطا در ذخیره اطلاعات')
+    } catch {
+      setError('خطا در ارتباط با سرور')
+    }
+    setLoading(false)
   }
 
   function handleOtpKey(idx: number, e: React.KeyboardEvent<HTMLInputElement>) {
@@ -117,6 +141,8 @@ export default function AuthPage() {
   function resetPhoneStep() {
     setPhoneStep('enter-phone')
     setOtpCode(['', '', '', '', '', ''])
+    setFirstName('')
+    setLastName('')
     setError('')
     if (timerRef.current) clearInterval(timerRef.current)
     setCountdown(0)
@@ -190,12 +216,14 @@ export default function AuthPage() {
             <div className="animate-fade-in">
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-navy mb-1">
-                  {phoneStep === 'enter-phone' ? 'ورود / ثبت‌نام' : 'کد تأیید'}
+                  {phoneStep === 'enter-phone' ? 'ورود / ثبت‌نام' : phoneStep === 'enter-code' ? 'کد تأیید' : 'تکمیل پروفایل'}
                 </h2>
                 <p className="text-silver text-sm">
                   {phoneStep === 'enter-phone'
                     ? 'شماره موبایل خود را وارد کنید'
-                    : `کد ۶ رقمی ارسال‌شده به ${phone} را وارد کنید`}
+                    : phoneStep === 'enter-code'
+                    ? `کد ۶ رقمی ارسال‌شده به ${phone} را وارد کنید`
+                    : 'برای تکمیل ثبت‌نام نام خود را وارد کنید'}
                 </p>
               </div>
 
@@ -234,7 +262,7 @@ export default function AuthPage() {
                 <div className="space-y-5">
                   {/* 6-box OTP input */}
                   <div>
-                    <label className="text-xs font-medium text-ink block mb-3 text-center">کد تأیید</label>
+                    <label className="text-xs font-medium text-graphite block mb-3 text-center">کد تأیید</label>
                     <div className="flex gap-2 justify-center" dir="ltr">
                       {otpCode.map((digit, idx) => (
                         <input
@@ -244,7 +272,7 @@ export default function AuthPage() {
                           value={digit}
                           onChange={e => handleOtpChange(idx, e.target.value)}
                           onKeyDown={e => handleOtpKey(idx, e)}
-                          className="w-11 h-12 text-center text-lg text-ink font-bold border border-silver/40 bg-white focus:border-teal focus:ring-1 focus:ring-teal outline-none rounded transition-all"
+                          className="w-11 h-12 text-center text-lg font-bold border border-silver/40 bg-white focus:border-teal focus:ring-1 focus:ring-teal outline-none rounded transition-all"
                         />
                       ))}
                     </div>
@@ -281,6 +309,41 @@ export default function AuthPage() {
 
                   <button onClick={resetPhoneStep} className="w-full text-sm text-silver hover:text-navy py-1">
                     ← تغییر شماره
+                  </button>
+                </div>
+              )}
+
+              {phoneStep === 'complete-profile' && (
+                <div className="space-y-4 animate-fade-in">
+                  <div className="bg-teal/10 border border-teal/30 rounded px-4 py-3 text-sm text-navy mb-2">
+                    ثبت‌نام شما موفق بود! لطفاً نام خود را وارد کنید.
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-graphite block mb-1.5">نام</label>
+                    <input
+                      className="input" placeholder="مثال: علی"
+                      value={firstName}
+                      onChange={e => setFirstName(e.target.value)}
+                      autoFocus
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-graphite block mb-1.5">نام خانوادگی</label>
+                    <input
+                      className="input" placeholder="مثال: احمدی"
+                      value={lastName}
+                      onChange={e => setLastName(e.target.value)}
+                      onKeyDown={e => e.key === 'Enter' && handleCompleteProfile()}
+                    />
+                  </div>
+                  <button onClick={handleCompleteProfile} disabled={loading}
+                    className="w-full btn-primary justify-center py-3 text-base disabled:opacity-50">
+                    {loading ? (
+                      <span className="flex items-center gap-2">
+                        <span className="w-4 h-4 border-2 border-ivory/30 border-t-ivory rounded-full animate-spin" />
+                        در حال ذخیره...
+                      </span>
+                    ) : 'ورود به داشبورد'}
                   </button>
                 </div>
               )}

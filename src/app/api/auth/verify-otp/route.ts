@@ -138,8 +138,11 @@ export async function POST(req: NextRequest) {
     }
 
     // ── 8. Return response with cookie ─────────────────────────────────
+    const isNewUser = userResult.docs.length === 0
+
     const response = NextResponse.json({
       success: true,
+      isNewUser,
       user: {
         id:    userData.id,
         name:  userData.name,

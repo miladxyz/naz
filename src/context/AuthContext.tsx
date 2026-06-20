@@ -16,7 +16,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>
   register: (name: string, email: string, password: string) => Promise<{ success: boolean; error?: string }>
   sendOtp: (phone: string) => Promise<{ success: boolean; error?: string; expiresInSeconds?: number }>
-  verifyOtp: (phone: string, code: string, name?: string) => Promise<{ success: boolean; error?: string }>
+  verifyOtp: (phone: string, code: string, name?: string) => Promise<{ success: boolean; error?: string; isNewUser?: boolean }>
   logout: () => Promise<void>
   isStaff: boolean
 }
@@ -108,7 +108,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         body:    JSON.stringify({ phone, code, name }),
       })
       const data = await res.json()
-      if (res.ok) { setUser(data.user); return { success: true } }
+      if (res.ok) { setUser(data.user); return { success: true, isNewUser: data.isNewUser } }
       return { success: false, error: data.error }
     } catch {
       return { success: false, error: 'خطا در ارتباط با سرور' }
