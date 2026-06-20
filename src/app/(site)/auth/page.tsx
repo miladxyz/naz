@@ -18,7 +18,7 @@ export default function AuthPage() {
   const router = useRouter()
 
   useEffect(() => {
-    if (!authLoading && user) router.replace('/dashboard')
+    if (!authLoading && user && phoneStep !== 'complete-profile') router.replace('/dashboard')
   }, [user, authLoading, router])
 
   // ── Email/password forms ────────────────────────────────────────────
