@@ -19,7 +19,7 @@ export default function AuthPage() {
 
   useEffect(() => {
     if (!authLoading && user && phoneStep !== 'complete-profile') router.replace('/dashboard')
-  }, [user, authLoading, router])
+  }, [user, authLoading, router, phoneStep])
 
   // ── Email/password forms ────────────────────────────────────────────
   const [loginForm, setLoginForm] = useState({ email: '', password: '' })
@@ -148,7 +148,38 @@ export default function AuthPage() {
     setCountdown(0)
   }
 
-  if (authLoading) return null
+  if (authLoading) return (
+    <div className="min-h-screen flex">
+      {/* Left decorative panel skeleton */}
+      <div className="hidden lg:flex lg:w-1/2 hero-gradient relative overflow-hidden flex-col justify-between p-12 animate-pulse">
+        <div className="w-32 h-6 bg-ivory/20 rounded" />
+        <div className="space-y-3">
+          <div className="w-3/4 h-5 bg-ivory/20 rounded" />
+          <div className="w-1/2 h-5 bg-ivory/20 rounded" />
+        </div>
+        <div className="grid grid-cols-3 gap-4">
+          {[0,1,2].map(i => <div key={i} className="h-12 bg-ivory/10 rounded" />)}
+        </div>
+      </div>
+
+      {/* Right form skeleton */}
+      <div className="flex-1 flex items-center justify-center px-6 py-12 bg-ivory">
+        <div className="w-full max-w-md space-y-5 animate-pulse">
+          {/* Mode switcher */}
+          <div className="h-10 bg-bone rounded" />
+          {/* Title */}
+          <div className="space-y-2">
+            <div className="w-40 h-7 bg-bone rounded" />
+            <div className="w-56 h-4 bg-bone rounded" />
+          </div>
+          {/* Input */}
+          <div className="h-11 bg-bone rounded" />
+          {/* Button */}
+          <div className="h-12 bg-navy/20 rounded" />
+        </div>
+      </div>
+    </div>
+  )
 
   return (
     <div className="min-h-screen flex">
