@@ -14,6 +14,7 @@ export default function AuthPage() {
   const [tab, setTab]       = useState<'login' | 'register'>('login')
   const [loading, setLoading] = useState(false)
   const [error, setError]   = useState('')
+    const [phoneStep, setPhoneStep]   = useState<PhoneStep>('enter-phone')
   const { login, register, sendOtp, verifyOtp, user, loading: authLoading } = useAuth()
   const router = useRouter()
 
@@ -48,7 +49,6 @@ export default function AuthPage() {
   }
 
   // ── Phone / OTP ────────────────────────────────────────────────────
-  const [phoneStep, setPhoneStep]   = useState<PhoneStep>('enter-phone')
   const [phone, setPhone]           = useState('')
   const [otpCode, setOtpCode]       = useState(['', '', '', '', '', ''])
   const [countdown, setCountdown]   = useState(0)
