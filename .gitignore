@@ -9,8 +9,7 @@ out/
 build/
 
 # Payload
-public/media/*
-!public/media/.gitkeep
+media/
 src/payload-types.ts
 src/generated-schema.graphql
 
