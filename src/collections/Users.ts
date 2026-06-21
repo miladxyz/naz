@@ -5,7 +5,7 @@ export const Users: CollectionConfig = {
   auth: true,
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'email', 'role'],
+    defaultColumns: ['name', 'phone', 'role'],
   },
   access: {
     read: () => true,
@@ -29,6 +29,17 @@ export const Users: CollectionConfig = {
       unique: true,
       admin: {
         description: 'مثال: 09121234567',
+      },
+    },
+    {
+      // The built-in email field from Payload auth — hide it for phone-only users
+      // It still exists in DB as <phone>@sms.local but we don't surface it
+      name: 'email',
+      // Override the label so if it ever shows, it's clear
+      label: 'ایمیل (اختیاری)',
+      admin: {
+        description: 'فقط برای کاربران ایمیل. کاربران موبایل این فیلد را خالی بگذارند.',
+        condition: (data) => !data?.phone || data?.phone === '',
       },
     },
     {

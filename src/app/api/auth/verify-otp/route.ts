@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
         data: {
           name:     displayName,
           phone:    normalisedPhone,
-          email:    `${normalisedPhone}@sms.local`,
+          email:    `ph_${normalisedPhone}@naz.local`,
           password: crypto.randomUUID(),
           role:     'client',
         },
