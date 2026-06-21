@@ -3,6 +3,7 @@ import '../globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { AuthProvider } from '@/context/AuthContext'
+import { Analytics } from "@vercel/analytics/next"
 import React from 'react'
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <Header />
           <main className="min-h-screen">{children}</main>
+          <Analytics />
           <Footer />
         </AuthProvider>
       </body>
