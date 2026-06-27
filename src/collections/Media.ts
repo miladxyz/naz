@@ -3,8 +3,7 @@ import { CollectionConfig } from 'payload'
 export const Media: CollectionConfig = {
   slug: 'media',
   upload: {
-    staticURL: '/media',
-    staticDir: 'media',
+    // staticURL and staticDir are removed — Vercel Blob handles storage and serving
     imageSizes: [
       { name: 'thumbnail', width: 400, height: 300, position: 'centre' },
       { name: 'card', width: 768, height: 500, position: 'centre' },

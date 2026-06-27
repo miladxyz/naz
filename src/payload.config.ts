@@ -1,6 +1,7 @@
 import { buildConfig } from 'payload'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -31,6 +32,18 @@ export default buildConfig({
   editor: lexicalEditor(),
 
   collections: [Users, Media, Posts, Questions, TeamMembers, InstagramPosts, Experiences, OtpCodes],
+
+  plugins: [
+    vercelBlobStorage({
+      enabled: true,
+      collections: {
+        media: {
+          prefix: 'media',
+        },
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+  ],
 
   secret: process.env.PAYLOAD_SECRET || 'super-secret-change-in-production',
 
