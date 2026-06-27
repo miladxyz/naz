@@ -30,9 +30,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <Header />
           <main className="min-h-screen">{children}</main>
-          <Analytics />
+          {/* <Analytics />
           <SpeedInsights />
-          <meta name="google-site-verification" content="0VdQnF2TUtcJ4wwwnLS8OYAdnKdQf67KVvJcR7Apq_s" />
+          <meta name="google-site-verification" content="0VdQnF2TUtcJ4wwwnLS8OYAdnKdQf67KVvJcR7Apq_s" /> */}
           <Footer />
         </AuthProvider>
       </body>
