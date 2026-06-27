@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /auth
+
+Sitemap: https://www.alirezanazari.com/sitemap.xml
