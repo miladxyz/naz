@@ -135,7 +135,7 @@ export async function POST(req: NextRequest) {
         slug,
         excerpt: excerpt || '',
         content: richContent,
-        category: category || 'general',
+        category: category || 'others',
         author: user.id,
         _status: publishNow ? 'published' : 'draft',
         publishedAt: publishNow ? new Date().toISOString() : undefined,

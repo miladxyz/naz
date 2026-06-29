@@ -177,7 +177,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
         title,
         excerpt: excerpt || '',
         content: richContent,
-        category: category || 'general',
+        category: category || 'others',
         readingTime: calcReadingTime,
         _status: publishNow ? 'published' : 'draft',
         ...(publishNow ? { publishedAt: new Date().toISOString() } : {}),
