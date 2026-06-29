@@ -45,19 +45,54 @@ async function getPost(slug: string) {
 
 
 function extractContent(content: any): { html: string; isHtml: boolean } {
-  if (!content) return { html: '', isHtml: false }
+  if (!content?.root) return { html: '', isHtml: false }
   try {
-    // Get the first text node
-    const firstChild = content?.root?.children?.[0]?.children?.[0]?.text || ''
-    // If it starts with an HTML tag, it's rich HTML from Tiptap
-    if (firstChild.trimStart().startsWith('<')) {
-      return { html: firstChild, isHtml: true }
+    // Case 1 — HTML stored as raw text (dashboard-created posts)
+    const firstText = content?.root?.children?.[0]?.children?.[0]?.text ?? ''
+    if (firstText.trimStart().startsWith('<')) return { html: firstText, isHtml: true }
+
+    // Case 2 — Walk Lexical node tree (Payload-admin-created posts)
+    function nodeToHtml(node: any): string {
+      if (!node) return ''
+      if (node.type === 'text') {
+        let t = (node.text ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        if (node.format & 1)  t = `<strong>${t}</strong>`
+        if (node.format & 2)  t = `<em>${t}</em>`
+        if (node.format & 8)  t = `<u>${t}</u>`
+        if (node.format & 4)  t = `<s>${t}</s>`
+        if (node.format & 16) t = `<code>${t}</code>`
+        return t
+      }
+      const inner = (node.children ?? []).map(nodeToHtml).join('')
+      switch (node.type) {
+        case 'heading': {
+          const tag = `h${node.tag?.replace('h','') ?? '2'}`
+          const align = node.format ? ` style="text-align:${node.format}"` : ''
+          return `<${tag}${align}>${inner}</${tag}>`
+        }
+        case 'paragraph': {
+          const align = node.format ? ` style="text-align:${node.format}"` : ''
+          return `<p${align}>${inner}</p>`
+        }
+        case 'list':
+          return node.listType === 'bullet' ? `<ul>${inner}</ul>` : `<ol>${inner}</ol>`
+        case 'listitem': return `<li>${inner}</li>`
+        case 'quote':    return `<blockquote>${inner}</blockquote>`
+        case 'horizontalrule': return '<hr/>'
+        case 'link': {
+          const href = node.fields?.url ?? node.url ?? '#'
+          return `<a href="${href}">${inner}</a>`
+        }
+        case 'upload': {
+          const url = node.value?.url ?? ''
+          return url ? `<img src="${url}" alt="${node.value?.alt ?? ''}" class="max-w-full h-auto my-4 rounded"/>` : ''
+        }
+        default: return inner
+      }
     }
-    // Plain text — join all text nodes with newlines
-    const plain = (content?.root?.children || [])
-      .map((n: any) => (n.children || []).map((c: any) => c.text || '').join(''))
-      .join('\n\n')
-    return { html: plain, isHtml: false }
+
+    const html = (content.root.children ?? []).map(nodeToHtml).join('')
+    return { html, isHtml: true }
   } catch { return { html: '', isHtml: false } }
 }
 

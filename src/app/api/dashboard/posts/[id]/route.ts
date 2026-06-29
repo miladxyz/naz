@@ -16,6 +16,74 @@ async function getAuthUser(req: NextRequest) {
   } catch { return null }
 }
 
+/**
+ * Converts Payload Lexical JSON → HTML string for Tiptap.
+ *
+ * Handles two cases:
+ *  1. Dashboard-created posts: HTML is stored as a plain text string inside
+ *     the first text node (children[0].children[0].text starts with "<").
+ *  2. Payload-admin-created posts: real Lexical node tree that must be walked.
+ */
+function lexicalToHtml(content: any): string {
+  if (!content?.root) return ''
+
+  // Case 1 — HTML stored as raw text in first node
+  const firstText = content?.root?.children?.[0]?.children?.[0]?.text ?? ''
+  if (firstText.trimStart().startsWith('<')) return firstText
+
+  // Case 2 — Walk Lexical node tree and convert to HTML
+  function nodeToHtml(node: any): string {
+    if (!node) return ''
+
+    // Text node
+    if (node.type === 'text') {
+      let t = (node.text ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      if (node.format & 1)  t = `<strong>${t}</strong>`   // bold
+      if (node.format & 2)  t = `<em>${t}</em>`           // italic
+      if (node.format & 8)  t = `<u>${t}</u>`             // underline
+      if (node.format & 4)  t = `<s>${t}</s>`             // strikethrough
+      if (node.format & 16) t = `<code>${t}</code>`       // code
+      return t
+    }
+
+    const inner = (node.children ?? []).map(nodeToHtml).join('')
+
+    switch (node.type) {
+      case 'heading': {
+        const tag = `h${node.tag?.replace('h','') ?? '2'}`
+        const align = node.format ? ` style="text-align:${node.format}"` : ''
+        return `<${tag}${align}>${inner}</${tag}>`
+      }
+      case 'paragraph': {
+        const align = node.format ? ` style="text-align:${node.format}"` : ''
+        return `<p${align}>${inner}</p>`
+      }
+      case 'list':
+        return node.listType === 'bullet'
+          ? `<ul>${inner}</ul>`
+          : `<ol>${inner}</ol>`
+      case 'listitem':
+        return `<li>${inner}</li>`
+      case 'quote':
+        return `<blockquote>${inner}</blockquote>`
+      case 'horizontalrule':
+        return '<hr/>'
+      case 'link': {
+        const href = node.fields?.url ?? node.url ?? '#'
+        return `<a href="${href}">${inner}</a>`
+      }
+      case 'upload': {
+        const url = node.value?.url ?? ''
+        return url ? `<img src="${url}" alt="${node.value?.alt ?? ''}" class="max-w-full h-auto my-4 rounded"/>` : ''
+      }
+      default:
+        return inner
+    }
+  }
+
+  return (content.root.children ?? []).map(nodeToHtml).join('')
+}
+
 /* GET — fetch single post for editing */
 export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const user = await getAuthUser(req)
@@ -26,24 +94,18 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
     const payload = await getPayloadClient()
     if (!payload) return NextResponse.json({ error: 'DB unavailable' }, { status: 503 })
 
-    const post = await payload.findByID({
-      collection: 'posts',
-      id,
-      draft: true,
-    })
-
-    // Extract HTML text stored inside Lexical root
-    const rawContent = (post.content as any)?.root?.children?.[0]?.children?.[0]?.text ?? ''
+    const post = await payload.findByID({ collection: 'posts', id, draft: true })
+    const html = lexicalToHtml((post as any).content)
 
     return NextResponse.json({
-      id: post.id,
-      title: post.title,
-      excerpt: post.excerpt ?? '',
-      content: rawContent,
-      category: post.category ?? '',
-      readingTime: post.readingTime ?? '',
-      _status: post._status,
-      coverImage: post.coverImage ?? null,
+      id:          post.id,
+      title:       (post as any).title       ?? '',
+      excerpt:     (post as any).excerpt     ?? '',
+      content:     html,
+      category:    (post as any).category    ?? '',
+      readingTime: (post as any).readingTime ?? '',
+      _status:     (post as any)._status,
+      coverImage:  (post as any).coverImage  ?? null,
     })
   } catch {
     return NextResponse.json({ error: 'Post not found' }, { status: 404 })
@@ -70,6 +132,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     const payload = await getPayloadClient()
     if (!payload) return NextResponse.json({ error: 'DB unavailable' }, { status: 503 })
 
+    // Wrap Tiptap HTML in Lexical envelope so blog page can render it
     const richContent = {
       root: {
         type: 'root', format: '', indent: 0, version: 1, direction: 'rtl',
@@ -78,7 +141,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
           textFormat: 0, textStyle: '',
           children: [{
             type: 'text',
-            text: content,
+            text: content,   // raw HTML — blog page detects "<" prefix and uses dangerouslySetInnerHTML
             format: 0, version: 1, mode: 'normal', style: '', detail: 0,
           }],
         }],
@@ -87,7 +150,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 
     // Handle new cover image if provided
     let coverImageId: string | undefined
-    if (coverImageBase64 && coverImageBase64.startsWith('data:image')) {
+    if (coverImageBase64?.startsWith('data:image')) {
       try {
         const matches = coverImageBase64.match(/^data:(.+);base64,(.+)$/)
         if (matches) {
@@ -101,9 +164,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
           })
           coverImageId = String(media.id)
         }
-      } catch (e) {
-        console.warn('Cover image upload failed:', e)
-      }
+      } catch (e) { console.warn('Cover image upload failed:', e) }
     }
 
     const wordCount = content.replace(/<[^>]+>/g, '').split(/\s+/).length
