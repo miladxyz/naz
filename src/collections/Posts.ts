@@ -54,7 +54,7 @@ export const Posts: CollectionConfig = {
         { label: 'حقوق خانواده',       value: 'family' },
         { label: 'حقوق بانکی',         value: 'banking' },
         { label: 'حقوق بیمه',          value: 'insurance' },
-        { label: 'سایر',               value: 'others' },
+        { label: 'عمومی',               value: 'others' },
       ],
     },
     { name: 'author',      label: 'نویسنده',        type: 'relationship', relationTo: 'users',  admin: { readOnly: true, position: 'sidebar' } },
