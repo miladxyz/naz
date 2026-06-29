@@ -63,11 +63,26 @@ export async function POST(req: NextRequest) {
     const payload = await getPayloadClient()
     if (!payload) return NextResponse.json({ error: 'DB unavailable' }, { status: 503 })
 
-    // Generate slug from title
-    const slug = title
+    // Generate clean SEO-friendly slug from title (no timestamp)
+    const baseSlug = title
+      .trim()
       .replace(/[\s]+/g, '-')
       .replace(/[^\u0600-\u06FFa-zA-Z0-9-]/g, '')
-      + '-' + Date.now()
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
+
+    // Handle duplicates by appending -2, -3, etc.
+    let slug = baseSlug
+    let suffix = 2
+    while (true) {
+      const existing = await payload.find({
+        collection: 'posts',
+        where: { slug: { equals: slug } },
+        limit: 1,
+      })
+      if (existing.totalDocs === 0) break
+      slug = `${baseSlug}-${suffix++}`
+    }
 
     // Convert HTML content to Lexical JSON for Payload
     // Store as a single paragraph with raw HTML preserved in text node
