@@ -19,7 +19,7 @@ const categoryLabels: Record<string, string> = {
   family:      'حقوق خانواده',
   banking:     'حقوق بانکی',
   insurance:   'حقوق بیمه',
-  others: 'سایر',
+  others:      'سایر',
 }
 
 export default function DashboardPage() {
