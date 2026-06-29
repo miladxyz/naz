@@ -162,7 +162,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 <Image src={(post as any).coverImage.url} alt={(post as any).title} fill className="object-cover" />
               </div>
             )}
-            <div dangerouslySetInnerHTML={{ __html: body.html }} className="prose-rtl text-white leading-8 whitespace-pre-line text-base"/>
+            <div dangerouslySetInnerHTML={{ __html: body.html }} className="rich-content prose-rtl leading-8 text-base"/>
             {(post as any).author && (
               <div className="mt-8 pt-8 border-t border-bone">
                 <div className="card bg-navy flex items-start gap-4">
