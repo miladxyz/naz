@@ -346,7 +346,7 @@ function StaffDashboard({ user }: { user: any }) {
                         </div>
                         <h3 className="font-medium text-ink truncate">{p.title}</h3>
                       </div>
-                      <Link href={`/admin/collections/posts/${p.id}`} className="text-xs text-silver hover:text-navy transition-colors flex-shrink-0">ویرایش ←</Link>
+                      <Link href={`/dashboard/posts/${p.id}/edit`} className="text-xs text-silver hover:text-ivory transition-colors flex-shrink-0">ویرایش ←</Link>
                     </div>
                   ))}
                 </div>
