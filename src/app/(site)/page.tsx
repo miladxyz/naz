@@ -177,7 +177,7 @@ export default async function HomePage() {
                         <Scale size={18} style={{ color: '#4cb4c9' }} />
                       </div>
                       <div>
-                        <p className="text-ivory text-sm font-semibold">تیم حقوقی علیرضا نظری</p>
+                        <p className="text-ivory text-sm font-semibold">تیم وکالت علیرضا نظری</p>
                         <p className="text-xs" style={{ color: '#4cb4c9' }}>شیراز، معالی‌آباد</p>
                       </div>
                     </div>
