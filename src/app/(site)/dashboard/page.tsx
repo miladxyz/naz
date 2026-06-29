@@ -250,7 +250,7 @@ function StaffDashboard({ user }: { user: any }) {
             { id:'new-post',  label:'+ مقاله جدید' },
           ] as const).map(t => (
             <button key={t.id} onClick={() => setTab(t.id)}
-              className={`px-5 py-3 text-sm font-medium border-b-2 -mb-px transition-colors ${tab===t.id?'border-bone text-bone':'border-transparent text-silver hover:text-ink'}`}>
+              className={`px-5 py-3 text-sm font-medium border-b-2 -mb-px transition-colors ${tab===t.id?'border-bone text-bone':'border-transparent text-silver hover:text-silver'}`}>
               {t.label}
             </button>
           ))}
@@ -342,7 +342,7 @@ function StaffDashboard({ user }: { user: any }) {
                           <span className={p._status==='published'?'badge-answered':'badge-pending'}>
                             {p._status==='published'?'منتشر شده':'پیش‌نویس'}
                           </span>
-                          {p.category && <span className="tag text-xs">{categoryLabels[p.category]}</span>}
+                          {p.category && <span className="tag text-xs text-ink">{categoryLabels[p.category]}</span>}
                         </div>
                         <h3 className="font-medium text-ink truncate">{p.title}</h3>
                       </div>
