@@ -48,7 +48,7 @@ export function Footer() {
             </div>
             <div className="w-8 h-0.5 mb-4" style={{ background: '#4cb4c9' }} />
             <p className="text-sm leading-relaxed" style={{ color: 'rgba(246,248,250,0.45)' }}>
-              بیش از یک دهه تجربه در دفاع از حقوق موکلین در شیراز. دفتر وکالت علیرضا نظری آماده ارائه مشاوره رایگان و وکالت تخصصی شماست. همین حالا تماس بگیرید. .
+              بیش از یک دهه تجربه در دفاع از حقوق موکلین در شیراز. دفتر وکالت علیرضا نظری آماده ارائه مشاوره رایگان و وکالت تخصصی شماست. همین حالا تماس بگیرید.
             </p>
             <a href="https://instagram.com/alireza.nazari.law" target="_blank" rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-2 text-sm transition-colors"
