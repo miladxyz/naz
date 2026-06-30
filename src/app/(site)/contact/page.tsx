@@ -159,7 +159,7 @@ export default function ContactPage() {
                   { Icon: MapPin, label: 'آدرس',      value: 'شیراز، خیابان معالی آباد، حد فاصل پزشکان و دوستان، مجتمع تجاری آوا، طبقه ۷، واحد ۷۱', href: null },
                   { Icon: Phone,  label: 'تلفن اول',  value: '۰۹۱۲۰۳۱۰۸۰۶', href: 'tel:+989120310806' },
                   { Icon: Phone,  label: 'تلفن دوم',  value: '۰۹۱۲۰۳۱۰۸۰۵', href: 'tel:+989120310805' },
-                  { Icon: Mail,   label: 'ایمیل',      value: 'info@alirezanazari.com', href: 'mailto:info@alirezanazari.com' },
+                  { Icon: Mail,   label: 'ایمیل',      value: 'info@alirezanazari.com', href: 'mailto:alireza.nazari38@proton.me' },
                   { Icon: Clock,   label: 'ساعات کاری', value: 'شنبه تا پنجشنبه — ۸ صبح تا ۸ عصر', href: null },
                 ].map((item) => (
                   <div key={item.label} className="flex items-start gap-4">
