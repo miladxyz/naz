@@ -178,7 +178,7 @@ export default async function HomePage() {
                       </div>
                       <div>
                         <p className="text-ivory text-sm font-semibold">تیم وکالت علیرضا نظری</p>
-                        <p className="text-xs" style={{ color: '#4cb4c9' }}>شیراز، معالی‌آباد</p>
+                        <p className="text-xs" style={{ color: '#4cb4c9' }}>وکیل شیراز، معالی‌آباد</p>
                       </div>
                     </div>
                   </div>
