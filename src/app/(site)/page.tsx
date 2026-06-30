@@ -38,11 +38,11 @@ const practiceAreas = [
   { icon: Wallet,       label: 'حقوق بانکی',          desc: 'اختلافات تسهیلات، دعاوی وام، رفع توقیف اموال ...',      href: '/qa?category=banking' },
   { icon: Shield,       label: 'حقوق بیمه',           desc: 'مطالبه خسارت، اختلافات بیمه‌گذار و بیمه‌گر ...',        href: '/qa?category=insurance' },
 ]
-
+ 
 const categoryLabels: Record<string,string> = {
   criminal:'کیفری', civil:'حقوقی', arbitration:'داوری و حل اختلاف',
   probate:'امور حسبی', inheritance:'دعاوی ارث و ترکه', labor:'حقوق کار',
-  family:'حقوق خانواده', banking:'حقوق بانکی', insurance:'حقوق بیمه',
+  family:'حقوق خانواده', banking:'حقوق بانکی', insurance:'حقوق بیمه',others: 'عمومی'
 }
 
 const whyUs = [
