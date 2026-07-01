@@ -240,7 +240,7 @@ export default function CareersPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-silver block mb-1.5">آیا قبلاً رزومه ارسال کرده‌اید؟</label>
+                  <label className="text-xs font-medium text-silver block mb-1.5">آیا تاکنون به دفتر وکالت علیرضا نظری مراجعه داشته اید؟</label>
                   <select className="select" value={form.resumeSentBefore} onChange={e => set('resumeSentBefore', e.target.value)}>
                     <option value="">انتخاب کنید</option>
                     <option value="yes">بله</option>
