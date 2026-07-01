@@ -69,6 +69,11 @@ export interface CareersFormPayload {
   phone: string
   position: string
   experience?: string
+  location?: string
+  currentlyEmployed?: string
+  resumeSentBefore?: string
+  preferredShift?: string
+  fieldOfStudy?: string
   message?: string
 }
 
@@ -87,6 +92,7 @@ export async function sendCareersEmail(payload: CareersFormPayload): Promise<voi
     '3-5':   '۳ تا ۵ سال',
     '5+':    'بیش از ۵ سال',
   }
+  const shiftMap: Record<string, string> = { morning: 'صبح', afternoon: 'بعد از ظهر', both: 'هر دو' }
 
   const html = `
     <div dir="rtl" style="font-family:Tahoma,Arial,sans-serif;line-height:1.8">
@@ -94,8 +100,13 @@ export async function sendCareersEmail(payload: CareersFormPayload): Promise<voi
       <p><strong>نام:</strong> ${escapeHtml(fullName)}</p>
       <p><strong>ایمیل:</strong> ${escapeHtml(email)}</p>
       <p><strong>تلفن:</strong> ${escapeHtml(phone)}</p>
+      ${payload.location           ? `<p><strong>محل سکونت:</strong> ${escapeHtml(payload.location)}</p>` : ''}
       <p><strong>موقعیت درخواستی:</strong> ${escapeHtml(position)}</p>
-      ${experience ? `<p><strong>سابقه کاری:</strong> ${escapeHtml(experienceMap[experience] ?? experience)}</p>` : ''}
+      ${experience                 ? `<p><strong>سابقه کاری:</strong> ${escapeHtml(experienceMap[experience] ?? experience)}</p>` : ''}
+      ${payload.fieldOfStudy       ? `<p><strong>رشته تحصیلی:</strong> ${escapeHtml(payload.fieldOfStudy)}</p>` : ''}
+      ${payload.preferredShift     ? `<p><strong>ساعات کاری ترجیحی:</strong> ${escapeHtml(shiftMap[payload.preferredShift] ?? payload.preferredShift)}</p>` : ''}
+      ${payload.currentlyEmployed  ? `<p><strong>در حال حاضر شاغل:</strong> ${payload.currentlyEmployed === 'yes' ? 'بله' : 'خیر'}</p>` : ''}
+      ${payload.resumeSentBefore   ? `<p><strong>رزومه قبلی ارسال شده:</strong> ${payload.resumeSentBefore === 'yes' ? 'بله' : 'خیر'}</p>` : ''}
       ${message ? `<p><strong>معرفی / انگیزه:</strong></p><p>${escapeHtml(message).replace(/\n/g, '<br/>')}</p>` : ''}
     </div>
   `

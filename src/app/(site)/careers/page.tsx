@@ -36,6 +36,11 @@ const initialForm = {
   phone: '',
   position: '',
   experience: '',
+  location: '',
+  currentlyEmployed: '',
+  resumeSentBefore: '',
+  preferredShift: '',
+  fieldOfStudy: '',
   message: '',
 }
 
@@ -156,6 +161,8 @@ export default function CareersPage() {
             </div>
           ) : (
             <div className="space-y-4">
+
+              {/* Personal info */}
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs font-medium text-silver block mb-1.5">نام کامل *</label>
@@ -176,6 +183,15 @@ export default function CareersPage() {
                     value={form.phone} onChange={e => set('phone', e.target.value)} />
                 </div>
                 <div>
+                  <label className="text-xs font-medium text-silver block mb-1.5">محل سکونت</label>
+                  <input className="input" placeholder="شهر و استان"
+                    value={form.location} onChange={e => set('location', e.target.value)} />
+                </div>
+              </div>
+
+              {/* Job position */}
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
                   <label className="text-xs font-medium text-silver block mb-1.5">موقعیت درخواستی *</label>
                   <select className="select" value={form.position} onChange={e => set('position', e.target.value)}>
                     <option value="">انتخاب کنید</option>
@@ -184,19 +200,56 @@ export default function CareersPage() {
                     ))}
                   </select>
                 </div>
+                <div>
+                  <label className="text-xs font-medium text-silver block mb-1.5">سابقه کاری</label>
+                  <select className="select" value={form.experience} onChange={e => set('experience', e.target.value)}>
+                    <option value="">انتخاب کنید</option>
+                    <option value="student">دانشجو / بدون سابقه</option>
+                    <option value="1-2">۱ تا ۲ سال</option>
+                    <option value="3-5">۳ تا ۵ سال</option>
+                    <option value="5+">بیش از ۵ سال</option>
+                  </select>
+                </div>
               </div>
 
-              <div>
-                <label className="text-xs font-medium text-silver block mb-1.5">سابقه کاری</label>
-                <select className="select" value={form.experience} onChange={e => set('experience', e.target.value)}>
-                  <option value="">انتخاب کنید</option>
-                  <option value="student">دانشجو / بدون سابقه</option>
-                  <option value="1-2">۱ تا ۲ سال</option>
-                  <option value="3-5">۳ تا ۵ سال</option>
-                  <option value="5+">بیش از ۵ سال</option>
-                </select>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-medium text-silver block mb-1.5">رشته تحصیلی</label>
+                  <input className="input" placeholder="مثلاً: حقوق، مدیریت، ..."
+                    value={form.fieldOfStudy} onChange={e => set('fieldOfStudy', e.target.value)} />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-silver block mb-1.5">ساعات کاری ترجیحی</label>
+                  <select className="select" value={form.preferredShift} onChange={e => set('preferredShift', e.target.value)}>
+                    <option value="">انتخاب کنید</option>
+                    <option value="morning">صبح</option>
+                    <option value="afternoon">بعد از ظهر</option>
+                    <option value="both">هر دو</option>
+                  </select>
+                </div>
               </div>
 
+              {/* Yes/No questions */}
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-medium text-silver block mb-1.5">آیا در حال حاضر شاغل هستید؟</label>
+                  <select className="select" value={form.currentlyEmployed} onChange={e => set('currentlyEmployed', e.target.value)}>
+                    <option value="">انتخاب کنید</option>
+                    <option value="yes">بله</option>
+                    <option value="no">خیر</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-silver block mb-1.5">آیا قبلاً رزومه ارسال کرده‌اید؟</label>
+                  <select className="select" value={form.resumeSentBefore} onChange={e => set('resumeSentBefore', e.target.value)}>
+                    <option value="">انتخاب کنید</option>
+                    <option value="yes">بله</option>
+                    <option value="no">خیر</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Motivation */}
               <div>
                 <label className="text-xs font-medium text-silver block mb-1.5">معرفی کوتاه / انگیزه همکاری</label>
                 <textarea rows={5} className="textarea"
