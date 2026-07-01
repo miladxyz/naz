@@ -14,6 +14,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error('Contact form error:', err)
-    return NextResponse.json({ error: 'ارسال پیام با خطا مواجه شد' }, { status: 500 })
+    const detail = err instanceof Error ? err.message : String(err)
+    return NextResponse.json({ error: 'ارسال پیام با خطا مواجه شد', detail }, { status: 500 })
   }
 }
