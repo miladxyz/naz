@@ -19,7 +19,7 @@ const roleLabels: Record<string, string> = {
   content_creator: 'کارشناس تولید محتوا'
 }
 
-const roleOrder = ['founder', 'lawyer', 'financial_manager', 'it_manager', 'legal_assistant', 'internal_manager', 'technical_officer', 'content_creator']
+const roleOrder = ['founder', 'lawyer', 'legal_assistant',  'internal_manager', 'financial_manager', 'technical_officer', 'content_creator', 'it_manager']
 
 export default async function AboutPage() {
   const team = await safeFind('team-members', { limit: 50, sort: 'orderIndex' })
