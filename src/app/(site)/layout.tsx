@@ -9,8 +9,8 @@ import React from 'react'
 
 export const metadata: Metadata = {
   title: {
-    default: 'تیم حقوقی علیرضا نظری',
-    template: '%s | تیم حقوقی علیرضا نظری',
+    default: 'دفتر وکالت علیرضا نظری',
+    template: '%s | دفتر وکالت علیرضا نظری',
   },
   description: 'تیم حقوقی علیرضا نظری — مشاوره و خدمات حقوقی تخصصی در شیراز.',
   keywords: ['وکیل', 'تیم حقوقی', 'علیرضا نظری', 'مشاوره حقوقی', 'وکیل شیراز'],
