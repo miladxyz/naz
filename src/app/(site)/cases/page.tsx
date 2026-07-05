@@ -74,7 +74,7 @@ export default async function ExperiencesPage() {
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <div className="flex flex-wrap gap-2">
                       <span className={`text-xs px-2 py-0.5 border ${outcome.color}`}>{outcome.label}</span>
-                      {exp.category && <span className="tag">{categoryLabels[exp.category]}</span>}
+                      {exp.category && <span className="tag text-ink">{categoryLabels[exp.category]}</span>}
                     </div>
                     {exp.year && <span className="text-xs text-silver flex-shrink-0">{exp.year}</span>}
                   </div>
