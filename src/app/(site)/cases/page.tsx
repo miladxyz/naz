@@ -82,7 +82,7 @@ export default async function ExperiencesPage() {
                   <h3 className="font-bold text-ink text-lg mb-3 leading-snug group-hover:text-graphite transition-colors">
                     {exp.title}
                   </h3>
-                  <p className="text-sm text-silver leading-relaxed">{exp.summary}</p>
+                  <p className="text-sm text-silver leading-relaxed">{exp}</p>
 
                   {exp.relatedLawyer && (
                     <div className="mt-4 pt-4 border-t border-bone flex items-center gap-2 text-xs text-silver">
