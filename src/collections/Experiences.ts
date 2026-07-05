@@ -22,12 +22,16 @@ export const Experiences: CollectionConfig = {
     {
       name: 'category', label: 'دسته‌بندی', type: 'select',
       options: [
-        { label: 'حقوق خانواده',    value: 'family' },
-        { label: 'حقوق تجاری',      value: 'commercial' },
-        { label: 'حقوق کیفری',      value: 'criminal' },
-        { label: 'حقوق ملکی',       value: 'property' },
-        { label: 'حقوق کار',        value: 'labor' },
-        { label: 'حقوق بین‌الملل', value: 'international' },
+        { label: 'کیفری',    value: 'criminal' },
+        { label: 'حقوقی',      value: 'civil' },
+        { label: 'داوری و حل اختلاف',      value: 'arbitration' },
+        { label: 'امور حسبی',       value: 'probate' },
+        { label: 'دعاوی ارث و ترکه',        value: 'inheritance' },
+        { label: 'حقوق کار', value: 'labor' },
+        { label: 'حقوق خانواده', value: 'family' },
+        { label: 'حقوق بانکی', value: 'banking' },
+        { label: 'حقوق بیمه', value: 'insurance' },
+        { label: 'عمومی', value: 'others' },
       ],
     },
     {
