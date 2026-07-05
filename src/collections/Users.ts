@@ -81,7 +81,7 @@ export const Users: CollectionConfig = {
         condition: (data) => data?.role === 'lawyer',
       },
       options: [
-        { label: 'حقوق خانواده', value: 'familyy' },
+        { label: 'حقوق خانواده', value: 'family' },
         { label: 'حقوق تجاری', value: 'commercial' },
         { label: 'حقوق کیفری', value: 'criminal' },
         { label: 'حقوق ملکی', value: 'property' },
