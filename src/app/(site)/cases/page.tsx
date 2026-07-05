@@ -16,6 +16,7 @@ const categoryLabels: Record<string, string> = {
   family:      'حقوق خانواده',
   banking:     'حقوق بانکی',
   insurance:   'حقوق بیمه',
+  others:   'عمومی',
 }
 const outcomeConfig: Record<string, { label: string; color: string }> = {
   successful: { label: 'موفقیت‌آمیز', color: 'bg-green-50 text-green-700 border-green-200' },
