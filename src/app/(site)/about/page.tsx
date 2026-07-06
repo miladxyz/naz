@@ -159,7 +159,7 @@ function TeamMemberCard({ member, dark }: { member: any; dark?: boolean }) {
   const subColor  = dark ? 'text-silver' : 'text-silver'
 
   return (
-    <div className={`border p-6 transition-all duration-300 group ${cardBg}`}>
+    <div className={`group flex items-start gap-4 p-5 bg-navy border border-silver hover:border-teal/40 hover:shadow-teal-glow transition-all duration-300 hover:-translate-y-0.5`}>
       <div className="flex gap-5 mb-5">
         <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden bg-graphite border border-graphite">
           {member.photo?.url
