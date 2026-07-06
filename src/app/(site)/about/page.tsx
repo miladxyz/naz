@@ -178,7 +178,7 @@ function TeamMemberCard({ member, dark }: { member: any; dark?: boolean }) {
         <div className="mt-4 pt-4 border-t border-graphite/20 space-y-1">
           {member.education.map((edu: any, i: number) => (
             <p key={i} className="text-xs text-silver">
-              {edu.degree}  {edu.institution}{edu.year ? ` (${edu.year})` : ''}
+              {edu.degree} {edu.institution}{edu.year ? ` (${edu.year})` : ''}
             </p>
           ))}
         </div>
