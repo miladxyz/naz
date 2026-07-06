@@ -86,17 +86,18 @@ export default async function AboutPage() {
       </section>
 
       {/* Team by role */}
-      {Object.entries(grouped).map(([role, members]) => (
-        <section key={role} className={`section-py bg-navy`}>
-          <div className="container-site">
-            <div className={`grid gap-8 md:grid-cols-2 max-w-2xl`}>
-              {members.map((member: any) => (
-                <TeamMemberCard key={member.id} member={member} dark={role === 'founder'} />
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
+      <section className="section-py bg-navy">
+        <div className="container-site">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {team.map((member: any) => (
+            <TeamMemberCard
+              key={member.id}
+              member={member}
+              dark={member.role === "founder"} />
+          ))}
+        </div>
+        </div>
+      </section>
 
       {team.length === 0 && (
         <section className="section-py bg-ivory">
