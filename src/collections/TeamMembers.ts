@@ -21,7 +21,7 @@ export const TeamMembers: CollectionConfig = {
       options: [
         { label: 'سرپرست و وکیل ارشد', value: 'founder' },
         { label: 'وکیل',                   value: 'lawyer' },
-        { label: 'مدیر فناوری اطلاعات',    value: 'it_manager' },
+        { label: 'کارشناس فناوری اطلاعات',    value: 'it_manager' },
         { label: 'مدیر مالی',              value: 'financial_manager' },
         { label: 'کارشناس حقوقی',           value: 'legal_assistant' },
         {label: 'دستیار حقوقی', value: 'internal_manager'},

@@ -40,7 +40,7 @@ export const Users: CollectionConfig = {
       options: [
         { label: 'بنیان‌گذار', value: 'founder' },
         { label: 'وکیل', value: 'lawyer' },
-        { label: 'مدیر فناوری اطلاعات', value: 'it_manager' },
+        { label: 'کارشناس فناوری اطلاعات', value: 'it_manager' },
         { label: 'مدیر مالی', value: 'financial_manager' },
         { label: 'موکل', value: 'client' },
       ],

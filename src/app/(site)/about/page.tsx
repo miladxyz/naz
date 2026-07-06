@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const roleLabels: Record<string, string> = {
   founder:           'سرپرست و وکیل ارشد',
   lawyer:            'وکیل',
-  it_manager:        'مدیر فناوری اطلاعات',
+  it_manager:        'کارشناس فناوری اطلاعات',
   financial_manager: 'مدیر مالی',
   legal_assistant:   'کارشناس حقوقی',
   internal_manager: 'دستیار حقوقی',
