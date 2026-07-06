@@ -97,7 +97,7 @@ export default async function AboutPage() {
           ))}
         </div>
         </div>
-      </section>
+        </section>
 
       {team.length === 0 && (
         <section className="section-py bg-ivory">
@@ -127,9 +127,9 @@ export default async function AboutPage() {
           </div>
         </section>
       )}
-
+      <div className="relative top-0 left-0 right-0 h-0.5" style={{ background: 'linear-gradient(90deg, transparent, #4cb4c9, transparent)' }} />
       {/* Values */}
-      <section className="section-py bg-navy border-t border-bone">
+      <section className="section-py bg-navy border-bone">
         <div className="container-site">
           <span className="gold-line" />
           <h2 className="section-heading mb-8 text-gold">ارزش‌های ما</h2>
