@@ -19,7 +19,7 @@ export const TeamMembers: CollectionConfig = {
     {
       name: 'role', label: 'سمت', type: 'select', required: true,
       options: [
-        { label: 'بنیان‌گذار و وکیل ارشد', value: 'founder' },
+        { label: 'سرپرست و وکیل ارشد', value: 'founder' },
         { label: 'وکیل',                   value: 'lawyer' },
         { label: 'مدیر فناوری اطلاعات',    value: 'it_manager' },
         { label: 'مدیر مالی',              value: 'financial_manager' },

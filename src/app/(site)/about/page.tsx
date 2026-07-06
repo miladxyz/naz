@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'آشنایی با تیم وکیل و متخصصان تیم حقوقی علیرضا نظری'}
 
 const roleLabels: Record<string, string> = {
-  founder:           'بنیان‌گذار و وکیل ارشد',
+  founder:           'سرپرست و وکیل ارشد',
   lawyer:            'وکیل',
   it_manager:        'مدیر فناوری اطلاعات',
   financial_manager: 'مدیر مالی',
@@ -104,7 +104,7 @@ export default async function AboutPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Static placeholder cards when DB is unavailable */}
               {[
-                { name: 'علیرضا نظری', role: 'بنیان‌گذار و وکیل ارشد', spec: 'حقوق تجاری و بین‌الملل', exp: 20 },
+                { name: 'علیرضا نظری', role: 'سرپرست و وکیل ارشد', spec: 'حقوق تجاری و بین‌الملل', exp: 20 },
                 { name: 'سارا محمدی',   role: 'وکیل',                   spec: 'حقوق خانواده',           exp: 10 },
                 { name: 'رضا کریمی',    role: 'وکیل',                   spec: 'حقوق کیفری',             exp: 8 },
               ].map((m, i) => (
