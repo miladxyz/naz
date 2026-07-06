@@ -89,7 +89,7 @@ export default async function AboutPage() {
       {Object.entries(grouped).map(([role, members]) => (
         <section key={role} className={`section-py bg-navy`}>
           <div className="container-site">
-            <div className={`grid gap-8 md:grid-cols-1 max-w-2xl`}>
+            <div className={`grid gap-8 md:grid-cols-2 max-w-2xl`}>
               {members.map((member: any) => (
                 <TeamMemberCard key={member.id} member={member} dark={role === 'founder'} />
               ))}
