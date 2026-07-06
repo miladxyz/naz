@@ -23,8 +23,8 @@ export const TeamMembers: CollectionConfig = {
         { label: 'وکیل',                   value: 'lawyer' },
         { label: 'مدیر فناوری اطلاعات',    value: 'it_manager' },
         { label: 'مدیر مالی',              value: 'financial_manager' },
-        { label: 'دستیار حقوقی',           value: 'legal_assistant' },
-        {label: 'مجری رسانه', value: 'internal_manager'},
+        { label: 'کارشناس حقوقی',           value: 'legal_assistant' },
+        {label: 'دستیار حقوقی', value: 'internal_manager'},
         {label: 'مدیر فنی', value: 'technical_officer'},
         {label: 'کارشناس تولید محتوا', value: 'content_creator'}
       ],

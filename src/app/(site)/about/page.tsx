@@ -13,8 +13,8 @@ const roleLabels: Record<string, string> = {
   lawyer:            'وکیل',
   it_manager:        'مدیر فناوری اطلاعات',
   financial_manager: 'مدیر مالی',
-  legal_assistant:   'دستیار حقوقی',
-  internal_manager: 'مجری رسانه',
+  legal_assistant:   'کارشناس حقوقی',
+  internal_manager: 'دستیار حقوقی',
   technical_officer: 'مدیر فنی',
   content_creator: 'کارشناس تولید محتوا'
 }
