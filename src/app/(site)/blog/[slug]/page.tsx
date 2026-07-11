@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import Comments from '@/components/Comments'
 
 const categoryLabels: Record<string, string> = {
   criminal:    'کیفری',
@@ -176,6 +177,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 </div>
               </div>
             )}
+            <Comments postId={post.id} />
           </article>
 
           <aside className="lg:col-span-1">

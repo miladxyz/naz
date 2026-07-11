@@ -14,6 +14,7 @@ import { TeamMembers }   from './collections/TeamMembers.ts'
 import { InstagramPosts } from './collections/InstagramPosts.ts'
 import { Experiences }   from './collections/Experiences.ts'
 import { OtpCodes }      from './collections/OtpCodes.ts'
+import { Comments }      from './collections/Comments.ts'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname  = path.dirname(filename)
@@ -31,7 +32,7 @@ export default buildConfig({
 
   editor: lexicalEditor(),
 
-  collections: [Users, Media, Posts, Questions, TeamMembers, InstagramPosts, Experiences, OtpCodes],
+  collections: [Users, Media, Posts, Questions, TeamMembers, InstagramPosts, Experiences, OtpCodes, Comments],
 
   plugins: [
     vercelBlobStorage({
