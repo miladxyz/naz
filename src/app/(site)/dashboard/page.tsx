@@ -1,6 +1,6 @@
 'use client'
 
-import { CheckCircle2, FileText, HelpCircle, Inbox } from 'lucide-react'
+import { CheckCircle2, FileText, HelpCircle, Inbox, MessageSquare, Check, X } from 'lucide-react'
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
@@ -66,6 +66,18 @@ function ClientDashboard({ user }: { user: any }) {
     window.addEventListener('question-submitted', fetchQuestions)
     return () => window.removeEventListener('question-submitted', fetchQuestions)
   }, [])
+
+  async function updateComment(id: string, status: 'approved' | 'rejected') {
+    const res = await fetch(`/api/dashboard/comments/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status }),
+    })
+    if (res.ok) fetchData()
+  }
+
+  const pendingComments  = comments.filter(c => c.status === 'pending')
+  const approvedComments = comments.filter(c => c.status === 'approved')
 
   const pending  = questions.filter(q => q.status === 'pending')
   const answered = questions.filter(q => q.status === 'answered')
@@ -160,9 +172,10 @@ function ClientDashboard({ user }: { user: any }) {
 
 /* ── Staff Dashboard ───────────────────────────────────── */
 function StaffDashboard({ user }: { user: any }) {
-  const [tab, setTab]             = useState<'questions' | 'posts' | 'new-post'>('questions')
+  const [tab, setTab]             = useState<'questions' | 'posts' | 'new-post' | 'comments'>('questions')
   const [questions, setQuestions] = useState<any[]>([])
   const [posts, setPosts]         = useState<any[]>([])
+  const [comments, setComments]       = useState<any[]>([])
   const [answeringId, setAnsweringId] = useState<string | null>(null)
   const [answerText, setAnswerText]   = useState('')
   const [savingAnswer, setSavingAnswer] = useState(false)
@@ -174,12 +187,14 @@ function StaffDashboard({ user }: { user: any }) {
   const fetchData = useCallback(async () => {
     setDataLoading(true)
     try {
-      const [qRes, pRes] = await Promise.all([
+      const [qRes, pRes, cRes] = await Promise.all([
         fetch('/api/dashboard/questions'),
         fetch('/api/dashboard/posts'),
+        fetch('/api/dashboard/comments'),
       ])
       if (qRes.ok) setQuestions(await qRes.json())
       if (pRes.ok) setPosts(await pRes.json())
+      if (cRes.ok) setComments(await cRes.json())
     } catch {}
     setDataLoading(false)
   }, [])
@@ -211,6 +226,18 @@ function StaffDashboard({ user }: { user: any }) {
     setPostSaving(false)
   }
 
+  async function updateComment(id: string, status: 'approved' | 'rejected') {
+    const res = await fetch(`/api/dashboard/comments/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status }),
+    })
+    if (res.ok) fetchData()
+  }
+
+  const pendingComments  = comments.filter(c => c.status === 'pending')
+  const approvedComments = comments.filter(c => c.status === 'approved')
+
   const pending  = questions.filter(q => q.status === 'pending')
   const answered = questions.filter(q => q.status === 'answered')
 
@@ -234,6 +261,7 @@ function StaffDashboard({ user }: { user: any }) {
             { v: answered.length, l: 'پاسخ داده شده',     c: 'text-emerald-600' },
             { v: posts.filter(p => p._status==='published').length, l: 'مقالات منتشر', c: 'text-navy' },
             { v: posts.filter(p => p._status==='draft').length,     l: 'پیش‌نویس',     c: 'text-silver' },
+            { v: pendingComments.length, l: 'نظرات در انتظار', c: 'text-purple-600' },
           ].map((s, i) => (
             <div key={i} className="card bg-white">
               <div className={`text-3xl font-bold mb-1 ${s.c}`}>{s.v}</div>
@@ -248,6 +276,7 @@ function StaffDashboard({ user }: { user: any }) {
             { id:'questions', label:`سوالات${pending.length>0?` (${pending.length} جدید)`:''}` },
             { id:'posts',     label:'مقالات' },
             { id:'new-post',  label:'+ مقاله جدید' },
+            { id:'comments',  label:`نظرات${pendingComments.length>0?` (${pendingComments.length})`:''}` },
           ] as const).map(t => (
             <button key={t.id} onClick={() => setTab(t.id)}
               className={`px-5 py-3 text-sm font-medium border-b-2 -mb-px transition-colors ${tab===t.id?'border-bone text-bone':'border-transparent text-silver hover:text-silver'}`}>
@@ -356,6 +385,84 @@ function StaffDashboard({ user }: { user: any }) {
                 </div>
               )
             }
+          </div>
+        )}
+
+        {/* Comments moderation */}
+        {tab === 'comments' && (
+          <div className="space-y-6">
+            {dataLoading ? <div className="text-center py-12 text-silver">در حال بارگذاری...</div> : (
+              <>
+                {pendingComments.length > 0 && (
+                  <div>
+                    <h2 className="font-bold text-silver mb-4 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full" />در انتظار تأیید ({pendingComments.length})
+                    </h2>
+                    <div className="space-y-3">
+                      {pendingComments.map((cm: any) => (
+                        <div key={cm.id} className="card bg-white">
+                          <div className="flex items-start justify-between gap-4 mb-3">
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="font-semibold text-ink text-sm">{cm.authorName}</span>
+                                {cm.authorEmail && <span className="text-xs text-silver" dir="ltr">{cm.authorEmail}</span>}
+                              </div>
+                              {cm.post?.title && (
+                                <p className="text-xs text-teal mb-2">در مقاله: {cm.post.title}</p>
+                              )}
+                              <p className="text-sm text-graphite leading-relaxed whitespace-pre-line">{cm.body}</p>
+                            </div>
+                            <span className="text-xs text-silver flex-shrink-0">{new Date(cm.createdAt).toLocaleDateString('fa-IR')}</span>
+                          </div>
+                          <div className="flex gap-2 pt-3 border-t border-bone">
+                            <button onClick={() => updateComment(cm.id, 'approved')}
+                              className="flex items-center gap-1.5 text-xs px-4 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition-colors">
+                              <Check size={12} /> تأیید
+                            </button>
+                            <button onClick={() => updateComment(cm.id, 'rejected')}
+                              className="flex items-center gap-1.5 text-xs px-4 py-2 bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition-colors">
+                              <X size={12} /> رد
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {approvedComments.length > 0 && (
+                  <div>
+                    <h2 className="font-bold text-silver mb-4 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-emerald-500 rounded-full" />تأیید شده ({approvedComments.length})
+                    </h2>
+                    <div className="space-y-2">
+                      {approvedComments.map((cm: any) => (
+                        <div key={cm.id} className="card bg-white flex items-start justify-between gap-4 opacity-75">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="font-medium text-ink text-sm">{cm.authorName}</span>
+                              {cm.post?.title && <span className="text-xs text-silver">— {cm.post.title}</span>}
+                            </div>
+                            <p className="text-xs text-graphite truncate">{cm.body}</p>
+                          </div>
+                          <button onClick={() => updateComment(cm.id, 'rejected')}
+                            className="flex-shrink-0 text-xs px-3 py-1 text-red-500 border border-red-200 hover:bg-red-50 transition-colors">
+                            رد
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {comments.length === 0 && (
+                  <div className="card text-center py-16 text-silver bg-white">
+                    <MessageSquare size={32} className="mx-auto mb-3 opacity-30" />
+                    <p>هنوز نظری ثبت نشده است.</p>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         )}
 
