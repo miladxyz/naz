@@ -7,7 +7,7 @@ import {
   Wallet, Shield, ChevronLeft, MapPin, Phone, Mail,
   CheckCircle2, Award, Clock, HelpCircle
 } from 'lucide-react'
-import gpPhoto from '@/app/alireza-nazari.jpg'
+import gpPhoto from '@/app/alireza-nazari.png'
 import VideoSubtitlesMarquee from './test/page'
 
 async function getData() {
