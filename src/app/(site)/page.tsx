@@ -168,20 +168,6 @@ export default async function HomePage() {
                   {/* Dark gradient overlay at bottom */}
                   <div className="absolute inset-0"
                     style={{ background: 'linear-gradient(to top, rgba(7,15,30,0.7) 0%, transparent 50%)' }} />
-                  {/* Floating badge */}
-                  <div className="absolute bottom-6 right-6 left-6">
-                    <div className="flex items-center gap-3 px-4 py-3"
-                      style={{ background: 'rgba(13,31,60,0.9)', border: '1px solid rgba(76,180,201,0.3)', backdropFilter: 'blur(10px)' }}>
-                      <div className="w-9 h-9 flex items-center justify-center flex-shrink-0"
-                        style={{ background: 'rgba(76,180,201,0.2)', border: '1px solid rgba(76,180,201,0.4)' }}>
-                        <Scale size={18} style={{ color: '#4cb4c9' }} />
-                      </div>
-                      <div>
-                        <p className="text-ivory text-sm font-semibold">تیم وکالت علیرضا نظری</p>
-                        <p className="text-xs" style={{ color: '#4cb4c9' }}>وکیل شیراز، معالی‌آباد</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Floating teal stat card — top left, hidden on mobile */}
@@ -196,10 +182,10 @@ export default async function HomePage() {
                 {/* Floating dark stat card — bottom left, hidden on mobile */}
                 <div className="hidden sm:block absolute -bottom-4 -left-6 px-4 py-3 animate-float"
                   style={{ animationDelay:'2s', background: 'rgba(13,31,60,0.95)', border: '1px solid rgba(76,180,201,0.3)', boxShadow: '0 8px 24px rgba(13,31,60,0.5)' }}>
-                  {/* <div className="text-center">
-                    <div className="text-2xl font-bold text-ivory">۳۵۰۰+</div>
-                    <div className="text-xs" style={{ color: '#4cb4c9' }}>پرونده موفق</div>
-                  </div> */}
+                    <div>
+                        <p className="text-ivory text-sm font-semibold">تیم وکالت علیرضا نظری</p>
+                        <p className="text-xs" style={{ color: '#4cb4c9' }}>وکیل شیراز، معالی‌آباد</p>
+                    </div>
                 </div>
               </div>
             </div>
