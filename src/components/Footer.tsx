@@ -18,7 +18,7 @@ const practiceAreas = [
 ]
 
 const contactItems = [
-  { icon: MapPin,     value: 'شیراز، خیابان معالی‌آباد، مجتمع تجاری آوا، طبقه ۷، واحد ۷۱', href: null },
+  { icon: MapPin,     value: 'شیراز، خیابان معالی‌آباد، حد فاصل پزشکان و دوستان، مجتمع تجاری آوا، طبقه ۷، واحد ۷۱', href: null },
   { icon: Phone,      value: '۰۹۱۲۰۳۱۰۸۰۶', href: 'tel:+989120310806' },
   { icon: Phone,      value: '۰۹۱۲۰۳۱۰۸۰۵', href: 'tel:+989120310805' },
   { icon: Mail,       value: 'info@alirezanazari.com', href: 'mailto:info@alirezanazari.com' },
