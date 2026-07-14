@@ -67,18 +67,6 @@ function ClientDashboard({ user }: { user: any }) {
     return () => window.removeEventListener('question-submitted', fetchQuestions)
   }, [])
 
-  // async function updateCommentupdateComment(id: string, status: 'approved' | 'rejected') {
-  //   const res = await fetch(`/api/dashboard/comments/${id}`, {
-  //     method: 'PATCH',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ status }),
-  //   })
-  //   if (res.ok) fetchData()
-  // }
-
-  // const pendingComments  = comments.filter(c => c.status === 'pending')
-  // const approvedComments = comments.filter(c => c.status === 'approved')
-
   const pending  = questions.filter(q => q.status === 'pending')
   const answered = questions.filter(q => q.status === 'answered')
 
@@ -235,6 +223,7 @@ function StaffDashboard({ user }: { user: any }) {
     if (res.ok) fetchData()
   }
 
+  
   const pendingComments  = comments.filter(c => c.status === 'pending')
   const approvedComments = comments.filter(c => c.status === 'approved')
 
