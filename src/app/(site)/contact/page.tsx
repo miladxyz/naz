@@ -186,7 +186,7 @@ export default function ContactPage() {
               </div>
 
               {/* Map */}
-              <a href="https://maps.app.goo.gl/dURr88QNgonYCGHN9"
+              <a href="https://maps.app.goo.gl/JB8GcW97qjPFRnXM6"
                 target="_blank" rel="noopener noreferrer"
                 className="mt-6 block relative w-full h-52 bg-bone border border-bone hover:border-navy/30 hover:shadow-navy-glow transition-all duration-300 overflow-hidden group">
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-silver group-hover:text-navy transition-colors z-10">
