@@ -5,6 +5,7 @@ import { Footer } from '@/components/Footer'
 import { AuthProvider } from '@/context/AuthContext'
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import WhatsAppButton from '@/components/WhatsAppButton'
 import React from 'react'
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fa" dir="rtl">
+      <WhatsAppButton />
       <body className="text-ivory antialiased" style={{ fontFamily: 'Vazirmatn, sans-serif', background: '#0d1f3c' }}>
         {/* backgroud grid */}
         <div className='fixed inset-0 opacity-5 pointer-events-none'>
