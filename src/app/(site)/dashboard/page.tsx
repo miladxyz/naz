@@ -8,6 +8,7 @@ import { useAuth } from '@/context/AuthContext'
 import Link from 'next/link'
 import { RichEditor } from '@/components/RichEditor'
 import { CoverImageUpload } from '@/components/CoverImageUpload'
+import DashboardSkeleton from '@/components/DashboardSkeleton'
 
 const categoryLabels: Record<string, string> = {
   criminal:    'کیفری',
@@ -99,7 +100,7 @@ function ClientDashboard({ user }: { user: any }) {
         </div>
 
         {loading ? (
-          <div className="text-center py-16 text-silver">در حال بارگذاری...</div>
+          <DashboardSkeleton />
         ) : questions.length === 0 ? (
           <div className="card bg-white text-center py-16">
             <p className="text-4xl mb-4"></p>
@@ -277,7 +278,7 @@ function StaffDashboard({ user }: { user: any }) {
         {/* Questions */}
         {tab === 'questions' && (
           <div>
-            {dataLoading ? <div className="text-center py-12 text-silver">در حال بارگذاری...</div> : (
+            {dataLoading ? <DashboardSkeleton /> : (
               <>
                 {pending.length > 0 && (
                   <div className="mb-8">
@@ -350,7 +351,7 @@ function StaffDashboard({ user }: { user: any }) {
         {/* Posts list */}
         {tab === 'posts' && (
           <div>
-            {dataLoading ? <div className="text-center py-12 text-silver">در حال بارگذاری...</div> :
+            {dataLoading ? <DashboardSkeleton /> :
               posts.length > 0 ? (
                 <div className="space-y-3">
                   {posts.map(p => (
@@ -380,7 +381,7 @@ function StaffDashboard({ user }: { user: any }) {
         {/* Comments moderation */}
         {tab === 'comments' && (
           <div className="space-y-6">
-            {dataLoading ? <div className="text-center py-12 text-silver">در حال بارگذاری...</div> : (
+            {dataLoading ? <DashboardSkeleton /> : (
               <>
                 {pendingComments.length > 0 && (
                   <div>
