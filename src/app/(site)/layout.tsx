@@ -23,7 +23,6 @@ export const metadata: Metadata = {
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fa" dir="rtl">
-      <WhatsAppButton />
       <body className="text-ivory antialiased" style={{ fontFamily: 'Vazirmatn, sans-serif', background: '#0d1f3c' }}>
         {/* backgroud grid */}
         <div className='fixed inset-0 opacity-5 pointer-events-none'>
@@ -37,6 +36,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
           <meta name="google-site-verification" content="0VdQnF2TUtcJ4wwwnLS8OYAdnKdQf67KVvJcR7Apq_s" />
           <Footer />
         </AuthProvider>
+        <WhatsAppButton />
       </body>
     </html>
   )
