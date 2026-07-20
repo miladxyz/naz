@@ -29,7 +29,7 @@ export default function WhatsAppButton() {
         rel="noopener noreferrer"
         onClick={() => setTooltip(false)}
         aria-label="تماس از طریق واتساپ"
-        className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200"
+        className="w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200"
         style={{ background: '#25D366' }}
       >
         {/* WhatsApp SVG icon */}
