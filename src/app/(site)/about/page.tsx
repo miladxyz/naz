@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { safeFind } from '@/lib/payload'
 import type { Metadata } from 'next'
-import gpPhoto from "@/app/alireza-nazari.png"
+import gpPhoto from "@/app/alireza-nazari.jpg"
 import { Brain, HandHeart, Handshake, Rocket, Scale } from 'lucide-react';
 
 export const metadata: Metadata = {

@@ -6,7 +6,7 @@ import {
   BookOpen, UserCheck, Users, Clock, DollarSign,
   Scale, Trophy, HeartPulse, Briefcase, CalendarDays, ArrowLeft
 } from 'lucide-react'
-import gpPhoto from '@/app/shiraz-lawer.png'
+import gpPhoto from '@/app/shiraz-lawer.jpg'
 const challenges = [
   {
     id: 1,
