@@ -183,8 +183,8 @@ export default async function HomePage() {
                 <div className="hidden sm:block absolute -bottom-4 -left-6 px-4 py-3 animate-float"
                   style={{ animationDelay:'2s', background: 'rgba(13,31,60,0.95)', border: '1px solid rgba(76,180,201,0.3)', boxShadow: '0 8px 24px rgba(13,31,60,0.5)' }}>
                     <div>
-                        <p className="text-ivory text-sm font-semibold">تیم وکالت علیرضا نظری</p>
-                        <p className="text-xs" style={{ color: '#4cb4c9' }}>وکیل شیراز، معالی‌آباد</p>
+                        <p className="text-ivory text-sm font-semibold"> وکیل علیرضا نظری</p>
+                        <p className="text-xs" style={{ color: '#4cb4c9' }}>وکیل شیراز، معالی آباد</p>
                     </div>
                 </div>
               </div>
