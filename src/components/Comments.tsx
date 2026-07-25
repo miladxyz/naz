@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { MessageCircle, Send, CheckCircle2, Loader2, CornerDownLeft } from 'lucide-react'
+import { useAuth } from '@/context/AuthContext'
 
 interface Comment {
   id: string
@@ -38,6 +39,9 @@ export default function Comments({ postId }: Props) {
   const [comments, setComments] = useState<Comment[]>([])
   const [replies, setReplies]   = useState<Record<string, Comment[]>>({})
   const [loading, setLoading]   = useState(true)
+  const { user } = useAuth()
+  const isFounder = user?.role === 'founder'
+
   const [form, setForm]         = useState(emptyForm())
   const [status, setStatus]     = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [replyingTo, setReplyingTo] = useState<{ id: string; name: string } | null>(null)
@@ -88,13 +92,16 @@ export default function Comments({ postId }: Props) {
   }
 
   async function handleReply() {
-    if (!replyingTo || !replyForm.authorName.trim() || !replyForm.authorPhone.trim() || !replyForm.body.trim()) return
+    if (!replyingTo || !replyForm.body.trim()) return
+    // Founder is authenticated — use their name and a placeholder phone
+    const name  = user?.name  || 'علیرضا نظری'
+    const phone = user?.phone || 'staff'
     setReplyStatus('sending')
     try {
       const res = await fetch('/api/comments', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ postId, ...replyForm, parentCommentId: replyingTo.id }),
+        body:    JSON.stringify({ postId, authorName: name, authorPhone: phone, body: replyForm.body, parentCommentId: replyingTo.id }),
       })
       if (!res.ok) throw new Error()
       setReplyStatus('success')
@@ -148,17 +155,19 @@ export default function Comments({ postId }: Props) {
                     </span>
                   </div>
                   <p className="text-sm text-silver leading-relaxed whitespace-pre-line">{c.body}</p>
-                  <button
-                    onClick={() => {
-                      setReplyingTo(replyingTo?.id === c.id ? null : { id: c.id, name: c.authorName })
-                      setReplyForm(emptyForm())
-                      setReplyStatus('idle')
-                    }}
-                    className="mt-3 flex items-center gap-1.5 text-xs text-teal/70 hover:text-teal transition-colors"
-                  >
-                    <CornerDownLeft size={12} />
-                    پاسخ
-                  </button>
+                  {isFounder && (
+                    <button
+                      onClick={() => {
+                        setReplyingTo(replyingTo?.id === c.id ? null : { id: c.id, name: c.authorName })
+                        setReplyForm(emptyForm())
+                        setReplyStatus('idle')
+                      }}
+                      className="mt-3 flex items-center gap-1.5 text-xs text-teal/70 hover:text-teal transition-colors"
+                    >
+                      <CornerDownLeft size={12} />
+                      پاسخ
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -199,20 +208,7 @@ export default function Comments({ postId }: Props) {
                       </div>
                     ) : (
                       <div className="space-y-2">
-                        <div className="grid grid-cols-2 gap-2">
-                          <div>
-                            <label className="text-xs text-silver block mb-1">نام *</label>
-                            <input className="input text-sm py-1.5" placeholder="نام شما"
-                              value={replyForm.authorName} onChange={e => setR('authorName', e.target.value)} />
-                          </div>
-                          <div>
-                            <label className="text-xs text-silver block mb-1">شماره تماس *</label>
-                            <input type="tel" dir="ltr" className="input text-sm py-1.5" placeholder="09..."
-                              value={replyForm.authorPhone} onChange={e => setR('authorPhone', e.target.value)} />
-                          </div>
-                        </div>
                         <div>
-                          <label className="text-xs text-silver block mb-1">پاسخ *</label>
                           <textarea rows={3} className="textarea text-sm"
                             placeholder="پاسخ خود را بنویسید..."
                             value={replyForm.body} onChange={e => setR('body', e.target.value)} />
@@ -223,7 +219,7 @@ export default function Comments({ postId }: Props) {
                         <div className="flex gap-2">
                           <button
                             onClick={handleReply}
-                            disabled={replyStatus === 'sending' || !replyForm.authorName.trim() || !replyForm.authorPhone.trim() || !replyForm.body.trim()}
+                            disabled={replyStatus === 'sending' || !replyForm.body.trim()}
                             className="btn-primary text-xs py-1.5 px-4 disabled:opacity-50"
                           >
                             {replyStatus === 'sending'
