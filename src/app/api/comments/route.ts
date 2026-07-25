@@ -1,35 +1,52 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPayloadClient } from '@/lib/payload'
 
-// GET /api/comments?postId=xxx  — returns approved comments for a post
+// GET /api/comments?postId=xxx
 export async function GET(req: NextRequest) {
   const postId = req.nextUrl.searchParams.get('postId')
   if (!postId) return NextResponse.json({ docs: [] })
 
   try {
     const payload = await getPayloadClient()
+
+    // Fetch top-level comments (no parent)
     const res = await payload.find({
       collection: 'comments',
       where: {
-        post:   { equals: postId },
-        status: { equals: 'approved' },
+        post:          { equals: postId },
+        status:        { equals: 'approved' },
+        parentComment: { exists: false },
       },
       sort: 'createdAt',
       limit: 100,
     })
-    return NextResponse.json({ docs: res.docs })
+
+    // Fetch all replies for this post
+    const repliesRes = await payload.find({
+      collection: 'comments',
+      where: {
+        post:          { equals: postId },
+        status:        { equals: 'approved' },
+        parentComment: { exists: true },
+      },
+      sort: 'createdAt',
+      limit: 500,
+      depth: 0,
+    })
+
+    return NextResponse.json({ docs: res.docs, replies: repliesRes.docs })
   } catch (err) {
     console.error('Comments GET error:', err)
-    return NextResponse.json({ docs: [] })
+    return NextResponse.json({ docs: [], replies: [] })
   }
 }
 
-// POST /api/comments  — submit a new comment (pending by default)
+// POST /api/comments
 export async function POST(req: NextRequest) {
   try {
-    const { postId, authorName, authorEmail, body } = await req.json()
+    const { postId, authorName, authorPhone, body, parentCommentId } = await req.json()
 
-    if (!postId || !authorName || !body) {
+    if (!postId || !authorName || !authorPhone || !body) {
       return NextResponse.json({ error: 'اطلاعات ناقص است' }, { status: 400 })
     }
 
@@ -37,11 +54,12 @@ export async function POST(req: NextRequest) {
     await payload.create({
       collection: 'comments',
       data: {
-        post:        postId,
-        authorName:  authorName.trim(),
-        authorEmail: authorEmail?.trim() || undefined,
-        body:        body.trim(),
-        status:      'pending',
+        post:          postId,
+        authorName:    authorName.trim(),
+        authorPhone:   authorPhone.trim(),
+        body:          body.trim(),
+        status:        'pending',
+        ...(parentCommentId ? { parentComment: parentCommentId } : {}),
       },
     })
 

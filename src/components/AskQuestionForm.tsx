@@ -171,7 +171,7 @@ export function AskQuestionForm({ categories }: { categories: Record<string, str
           style={{ background: '#4cb4c9' }}>{user.name.charAt(0)}</div>
         <div className="flex-1 min-w-0">
           <p className="text-ivory text-sm font-medium truncate">{user.name}</p>
-          <p className="text-xs truncate" style={{ color: 'rgba(246,248,250,0.35)' }} dir="ltr">{user.phone}</p>
+          <p className="text-xs truncate" style={{ color: 'rgba(246,248,250,0.35)' }} dir="ltr">{user.email}</p>
         </div>
         <span className="text-xs flex items-center gap-1 text-emerald-400 flex-shrink-0">
           <CheckCircle2 size={12} /> وارد شده

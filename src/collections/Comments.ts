@@ -8,9 +8,7 @@ export const Comments: CollectionConfig = {
     group: 'محتوا',
   },
   access: {
-    // Anyone can submit a comment
     create: () => true,
-    // Only admins/founders can read all; public reads via API route (approved only)
     read: ({ req: { user } }) => {
       const role = (user as any)?.role
       return role === 'founder' || role === 'lawyer' || role === 'it_manager'
@@ -33,15 +31,24 @@ export const Comments: CollectionConfig = {
       admin: { position: 'sidebar' },
     },
     {
+      name: 'parentComment',
+      type: 'relationship',
+      relationTo: 'comments',
+      required: false,
+      label: 'پاسخ به نظر',
+      admin: { position: 'sidebar' },
+    },
+    {
       name: 'authorName',
       type: 'text',
       required: true,
       label: 'نام',
     },
     {
-      name: 'authorEmail',
-      type: 'email',
-      label: 'ایمیل (نمایش داده نمی‌شود)',
+      name: 'authorPhone',
+      type: 'text',
+      required: true,
+      label: 'شماره تماس (نمایش داده نمی‌شود)',
     },
     {
       name: 'body',
