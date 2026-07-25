@@ -56,7 +56,7 @@ export default function Comments({ postId }: Props) {
       {/* Heading */}
       <div className="flex items-center gap-2 mb-8">
         <MessageCircle size={20} className="text-teal" />
-        <h3 className="font-bold text-ink text-lg">
+        <h3 className="font-bold text-white text-lg">
           نظرات
           {!loading && comments.length > 0 && (
             <span className="text-sm font-normal text-silver mr-2">({comments.length})</span>
