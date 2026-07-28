@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPayloadClient } from '@/lib/payload'
 import { cookies } from 'next/headers'
+import { sendCommentReplySms } from '@/lib/smsir'
 
 async function getUser() {
   try {
@@ -30,7 +31,31 @@ export async function PATCH(
 
   try {
     const payload = await getPayloadClient()
+
+    // Fetch the comment before updating so we can read its data
+    const comment = await payload.findByID({ collection: 'comments', id, depth: 1 }) as any
+
     await payload.update({ collection: 'comments', id, data: { status } })
+
+    // If this is a reply being approved, SMS the original commenter
+    if (status === 'approved' && comment?.parentComment) {
+      try {
+        const parentId = typeof comment.parentComment === 'string'
+          ? comment.parentComment
+          : comment.parentComment?.id
+
+        if (parentId) {
+          const parent = await payload.findByID({ collection: 'comments', id: parentId }) as any
+          if (parent?.authorPhone) {
+            await sendCommentReplySms(parent.authorPhone, parent.authorName, comment.body)
+          }
+        }
+      } catch (smsErr) {
+        // SMS failure should not block the approval
+        console.error('Reply SMS failed:', smsErr)
+      }
+    }
+
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error('Comment update error:', err)

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPayloadClient } from '@/lib/payload'
+import { isValidIranPhone, normalisePhone } from '@/lib/smsir'
 
 // GET /api/comments?postId=xxx
 export async function GET(req: NextRequest) {
@@ -50,13 +51,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'اطلاعات ناقص است' }, { status: 400 })
     }
 
+    if (!isValidIranPhone(authorPhone)) {
+      return NextResponse.json({ error: 'شماره موبایل وارد شده معتبر نیست. لطفاً یک شماره ایرانی صحیح وارد کنید.' }, { status: 400 })
+    }
+
+    const normalisedPhone = normalisePhone(authorPhone)
+
     const payload = await getPayloadClient()
     await payload.create({
       collection: 'comments',
       data: {
         post:          postId,
         authorName:    authorName.trim(),
-        authorPhone:   authorPhone.trim(),
+        authorPhone:   normalisedPhone,
         body:          body.trim(),
         status:        'pending',
         ...(parentCommentId ? { parentComment: parentCommentId } : {}),

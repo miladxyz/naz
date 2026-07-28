@@ -31,6 +31,11 @@ function CommentSkeleton() {
   )
 }
 
+function isValidIranPhone(raw: string): boolean {
+  const digits = raw.replace(/\D/g, '')
+  return /^(0?9[0-9]{9})$/.test(digits)
+}
+
 function emptyForm() {
   return { authorName: '', authorPhone: '', body: '' }
 }
@@ -44,6 +49,7 @@ export default function Comments({ postId }: Props) {
 
   const [form, setForm]         = useState(emptyForm())
   const [status, setStatus]     = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [phoneError, setPhoneError] = useState('')
   const [replyingTo, setReplyingTo] = useState<{ id: string; name: string } | null>(null)
   const [replyForm, setReplyForm]   = useState(emptyForm())
   const [replyStatus, setReplyStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
@@ -76,6 +82,11 @@ export default function Comments({ postId }: Props) {
 
   async function handleSubmit() {
     if (!form.authorName.trim() || !form.authorPhone.trim() || !form.body.trim()) return
+    if (!isValidIranPhone(form.authorPhone)) {
+      setPhoneError('شماره موبایل معتبر نیست (مثال: ۰۹۱۲۱۲۳۴۵۶۷)')
+      return
+    }
+    setPhoneError('')
     setStatus('sending')
     try {
       const res = await fetch('/api/comments', {
@@ -266,7 +277,14 @@ export default function Comments({ postId }: Props) {
               <div>
                 <label className="text-xs text-silver block mb-1.5">شماره تماس *</label>
                 <input type="tel" dir="ltr" className="input" placeholder="09..."
-                  value={form.authorPhone} onChange={e => setF('authorPhone', e.target.value)} />
+                  value={form.authorPhone}
+                  onChange={e => { setF('authorPhone', e.target.value); setPhoneError('') }}
+                  onBlur={() => {
+                    if (form.authorPhone && !isValidIranPhone(form.authorPhone))
+                      setPhoneError('شماره موبایل معتبر نیست (مثال: ۰۹۱۲۱۲۳۴۵۶۷)')
+                  }}
+                />
+                {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
               </div>
             </div>
             <div>

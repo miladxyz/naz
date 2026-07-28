@@ -69,3 +69,44 @@ export function isValidIranPhone(raw: string): boolean {
 export function generateOtp(): string {
   return String(Math.floor(100000 + Math.random() * 900000))
 }
+
+/**
+ * Send SMS when founder replies to a comment.
+ * Create a pattern in sms.ir panel with params: NAME, REPLY
+ * Set env var: SMSIR_REPLY_TEMPLATE_ID
+ */
+export async function sendCommentReplySms(phone: string, commenterName: string, replyBody: string): Promise<void> {
+  const apiKey     = process.env.SMSIR_API_KEY
+  const templateId = process.env.SMSIR_REPLY_TEMPLATE_ID
+
+  if (!apiKey || !templateId) {
+    console.warn('SMSIR_REPLY_TEMPLATE_ID not set — skipping reply SMS')
+    return
+  }
+
+  const normalised = normalisePhone(phone)
+  const preview    = replyBody.length > 100 ? replyBody.slice(0, 97) + '...' : replyBody
+
+  const res = await fetch(SMSIR_API, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json', 'X-API-KEY': apiKey },
+    body: JSON.stringify({
+      mobile:     normalised,
+      templateId: Number(templateId),
+      parameters: [
+        { name: 'NAME',  value: commenterName },
+        { name: 'REPLY', value: preview },
+      ],
+    }),
+  })
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => '')
+    throw new Error(`SMS.ir reply error ${res.status}: ${text}`)
+  }
+
+  const data = await res.json()
+  if (data.status !== 1) {
+    throw new Error(`SMS.ir rejected reply SMS: ${JSON.stringify(data)}`)
+  }
+}
